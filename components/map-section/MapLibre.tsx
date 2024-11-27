@@ -1,8 +1,9 @@
 'use client';
 
-import { useUserLocation } from '@/app/context/UserLocationContext';
 import React, { useEffect, useState } from 'react';
-import Map, {Marker} from 'react-map-gl/maplibre';
+import { useUserLocation } from '@/app/context/UserLocationContext';
+import Map from 'react-map-gl/maplibre';
+import Markers from './Markers';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 const mapTilerApiKey = process.env.NEXT_PUBLIC_MAPTILER_API_KEY;
@@ -13,7 +14,7 @@ const CentrumHelsinkiDefaultCoords = {
 };
 
 const MapLibre = () => {
-    const {userLocation, setUserLocation} = useUserLocation();
+    const {userLocation} = useUserLocation();
 
     const [longitude, setLongitude] = useState(CentrumHelsinkiDefaultCoords.longitude);
     const [latitude, setLatitude] = useState(CentrumHelsinkiDefaultCoords.latitude);
@@ -38,15 +39,7 @@ const MapLibre = () => {
                         style={{width: '100%', height: 600}}
                         mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${mapTilerApiKey}`}
                     >
-                        {userLocation ?
-                            <Marker longitude={userLocation.longitude} latitude={userLocation.latitude} anchor="bottom" draggable>
-                                <img 
-                                    src="/location-pin-img/pin.png"
-                                    className='w-10 h-10'
-                                />
-                            </Marker>
-                            : null
-                        }
+                        <Markers />
                     </Map> 
             </div>
         </div>
