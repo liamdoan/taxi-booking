@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useUserLocation } from '@/app/context/UserLocationContext';
+import { useInputCoordsContext } from '@/app/context/InputCoordsContext'
 import Map from 'react-map-gl/maplibre';
 import Markers from './Markers';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -15,9 +16,32 @@ const CentrumHelsinkiDefaultCoords = {
 
 const MapLibre = () => {
     const {userLocation} = useUserLocation();
+    const {pickupCoordinate, dropCoordinate} = useInputCoordsContext();
 
     const [longitude, setLongitude] = useState(CentrumHelsinkiDefaultCoords.longitude);
     const [latitude, setLatitude] = useState(CentrumHelsinkiDefaultCoords.latitude);
+
+    const mapRef = useRef<any>();
+
+    //Smooth transit to pickup point
+    useEffect(() => {
+        if(pickupCoordinate && mapRef.current) {
+            mapRef.current.flyTo({
+                center: [pickupCoordinate.longitude, pickupCoordinate.latitude],
+                duration: 2000
+            })
+        }
+    }, [pickupCoordinate])
+
+    //Smooth transit to dropping point
+    useEffect(() => {
+        if(dropCoordinate && mapRef.current) {
+            mapRef.current.flyTo({
+                center: [dropCoordinate.longitude, dropCoordinate.latitude],
+                duration: 2000
+            })
+        }
+    }, [dropCoordinate])
 
     useEffect(() => {
         if (userLocation) {
@@ -31,6 +55,7 @@ const MapLibre = () => {
             <p>Map</p>
             <div className='overflow-hidden'>
                     <Map
+                        ref={mapRef}
                         initialViewState={{
                             longitude: longitude,
                             latitude: latitude,
