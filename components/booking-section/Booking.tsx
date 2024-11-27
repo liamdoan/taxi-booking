@@ -4,6 +4,7 @@ import React from 'react'
 import AutoSearchAddress from './AutoSearchAddress'
 import Cars from './Cars';
 import Payments from './Payments';
+import BookButton from './BookButton';
 
 const Booking = () => {
     // const screenHeight = window.innerHeight;
@@ -18,6 +19,7 @@ const Booking = () => {
                 <AutoSearchAddress />
                 <Cars />
                 <Payments />
+                <BookButton />
             </div>
         </div>
     )
