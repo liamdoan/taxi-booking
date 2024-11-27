@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 const UserLocationContext = createContext<any>(null);
 
@@ -24,3 +24,5 @@ export const UserLocationProvider: React.FC<{ children: ReactNode }> = ({childre
         </UserLocationContext.Provider>
     );
 };
+
+export const useUserLocation = () => useContext(UserLocationContext);
