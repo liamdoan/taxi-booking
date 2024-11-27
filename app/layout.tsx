@@ -27,19 +27,19 @@ export default function RootLayout({
 }>) {
     return (
         <ClerkProvider>
-        <html lang="en">
-            <body>
-                <header>
-                    <SignedOut>
-                        <SignInButton />
-                    </SignedOut>
-                    <SignedIn>
-                        <UserButton />
-                    </SignedIn>
-                </header>
-                <main>{children}</main>
-            </body>
-        </html>
+            <html lang="en">
+                <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+                    <header>
+                        <SignedOut>
+                            <SignInButton />
+                        </SignedOut>
+                        <SignedIn>
+                            <UserButton />
+                        </SignedIn>
+                    </header>
+                    <main>{children}</main>
+                </body>
+            </html>
         </ClerkProvider>
     );
 }
