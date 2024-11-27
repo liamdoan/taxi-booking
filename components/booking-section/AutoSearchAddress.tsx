@@ -6,9 +6,11 @@ import { SuggestedAddressList } from '@/app/utils/types';
 const AutoSearchAddress = () => {
     const [pickupAddressFromInput, setPickupAddressFromInput] = useState<any>('');
     const [suggestedPickupAddressList, setSuggestedPickupAddressList] = useState<any>([]);
+    const [pickupCoordinates, setPickupCoordinate] = useState<any>([]);
 
     const [dropAddressFromInput, setDropAddressFromInput] = useState<any>('');
     const [suggestedDropAddressList, setSuggestedDropAddressList] = useState<any>([]);
+    const [dropCoordinates, setDropCoordinate] = useState<any>([]);
 
     const [hasSelectedAddress, setHasSelectedAddress] = useState<boolean>(false);
 
@@ -40,6 +42,17 @@ const AutoSearchAddress = () => {
         }
     };
 
+    //currently no need for this, might be used full for dropping point
+    // const getAddressData = async (latitude: number, longitude: number) => {
+    //     try {
+    //         const res = await fetch('/api/address-get?lat=' + latitude + '&lon=' + longitude);
+    //         const addressData = await res.json();
+
+    //     }catch(err) {
+    //         console.error("Error getting address data", err)
+    //     }
+    // };
+
     // handle pickup input change
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -66,6 +79,37 @@ const AutoSearchAddress = () => {
         return () => clearTimeout(timer);
     }, [dropAddressFromInput]);
 
+    //log update coordinate
+    useEffect(() => {
+        console.log("Updated Pickup Coordinates: ", pickupCoordinates);
+    }, [pickupCoordinates]);
+    
+    useEffect(() => {
+        console.log("Updated Drop Coordinates: ", dropCoordinates);
+    }, [dropCoordinates]);
+
+    const onAddressInputClick = (item: any, type: 'pickup' | 'drop') => {
+        if (type === 'pickup') {
+            setPickupAddressFromInput(item.display_name);
+            setSuggestedPickupAddressList([]);
+            setHasSelectedAddress(true);
+            // getAddressData(item.lat, item.lon);
+            setPickupCoordinate({
+                latitude: item.lat,
+                longitude: item.lon
+            })
+        } else {
+            setDropAddressFromInput(item.display_name);
+            setSuggestedDropAddressList([]);
+            setHasSelectedAddress(true);
+            // getAddressData(item.lat, item.lon);
+            setDropCoordinate({
+                latitude: item.lat,
+                longitude: item.lon
+            })
+        }
+    };
+
     return (
         <div className='p-5 bg-yellow-400'>
             <div
@@ -88,11 +132,7 @@ const AutoSearchAddress = () => {
                             <p
                                 key={item.place_id}
                                 className='p-2 hover:bg-gray-200 cursor-pointer'
-                                onClick={() => {
-                                    setPickupAddressFromInput(item.display_name);
-                                    setSuggestedPickupAddressList([]);
-                                    setHasSelectedAddress(true)
-                                }}
+                                onClick={() => onAddressInputClick(item, 'pickup')}
                             >
                                 {item.display_name}
                             </p>
@@ -121,11 +161,7 @@ const AutoSearchAddress = () => {
                             <p
                                 key={item.place_id}
                                 className='p-2 hover:bg-gray-200 cursor-pointer'
-                                onClick={() => {
-                                    setDropAddressFromInput(item.display_name);
-                                    setSuggestedDropAddressList([]);
-                                    setHasSelectedAddress(true)
-                                }}
+                                onClick={() => onAddressInputClick(item, 'drop')}
                             >
                                 {item.display_name}
                             </p>
