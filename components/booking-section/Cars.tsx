@@ -20,7 +20,14 @@ const Cars = () => {
                         `}
                         onClick={() => setSelecedCar(item.id)}
                     >
-                        <Image src={item.img} alt={item.category} layout='intrinsic' width={180} height={0}/>
+                        <Image
+                            src={item.img}
+                            alt={item.category}
+                            width={400}
+                            height={180}
+                            style={{ width: '100%', height: 'auto' }}
+                            loading="lazy"
+                        />
                         <p className='text-[0.8rem]'>
                             {item.category}
                             <span className='float-right'>

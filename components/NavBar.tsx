@@ -6,7 +6,14 @@ const NavBar = () => {
   return (
     <div className='flex justify-between py-3 px-4 border-b-[2px] shadow-lg'>
         <div className='bg-yellow-400 gap-10'>
-            <Image src='/slush-logo.png' alt='logo' width={120} height={60}/>
+            <Image
+                src='/slush-logo.png'
+                alt='logo'
+                width={120}
+                height={60}
+                style={{ width: '100%', height: 'auto' }}
+                priority
+            />
         </div>
         <div className='flex gap-5 items-center'> {/* add 'hidden sm:' in front to hide elem when screen size is small */}
             <h2 className='hover:bg-yellow-400 cursor-pointer p-1 transition-all'>home</h2>
