@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Booking from "@/components/booking-section/Booking";
+import MapLibre from "@/components/map-section/MapLibre";
 
 export default function Home() {
     return (
@@ -9,7 +10,7 @@ export default function Home() {
                     <Booking />
                 </div>
                 <div className="bg-yellow-400 col-span-2">
-                    map
+                <MapLibre />
                 </div>
             </div>
         </div>
