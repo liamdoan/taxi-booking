@@ -2,17 +2,23 @@
 
 import React, { useEffect, useState } from 'react';
 import { SuggestedAddressList } from '@/app/utils/types';
+import { useInputCoordsContext } from '@/app/context/InputCoordsContext';
 
 const AutoSearchAddress = () => {
     const [pickupAddressFromInput, setPickupAddressFromInput] = useState<any>('');
-    const [suggestedPickupAddressList, setSuggestedPickupAddressList] = useState<any>([]);
-    const [pickupCoordinates, setPickupCoordinate] = useState<any>([]);
+    const [suggestedPickupAddressList, setSuggestedPickupAddressList] = useState<any>([])
 
     const [dropAddressFromInput, setDropAddressFromInput] = useState<any>('');
-    const [suggestedDropAddressList, setSuggestedDropAddressList] = useState<any>([]);
-    const [dropCoordinates, setDropCoordinate] = useState<any>([]);
+    const [suggestedDropAddressList, setSuggestedDropAddressList] = useState<any>([])
 
     const [hasSelectedAddress, setHasSelectedAddress] = useState<boolean>(false);
+
+    const {
+        pickupCoordinate,
+        setPickupCoordinate,
+        dropCoordinate,
+        setDropCoordinate
+    } = useInputCoordsContext();
 
     const getSuggestedAddresses = async (address: string, type: 'pickup' | 'drop') => {
         if (!address || address.trim() === "" || hasSelectedAddress) {
@@ -78,15 +84,6 @@ const AutoSearchAddress = () => {
 
         return () => clearTimeout(timer);
     }, [dropAddressFromInput]);
-
-    //log update coordinate
-    useEffect(() => {
-        console.log("Updated Pickup Coordinates: ", pickupCoordinates);
-    }, [pickupCoordinates]);
-    
-    useEffect(() => {
-        console.log("Updated Drop Coordinates: ", dropCoordinates);
-    }, [dropCoordinates]);
 
     const onAddressInputClick = (item: any, type: 'pickup' | 'drop') => {
         if (type === 'pickup') {

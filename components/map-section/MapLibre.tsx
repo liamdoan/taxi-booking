@@ -18,8 +18,6 @@ const MapLibre = () => {
     const [longitude, setLongitude] = useState(CentrumHelsinkiDefaultCoords.longitude);
     const [latitude, setLatitude] = useState(CentrumHelsinkiDefaultCoords.latitude);
 
-    console.log("yooooo", userLocation)
-
     useEffect(() => {
         if (userLocation) {
             setLongitude(userLocation.longitude);
