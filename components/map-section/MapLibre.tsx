@@ -9,6 +9,7 @@ import Map from 'react-map-gl/maplibre';
 import Markers from './Markers';
 import MapTravelingRoutes from './MapTravelingRoutes';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { userTravelingRouteDataContext } from '@/app/context/TravelingRouteDataContext';
 
 const mapTilerApiKey = process.env.NEXT_PUBLIC_MAPTILER_API_KEY;
 
@@ -20,11 +21,10 @@ const CentrumHelsinkiDefaultCoords = {
 const MapLibre = () => {
     const {userLocation} = useUserLocation();
     const {pickupCoordinate, dropCoordinate} = useInputCoordsContext();
+    const {travelingRouteData, setTravelingRouteData} = userTravelingRouteDataContext();
 
     const [longitude, setLongitude] = useState(CentrumHelsinkiDefaultCoords.longitude);
-    const [latitude, setLatitude] = useState(CentrumHelsinkiDefaultCoords.latitude);
-
-    const [travelingRouteData, setTravelingRouteData] = useState<any>([]);
+    const [latitude, setLatitude] = useState(CentrumHelsinkiDefaultCoords.latitude)
 
     const mapRef = useRef<any>();
 
