@@ -24,7 +24,7 @@ const MapLibre = () => {
     const [longitude, setLongitude] = useState(CentrumHelsinkiDefaultCoords.longitude);
     const [latitude, setLatitude] = useState(CentrumHelsinkiDefaultCoords.latitude);
 
-    const [routeData, setRouteData] = useState<any>([]);
+    const [travelingRouteData, setTravelingRouteData] = useState<any>([]);
 
     const mapRef = useRef<any>();
 
@@ -32,9 +32,9 @@ const MapLibre = () => {
     const getTravelingRouteData = async (coord1: any, coord2: any) => {
         try{
             const res = await fetch('/api/calculate-routing?pickup=' + coord1 + '&drop=' + coord2);
-            const calculatedResult = await res.json();
+            const routeData = await res.json();
 
-            const allRoutes = calculatedResult.routes;
+            const allRoutes = routeData.routes;
 
             const transformRoutes = allRoutes.map((route: any) => {
                 const polylineString = route.geometry
@@ -44,7 +44,7 @@ const MapLibre = () => {
                 return transformedRoute;
             })
 
-            setRouteData(transformRoutes);
+            setTravelingRouteData(transformRoutes);
         }catch(err) {
             console.error("Error fetching distance", err);
         }
@@ -100,7 +100,7 @@ const MapLibre = () => {
                         style={{width: '100%', height: 600}}
                         mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${mapTilerApiKey}`}
                     >
-                        <MapTravelingRoutes routeData={routeData}/>
+                        <MapTravelingRoutes travelingRouteData={travelingRouteData}/>
                         <Markers />
                     </Map> 
             </div>

@@ -2,13 +2,13 @@ import React from 'react'
 import { Source, Layer } from 'react-map-gl/maplibre';
 
 interface MapRouteProps {
-    routeData: Array<[number, number]>
+    travelingRouteData: Array<[number, number]>
 }
 
-const MapTravelingRoutes: React.FC<MapRouteProps> = ({routeData}) => {
+const MapTravelingRoutes: React.FC<MapRouteProps> = ({travelingRouteData}) => {
     return (
         <>
-            {routeData.map((route, index) => (
+            {travelingRouteData.map((route, index) => (
                 <Source
                     key={index}
                     type="geojson"
