@@ -32,15 +32,19 @@ const MapLibre = () => {
     const getTravelingRouteData = async (coord1: any, coord2: any) => {
         try{
             const res = await fetch('/api/calculate-routing?pickup=' + coord1 + '&drop=' + coord2);
-            const calculatedResult = await res.json()
+            const calculatedResult = await res.json();
 
-            const firstRoute = calculatedResult.routes[0];
-            const polylineString = firstRoute.geometry;
+            const allRoutes = calculatedResult.routes;
 
-            const decodedRoute = decodePolyline(polylineString);
-            const transformedRoute = transformCoordinates(decodedRoute);
+            const transformRoutes = allRoutes.map((route: any) => {
+                const polylineString = route.geometry
+                const decodedRoute = decodePolyline(polylineString);
+                const transformedRoute = transformCoordinates(decodedRoute);
 
-            setRouteData(transformedRoute);
+                return transformedRoute;
+            })
+
+            setRouteData(transformRoutes);
         }catch(err) {
             console.error("Error fetching distance", err);
         }
