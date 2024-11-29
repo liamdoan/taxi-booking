@@ -23,6 +23,8 @@ const MapLibre = () => {
     const {pickupCoordinate, dropCoordinate} = useInputCoordsContext();
     const {travelingRouteData, setTravelingRouteData} = userTravelingRouteDataContext();
 
+    const [routeCoordinates, setRouteCoordinates] = useState<any>([]);
+
     const [longitude, setLongitude] = useState(CentrumHelsinkiDefaultCoords.longitude);
     const [latitude, setLatitude] = useState(CentrumHelsinkiDefaultCoords.latitude)
 
@@ -44,7 +46,8 @@ const MapLibre = () => {
                 return transformedRoute;
             })
 
-            setTravelingRouteData(transformRoutes);
+            setRouteCoordinates(transformRoutes);
+            // setTravelingRouteData(routeData);
         }catch(err) {
             console.error("Error fetching distance", err);
         }
@@ -100,7 +103,7 @@ const MapLibre = () => {
                         style={{width: '100%', height: 600}}
                         mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${mapTilerApiKey}`}
                     >
-                        <MapTravelingRoutes travelingRouteData={travelingRouteData}/>
+                        <MapTravelingRoutes routeCoordinates={routeCoordinates}/>
                         <Markers />
                     </Map> 
             </div>
