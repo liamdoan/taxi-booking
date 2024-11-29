@@ -17,7 +17,7 @@ export default function Home() {
                             <SelectedCarProvider>
                                 <div>
                                     <div className="grid grid-cols-1 lg:grid-cols-3">
-                                        <div className="bg-yellow-200">
+                                        <div className="bg-[var(--foreground)]">
                                             <Booking />
                                         </div>
                                         <div className="bg-yellow-400 col-span-2">
