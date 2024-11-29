@@ -1,5 +1,6 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
 
+//Coordinates context
 interface Coordidates {
     latitude: number;
     longitude: number;
@@ -41,3 +42,20 @@ export const useInputCoordsContext = () => {
 
     return context;
 };
+
+//hasSelectedAddress context
+const HasSelectedAddressContext = createContext<any>(null);
+
+export const HasSelectedAddressProvider: React.FC<{children: ReactNode}> = ({children}) => {
+    const [hasSelectedAddress, setHasSelectedAddress] = useState<boolean>(false);
+
+    return (
+        <HasSelectedAddressContext.Provider
+            value={{ hasSelectedAddress, setHasSelectedAddress}}
+        >
+            {children}
+        </HasSelectedAddressContext.Provider>
+    )
+}
+
+export const useHasSelectedAddressContext = () => useContext(HasSelectedAddressContext);

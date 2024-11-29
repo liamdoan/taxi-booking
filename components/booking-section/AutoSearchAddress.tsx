@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { SuggestedAddressList } from '@/app/utils/types';
-import { useInputCoordsContext } from '@/app/context/InputCoordsContext';
+import { useHasSelectedAddressContext, useInputCoordsContext } from '@/app/context/InputCoordsContext';
 
 const AutoSearchAddress = () => {
     const [pickupAddressFromInput, setPickupAddressFromInput] = useState<any>('');
@@ -11,7 +11,7 @@ const AutoSearchAddress = () => {
     const [dropAddressFromInput, setDropAddressFromInput] = useState<any>('');
     const [suggestedDropAddressList, setSuggestedDropAddressList] = useState<any>([])
 
-    const [hasSelectedAddress, setHasSelectedAddress] = useState<boolean>(false);
+    const {hasSelectedAddress, setHasSelectedAddress} = useHasSelectedAddressContext();
 
     const {
         pickupCoordinate,
