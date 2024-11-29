@@ -96,25 +96,40 @@ const MapLibre = () => {
     }, [userLocation]);
 
     return (
-        <div className='p-5 relative'>
-            <div className='overflow-hidden'>
-                <Map
-                    ref={mapRef}
-                    initialViewState={{
-                        longitude: longitude,
-                        latitude: latitude,
-                        zoom:10
-                    }}
-                    style={{width: '100%', height: 600}}
-                    mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${mapTilerApiKey}`}
-                >
-                    <MapTravelingRoutes routeCoordinates={routeCoordinates}/>
-                    <Markers />
-                </Map>
+        <div className='p-5'>
+            <div className='relative'>
+                <div className='overflow-hidden'>
+                    <Map
+                        ref={mapRef}
+                        initialViewState={{
+                            longitude: longitude,
+                            latitude: latitude,
+                            zoom:10
+                        }}
+                        style={{width: '100%', height: 600}}
+                        mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${mapTilerApiKey}`}
+                    >
+                        <MapTravelingRoutes routeCoordinates={routeCoordinates}/>
+                        <Markers />
+                    </Map>
+                </div>
+                {travelingRouteData &&
+                    <div className='bg-yellow-500 absolute bottom-2 left-2 rounded-md pt-1 pb-1 pl-2 pr-2'>
+                        <TimeDistance />
+                    </div>
+                }
             </div>
             {travelingRouteData &&
-                <div className='bg-yellow-500 absolute bottom-6 left-6 rounded-md pt-1 pb-1 pl-2 pr-2'>
-                    <TimeDistance />
+                <div className='my-2 text-[var(--text-normal)]'>
+                    <div className='flex items-center'>
+                        <div className='w-[3rem] h-[5px] rounded-md mr-3 bg-[#218cf8]'></div>
+                        <span className='text-[0.7rem]'>shortest route</span>
+                    </div>
+                    <div className='flex items-center'>
+                        <div className='w-[3rem] h-[5px] rounded-md mr-3 bg-[#32cd32]'></div>
+                        <span className='text-[0.7rem]'>alternative route</span>
+                    </div>
+                    <p className='text-[0.7rem] my-2 italic'>* Distance, time, price are calculated based on the shortest estimated route.</p>
                 </div>
             }
         </div>
