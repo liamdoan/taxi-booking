@@ -20,7 +20,7 @@ export default function Home() {
                                         <div className="bg-[var(--foreground)]">
                                             <Booking />
                                         </div>
-                                        <div className="bg-yellow-400 col-span-2">
+                                        <div className="bg-[var(--foreground)] col-span-2">
                                             <MapLibre />
                                         </div>
                                     </div>
