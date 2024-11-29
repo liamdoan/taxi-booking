@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { SuggestedAddressList } from '@/app/utils/types';
 import { useHasSelectedAddressContext, useInputCoordsContext } from '@/app/context/InputCoordsContext';
+import { useHasFetchTravelingRouteDataSuccessfullyContext } from '@/app/context/TravelingRouteDataContext';
 
 const AutoSearchAddress = () => {
     const [pickupAddressFromInput, setPickupAddressFromInput] = useState<any>('');
@@ -12,6 +13,7 @@ const AutoSearchAddress = () => {
     const [suggestedDropAddressList, setSuggestedDropAddressList] = useState<any>([])
 
     const {hasSelectedAddress, setHasSelectedAddress} = useHasSelectedAddressContext();
+    const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
 
     const {
         pickupCoordinate,
@@ -121,6 +123,7 @@ const AutoSearchAddress = () => {
                     onChange={e => {
                         setPickupAddressFromInput(e.target.value);
                         setHasSelectedAddress(false);
+                        setHasFetchTravelingRouteDataSuccessfully(false);
                     }}
                 />
                 {suggestedPickupAddressList ?
@@ -150,6 +153,7 @@ const AutoSearchAddress = () => {
                     onChange={e => {
                         setDropAddressFromInput(e.target.value);
                         setHasSelectedAddress(false);
+                        setHasFetchTravelingRouteDataSuccessfully(false);
                     }}
                 />
                 {suggestedDropAddressList ?

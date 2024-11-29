@@ -9,7 +9,7 @@ import Map from 'react-map-gl/maplibre';
 import Markers from './Markers';
 import MapTravelingRoutes from './MapTravelingRoutes';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { userTravelingRouteDataContext } from '@/app/context/TravelingRouteDataContext';
+import { useHasFetchTravelingRouteDataSuccessfullyContext, userTravelingRouteDataContext } from '@/app/context/TravelingRouteDataContext';
 import TimeDistance from './TimeDistance';
 
 const mapTilerApiKey = process.env.NEXT_PUBLIC_MAPTILER_API_KEY;
@@ -23,6 +23,7 @@ const MapLibre = () => {
     const {userLocation} = useUserLocation();
     const {pickupCoordinate, dropCoordinate} = useInputCoordsContext();
     const {travelingRouteData, setTravelingRouteData} = userTravelingRouteDataContext();
+    const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
 
     const [routeCoordinates, setRouteCoordinates] = useState<any>([]);
 
@@ -37,6 +38,10 @@ const MapLibre = () => {
             const res = await fetch('/api/calculate-routing?pickup=' + coord1 + '&drop=' + coord2);
             const routeData = await res.json();
 
+            (routeData.code == 200 || routeData.code == 'Ok')
+            ? setHasFetchTravelingRouteDataSuccessfully(true)
+            : setHasFetchTravelingRouteDataSuccessfully(false);
+            
             const allRoutes = routeData.routes;
 
             const transformRoutes = allRoutes.map((route: any) => {
