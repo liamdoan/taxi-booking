@@ -8,6 +8,7 @@
   --text-normal: #ffffff;
   --text-disabled: #3e3e3e;
   --input-focus: #353535;
+  --button-disabled: #575757;
 }
 
 @media (prefers-color-scheme: dark) {
