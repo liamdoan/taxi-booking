@@ -125,7 +125,7 @@ const AutoSearchAddress = () => {
                     }}
                 />
                 {suggestedPickupAddressList ?
-                    <div className='absolute bg-white w-full shadow-md rounded-md'>
+                    <div className='absolute z-10 bg-white w-full shadow-md rounded-md'>
                         {suggestedPickupAddressList?.map((item: SuggestedAddressList) => (
                             <p
                                 key={item.place_id}
