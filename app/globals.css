@@ -6,7 +6,8 @@
   --background: #ffffff;
   --foreground: #171717;
   --text-normal: #ffffff;
-  --text-disabled: #a0a0a0;
+  --text-disabled: #3e3e3e;
+  --input-focus: #353535;
 }
 
 @media (prefers-color-scheme: dark) {
