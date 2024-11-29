@@ -10,6 +10,7 @@ import Markers from './Markers';
 import MapTravelingRoutes from './MapTravelingRoutes';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { userTravelingRouteDataContext } from '@/app/context/TravelingRouteDataContext';
+import TimeDistance from './TimeDistance';
 
 const mapTilerApiKey = process.env.NEXT_PUBLIC_MAPTILER_API_KEY;
 
@@ -21,7 +22,7 @@ const CentrumHelsinkiDefaultCoords = {
 const MapLibre = () => {
     const {userLocation} = useUserLocation();
     const {pickupCoordinate, dropCoordinate} = useInputCoordsContext();
-    const {setTravelingRouteData} = userTravelingRouteDataContext();
+    const {travelingRouteData, setTravelingRouteData} = userTravelingRouteDataContext();
 
     const [routeCoordinates, setRouteCoordinates] = useState<any>([]);
 
@@ -90,23 +91,28 @@ const MapLibre = () => {
     }, [userLocation]);
 
     return (
-        <div className='p-5'>
+        <div className='p-5 relative'>
             <p>Map</p>
             <div className='overflow-hidden'>
-                    <Map
-                        ref={mapRef}
-                        initialViewState={{
-                            longitude: longitude,
-                            latitude: latitude,
-                            zoom:10
-                        }}
-                        style={{width: '100%', height: 600}}
-                        mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${mapTilerApiKey}`}
-                    >
-                        <MapTravelingRoutes routeCoordinates={routeCoordinates}/>
-                        <Markers />
-                    </Map> 
+                <Map
+                    ref={mapRef}
+                    initialViewState={{
+                        longitude: longitude,
+                        latitude: latitude,
+                        zoom:10
+                    }}
+                    style={{width: '100%', height: 600}}
+                    mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${mapTilerApiKey}`}
+                >
+                    <MapTravelingRoutes routeCoordinates={routeCoordinates}/>
+                    <Markers />
+                </Map>
             </div>
+            {travelingRouteData &&
+                <div className='bg-yellow-500 absolute bottom-6 left-6 rounded-md pt-1 pb-1 pl-2 pr-2'>
+                    <TimeDistance />
+                </div>
+            }
         </div>
     );
 };
