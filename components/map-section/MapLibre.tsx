@@ -21,7 +21,7 @@ const CentrumHelsinkiDefaultCoords = {
 const MapLibre = () => {
     const {userLocation} = useUserLocation();
     const {pickupCoordinate, dropCoordinate} = useInputCoordsContext();
-    const {travelingRouteData, setTravelingRouteData} = userTravelingRouteDataContext();
+    const {setTravelingRouteData} = userTravelingRouteDataContext();
 
     const [routeCoordinates, setRouteCoordinates] = useState<any>([]);
 
@@ -39,7 +39,7 @@ const MapLibre = () => {
             const allRoutes = routeData.routes;
 
             const transformRoutes = allRoutes.map((route: any) => {
-                const polylineString = route.geometry
+                const polylineString = route.geometry;
                 const decodedRoute = decodePolyline(polylineString);
                 const transformedRoute = transformCoordinates(decodedRoute);
 
@@ -47,7 +47,7 @@ const MapLibre = () => {
             })
 
             setRouteCoordinates(transformRoutes);
-            // setTravelingRouteData(routeData);
+            setTravelingRouteData(routeData);
         }catch(err) {
             console.error("Error fetching distance", err);
         }
