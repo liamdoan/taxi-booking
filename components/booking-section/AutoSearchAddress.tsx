@@ -108,15 +108,15 @@ const AutoSearchAddress = () => {
     };
 
     return (
-        <div className='p-5 bg-yellow-400'>
+        <div className='p-1'>
             <div
                 id="pickup-input"
-                className=' bg-yellow-500 pt-2 pb-2 relative'
+                className='pt-2 pb-2 relative'
             >
-                <label>Pickup location</label>
+                <label className='text-[var(--text-normal)]'>Pickup location&nbsp;<span className='text-red-500'>*</span></label>
                 <input
                     type="text"
-                    className='border-[1px] p-1 w-full rounded-md outline-none focus:bg-gray-200 transition-all'
+                    className='bg-transparent text-[var(--text-normal)] border-[1px] mt-2 p-3 w-full rounded-md outline-none focus:bg-[var(--input-focus)] transition-all'
                     value={pickupAddressFromInput}
                     onChange={e => {
                         setPickupAddressFromInput(e.target.value);
@@ -141,12 +141,12 @@ const AutoSearchAddress = () => {
             </div>
             <div
                 id="dropping-input"
-                className='bg-yellow-600 pt-2 pb-2'
+                className='pt-2 pb-2'
             >
-                <label htmlFor="">Dropping location</label>
+                <label className='text-[var(--text-normal)]'>Dropping location&nbsp;<span className='text-red-500'>*</span></label>
                 <input
                     type="text"
-                    className='border-[1px] p-1 w-full rounded-md outline-none focus:bg-gray-200 transition-all'
+                    className='bg-transparent text-[var(--text-normal)] border-[1px] mt-2 p-3 w-full rounded-md outline-none focus:bg-[var(--input-focus)] transition-all'
                     value={dropAddressFromInput}
                     onChange={e => {
                         setDropAddressFromInput(e.target.value);
