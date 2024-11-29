@@ -16,9 +16,7 @@ const AutoSearchAddress = () => {
     const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
 
     const {
-        pickupCoordinate,
         setPickupCoordinate,
-        dropCoordinate,
         setDropCoordinate
     } = useInputCoordsContext();
 
