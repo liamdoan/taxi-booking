@@ -97,7 +97,6 @@ const MapLibre = () => {
 
     return (
         <div className='p-5 relative'>
-            <p>Map</p>
             <div className='overflow-hidden'>
                 <Map
                     ref={mapRef}
