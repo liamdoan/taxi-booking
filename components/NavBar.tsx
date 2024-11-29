@@ -22,6 +22,7 @@ const NavBar = () => {
         <div className='flex gap-5 items-center'> {/* add 'hidden sm:' in front to hide elem when screen size is small */}
             <h2
                 className='hover:bg-yellow-400 cursor-pointer py-1 px-3 rounded-md transition-all'
+                onClick={() => router.push('/')}
             >
                 Home
             </h2>
