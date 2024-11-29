@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import CarOptions from '@/app/data/CarOptions';
 import Image from 'next/image';
 import { userTravelingRouteDataContext } from '@/app/context/TravelingRouteDataContext';
+import { useSelectedCarContext } from '@/app/context/SelectedCarContext';
 
 const Cars = () => {
-    const [selectedCar, setSelecedCar] = useState<any>();
+    const {selectedCar, setSelectedCar} = useSelectedCarContext();
     const {travelingRouteData} = userTravelingRouteDataContext();
 
     const getCost = (rate: any) => {
@@ -31,7 +32,7 @@ const Cars = () => {
                             hover:border-yellow-400 cursor-pointer transition-all
                             ${item.id == selectedCar && 'border-yellow-400 border-[3px]'}
                         `}
-                        onClick={() => setSelecedCar(item.id)}
+                        onClick={() => setSelectedCar(item.id)}
                     >
                         <Image
                             src={item.img}
