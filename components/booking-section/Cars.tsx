@@ -38,8 +38,8 @@ const Cars = () => {
                             onClick={() => setSelectedCar(item.id)}
                         >
                             <div className={`
-                                absolute inset-0 bg-black bg-opacity-50
-                                ${item.id == selectedCar && 'bg-opacity-0'}
+                                absolute inset-0 bg-black
+                                ${item.id == selectedCar ? 'bg-opacity-0' : 'bg-opacity-50'}
                                 transition-all
                             `}></div>
                             <Image
