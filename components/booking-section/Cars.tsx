@@ -1,11 +1,24 @@
 'use client';
 
-import CarOptions from '@/app/data/CarOptions'
-import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import CarOptions from '@/app/data/CarOptions';
+import Image from 'next/image';
+import { userTravelingRouteDataContext } from '@/app/context/TravelingRouteDataContext';
 
 const Cars = () => {
     const [selectedCar, setSelecedCar] = useState<any>();
+    const {travelingRouteData} = userTravelingRouteDataContext();
+
+    const getCost = (rate: any) => {
+        if(!travelingRouteData) return;
+
+        const distanceInKilometer = travelingRouteData.routes[0].distance * 0.001;
+        const actualCost = rate * distanceInKilometer;
+        const roundedCost = Math.round(actualCost * 10)/ 10;
+        
+        return roundedCost;
+    }
+
     return (
         <div className='mt-5'>
             <h2>Car select</h2>
@@ -30,10 +43,12 @@ const Cars = () => {
                         />
                         <p className='text-[0.8rem]'>
                             {item.category}
-                            <span className='float-right'>
-                                {item.charges*10}€
-                            </span>
-                        </p>
+                            {travelingRouteData && (
+                                <span className='float-right'>
+                                    {getCost(item.chargeRate)}€
+                                </span>
+                            )}
+                        </p>    
                     </div>
                 ))}
             </div>
