@@ -28,6 +28,7 @@ const NavBar = () => {
             </h2>
             <h2
                 className='hover:bg-yellow-400 cursor-pointer py-1 px-3 rounded-md transition-all'
+                onClick={() => router.push('/ride-history')}
             >
                 History
             </h2>
