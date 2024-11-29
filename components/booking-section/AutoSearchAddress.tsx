@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { SuggestedAddressList } from '@/app/utils/types';
 import { useHasSelectedAddressContext, useInputCoordsContext } from '@/app/context/InputCoordsContext';
 import { useHasFetchTravelingRouteDataSuccessfullyContext } from '@/app/context/TravelingRouteDataContext';
+import Image from 'next/image';
 
 const AutoSearchAddress = () => {
     const [pickupAddressFromInput, setPickupAddressFromInput] = useState<any>('');
@@ -113,7 +114,10 @@ const AutoSearchAddress = () => {
                 id="pickup-input"
                 className='pt-2 pb-2 relative'
             >
-                <label className='text-[var(--text-normal)]'>Pickup location&nbsp;<span className='text-red-500'>*</span></label>
+                <label className='text-[var(--text-normal)] flex items-start'>
+                    <Image src="/location-pin-img/pin-red.png" alt='pin-red' width={20} height={10} className='mr-1'/>
+                    Pickup location&nbsp;<span className='text-red-500'>*</span>
+                </label>
                 <input
                     type="text"
                     className='bg-transparent text-[var(--text-normal)] border-[1px] mt-2 p-3 w-full rounded-md outline-none focus:bg-[var(--input-focus)] transition-all'
@@ -143,7 +147,10 @@ const AutoSearchAddress = () => {
                 id="dropping-input"
                 className='pt-2 pb-2'
             >
-                <label className='text-[var(--text-normal)]'>Dropping location&nbsp;<span className='text-red-500'>*</span></label>
+                <label className='text-[var(--text-normal)] flex items-start'>
+                    <Image src="/location-pin-img/pin-green.png" alt='pin-red' width={20} height={10} className='mr-1'/>
+                    Dropping location&nbsp;<span className='text-red-500'>*</span>
+                </label>
                 <input
                     type="text"
                     className='bg-transparent text-[var(--text-normal)] border-[1px] mt-2 p-3 w-full rounded-md outline-none focus:bg-[var(--input-focus)] transition-all'
