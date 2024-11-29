@@ -7,14 +7,14 @@ const Payments = () => {
     const [selectedPayment, setSelecedPayment] = useState<any>();
 
     return (
-        <div className='bg-teal-300'>
-            <p>Payment</p>
-            <div className='flex justify-between p-2'>   
+        <div className='px-[4px] pt-[12px] mt-[10px] pb-[4px]'>
+            <p className='text-[var(--text-normal)] text-[0.8rem]'>Available payment method</p>
+            <div className='flex justify-around p-1'>   
                 {PaymentMethods.map((item) => (
                     <div 
                         key={item.id}
                         className={`
-                            border-[1px] rounded-md flex items-center m-2
+                            border-[1px] rounded-md flex items-center mx-1
                             hover:border-yellow-400 cursor-pointer transition-all
                             ${item.id == selectedPayment && 'border-yellow-400 border-[3px]'}
                         `}
