@@ -81,7 +81,7 @@ const MapLibre = () => {
 
             getTravelingRouteData(pickupCoordinateToString, dropCoordinateToString);
         }
-    }, [dropCoordinate])
+    }, [pickupCoordinate, dropCoordinate])
 
     useEffect(() => {
         if (userLocation) {
