@@ -18,8 +18,8 @@ const BookButton = () => {
             className={`
                 w-full p-2 mt-10 rounded-md
                 ${!isButtonEnabled
-                    ? 'bg-gray-300 cursor-not-allowed'
-                    : 'bg-yellow-400'
+                    ? 'bg-[var(--button-disabled)] cursor-not-allowed'
+                    : 'bg-yellow-400 hover:bg-yellow-300 transition-all'
                 }
             `}
             onClick={() => router.push('/payment')}
