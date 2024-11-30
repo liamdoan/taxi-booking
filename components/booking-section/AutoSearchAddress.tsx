@@ -70,16 +70,17 @@ const AutoSearchAddress = () => {
         }
     };
 
-    //currently no need for this, might be used full for dropping point
-    // const getAddressData = async (latitude: number, longitude: number) => {
-    //     try {
-    //         const res = await fetch('/api/address-get?lat=' + latitude + '&lon=' + longitude);
-    //         const addressData = await res.json();
+    const getAddressData = async (latitude: number, longitude: number, type: 'pickup' | 'drop') => {
+        try {
+            const res = await fetch('/api/address-get?lat=' + latitude + '&lon=' + longitude);
+            const addressData = await res.json();
 
-    //     }catch(err) {
-    //         console.error("Error getting address data", err)
-    //     }
-    // };
+            type === 'pickup' && setPickupAddressFromInput(addressData.display_name);
+            type === 'drop' && setDropAddressFromInput(addressData.display_name);
+        } catch(err) {
+            console.error("Error getting address data", err)
+        }
+    };
 
     // handle pickup input change
     useEffect(() => {
@@ -112,7 +113,6 @@ const AutoSearchAddress = () => {
             setPickupAddressFromInput(item.display_name);
             setSuggestedPickupAddressList([]);
             setHasSelectedAddress(true);
-            // getAddressData(item.lat, item.lon);
             setPickupCoordinate({
                 latitude: item.lat,
                 longitude: item.lon
@@ -121,7 +121,6 @@ const AutoSearchAddress = () => {
             setDropAddressFromInput(item.display_name);
             setSuggestedDropAddressList([]);
             setHasSelectedAddress(true);
-            // getAddressData(item.lat, item.lon);
             setDropCoordinate({
                 latitude: item.lat,
                 longitude: item.lon
@@ -174,7 +173,10 @@ const AutoSearchAddress = () => {
                         {showPickupYourLocationOption && (
                             <p
                                 className='p-2 hover:bg-gray-200 cursor-pointer'
-                                onMouseDown={() => onSetYourLocationToCoordinatesClick(userLocation, 'pickup')}
+                                onMouseDown={() => {
+                                    onSetYourLocationToCoordinatesClick(userLocation, 'pickup')
+                                    getAddressData(userLocation.latitude, userLocation.longitude, 'pickup')
+                                }}
                             >
                                 Your location
                             </p>
@@ -221,7 +223,11 @@ const AutoSearchAddress = () => {
                         {showDropYourLocationOption && (
                             <p
                                 className='p-2 hover:bg-gray-200 cursor-pointer'
-                                onMouseDown={() => onSetYourLocationToCoordinatesClick(userLocation, 'drop')}
+                                onMouseDown={() => {
+                                    onSetYourLocationToCoordinatesClick(userLocation, 'drop')
+                                    getAddressData(userLocation.latitude, userLocation.longitude, 'drop')
+
+                                }}
                             >
                                 Your location
                             </p>
