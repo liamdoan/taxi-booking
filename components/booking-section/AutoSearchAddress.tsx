@@ -168,7 +168,7 @@ const AutoSearchAddress = () => {
                             <p
                                 key={item.place_id}
                                 className='p-2 hover:bg-gray-200 cursor-pointer'
-                                onClick={() => onAddressInputClick(item, 'pickup')}
+                                onMouseDown={() => onAddressInputClick(item, 'pickup')}
                             >
                                 {item.display_name}
                             </p>
@@ -214,7 +214,7 @@ const AutoSearchAddress = () => {
                             <p
                                 key={item.place_id}
                                 className='p-2 hover:bg-gray-200 cursor-pointer'
-                                onClick={() => onAddressInputClick(item, 'drop')}
+                                onMouseDown={() => onAddressInputClick(item, 'drop')}
                             >
                                 {item.display_name}
                             </p>
