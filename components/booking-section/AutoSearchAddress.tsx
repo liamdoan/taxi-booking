@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { SuggestedAddressList } from '@/app/utils/types';
+import { SuggestedAddressList, UserLocationCoordinates } from '@/app/utils/types';
 import { useHasSelectedAddressContext, useInputCoordsContext } from '@/app/context/InputCoordsContext';
 import { useHasFetchTravelingRouteDataSuccessfullyContext } from '@/app/context/TravelingRouteDataContext';
 import Image from 'next/image';
@@ -129,6 +129,20 @@ const AutoSearchAddress = () => {
         }
     };
 
+    const onSetYourLocationToCoordinatesClick = (coord: UserLocationCoordinates, type: 'pickup' | 'drop') => {
+        if (type === 'pickup') {
+            setPickupCoordinate({
+                latitude: coord.latitude,
+                longitude: coord.longitude
+            })
+        } else {
+            setDropCoordinate({
+                latitude: coord.latitude,
+                longitude: coord.longitude
+            })
+        }
+    };
+
     return (
         <div className='p-1'>
             <div
@@ -160,6 +174,7 @@ const AutoSearchAddress = () => {
                         {showPickupYourLocationOption && (
                             <p
                                 className='p-2 hover:bg-gray-200 cursor-pointer'
+                                onMouseDown={() => onSetYourLocationToCoordinatesClick(userLocation, 'pickup')}
                             >
                                 Your location
                             </p>
@@ -206,6 +221,7 @@ const AutoSearchAddress = () => {
                         {showDropYourLocationOption && (
                             <p
                                 className='p-2 hover:bg-gray-200 cursor-pointer'
+                                onMouseDown={() => onSetYourLocationToCoordinatesClick(userLocation, 'drop')}
                             >
                                 Your location
                             </p>
