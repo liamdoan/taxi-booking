@@ -29,3 +29,8 @@ export interface SuggestedAddressList {
     "display_address": string,
     "address": Address
 };
+
+export interface UserLocationCoordinates {
+    latitude: number,
+    longitude: number
+}
