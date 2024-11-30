@@ -144,7 +144,10 @@ const AutoSearchAddress = () => {
                     className='bg-transparent text-[var(--text-normal)] border-[1px] mt-2 p-3 w-full rounded-md outline-none focus:bg-[var(--input-focus)] transition-all'
                     value={pickupAddressFromInput}
                     onFocus={() => showYourLocationOption(pickupAddressFromInput, 'pickup')}
-                    onBlur={() => setShowPickupYourLocationOption(false)}
+                    onBlur={() => {
+                        setShowPickupYourLocationOption(false)
+                        setSuggestedPickupAddressList([])
+                    }}
                     onChange={e => {
                         showYourLocationOption(e.target.value, 'pickup')
                         setPickupAddressFromInput(e.target.value);
@@ -187,7 +190,10 @@ const AutoSearchAddress = () => {
                     className='bg-transparent text-[var(--text-normal)] border-[1px] mt-2 p-3 w-full rounded-md outline-none focus:bg-[var(--input-focus)] transition-all'
                     value={dropAddressFromInput}
                     onFocus={() => showYourLocationOption(dropAddressFromInput, 'drop')}
-                    onBlur={() => setShowDropYourLocationOption(false)}
+                    onBlur={() => {
+                        setShowDropYourLocationOption(false)
+                        setSuggestedDropAddressList([])
+                    }}
                     onChange={e => {
                         showYourLocationOption(e.target.value, 'drop')
                         setDropAddressFromInput(e.target.value);
