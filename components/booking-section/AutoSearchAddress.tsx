@@ -5,13 +5,19 @@ import { SuggestedAddressList } from '@/app/utils/types';
 import { useHasSelectedAddressContext, useInputCoordsContext } from '@/app/context/InputCoordsContext';
 import { useHasFetchTravelingRouteDataSuccessfullyContext } from '@/app/context/TravelingRouteDataContext';
 import Image from 'next/image';
+import { useUserLocation } from '@/app/context/UserLocationContext';
 
 const AutoSearchAddress = () => {
     const [pickupAddressFromInput, setPickupAddressFromInput] = useState<any>('');
-    const [suggestedPickupAddressList, setSuggestedPickupAddressList] = useState<any>([])
+    const [suggestedPickupAddressList, setSuggestedPickupAddressList] = useState<any>([]);
 
     const [dropAddressFromInput, setDropAddressFromInput] = useState<any>('');
     const [suggestedDropAddressList, setSuggestedDropAddressList] = useState<any>([])
+
+    const [showPickupYourLocationOption, setShowPickupYourLocationOption] = useState<boolean>(false);
+    const [showDropYourLocationOption, setShowDropYourLocationOption] = useState<boolean>(false);
+
+    const {userLocation} = useUserLocation();
 
     const {hasSelectedAddress, setHasSelectedAddress} = useHasSelectedAddressContext();
     const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
@@ -20,6 +26,22 @@ const AutoSearchAddress = () => {
         setPickupCoordinate,
         setDropCoordinate
     } = useInputCoordsContext();
+
+    const showYourLocationOption = (address: string, type: 'pickup' | 'drop') => {
+        if (type === 'pickup'){
+            if (!address || address.trim() === "") {
+                setShowPickupYourLocationOption(true);
+            } else {
+                setShowPickupYourLocationOption(false);
+            }
+        } else {
+            if (!address || address.trim() === "") {
+                setShowDropYourLocationOption(true);
+            } else {
+                setShowDropYourLocationOption(false);
+            }
+        }
+    };
 
     const getSuggestedAddresses = async (address: string, type: 'pickup' | 'drop') => {
         if (!address || address.trim() === "" || hasSelectedAddress) {
@@ -31,9 +53,8 @@ const AutoSearchAddress = () => {
             } else {
                 setSuggestedDropAddressList([]);
             }
-
             return;
-        }
+        };
 
         try {
             const res = await fetch('/api/address-search?q=' + address);
@@ -122,14 +143,24 @@ const AutoSearchAddress = () => {
                     type="text"
                     className='bg-transparent text-[var(--text-normal)] border-[1px] mt-2 p-3 w-full rounded-md outline-none focus:bg-[var(--input-focus)] transition-all'
                     value={pickupAddressFromInput}
+                    onFocus={() => showYourLocationOption(pickupAddressFromInput, 'pickup')}
+                    onBlur={() => setShowPickupYourLocationOption(false)}
                     onChange={e => {
+                        showYourLocationOption(e.target.value, 'pickup')
                         setPickupAddressFromInput(e.target.value);
                         setHasSelectedAddress(false);
                         setHasFetchTravelingRouteDataSuccessfully(false);
                     }}
                 />
                 {suggestedPickupAddressList ?
-                    <div className='absolute z-10 bg-white w-full shadow-md rounded-md'>
+                    <div className='absolute z-20 bg-white w-full shadow-md rounded-md'>
+                        {showPickupYourLocationOption && (
+                            <p
+                                className='p-2 hover:bg-gray-200 cursor-pointer'
+                            >
+                                Your location
+                            </p>
+                        )}
                         {suggestedPickupAddressList?.map((item: SuggestedAddressList) => (
                             <p
                                 key={item.place_id}
@@ -145,7 +176,7 @@ const AutoSearchAddress = () => {
             </div>
             <div
                 id="dropping-input"
-                className='pt-2 pb-2'
+                className='pt-2 pb-2 relative'
             >
                 <label className='text-[var(--text-normal)] flex items-start'>
                     <Image src="/location-pin-img/pin-green.png" alt='pin-red' width={20} height={10} className='mr-1'/>
@@ -155,14 +186,24 @@ const AutoSearchAddress = () => {
                     type="text"
                     className='bg-transparent text-[var(--text-normal)] border-[1px] mt-2 p-3 w-full rounded-md outline-none focus:bg-[var(--input-focus)] transition-all'
                     value={dropAddressFromInput}
+                    onFocus={() => showYourLocationOption(dropAddressFromInput, 'drop')}
+                    onBlur={() => setShowDropYourLocationOption(false)}
                     onChange={e => {
+                        showYourLocationOption(e.target.value, 'drop')
                         setDropAddressFromInput(e.target.value);
                         setHasSelectedAddress(false);
                         setHasFetchTravelingRouteDataSuccessfully(false);
                     }}
                 />
                 {suggestedDropAddressList ?
-                    <div className=' bg-white w-full shadow-md rounded-md'>
+                    <div className='absolute z-10 bg-white w-full shadow-md rounded-md'>
+                        {showDropYourLocationOption && (
+                            <p
+                                className='p-2 hover:bg-gray-200 cursor-pointer'
+                            >
+                                Your location
+                            </p>
+                        )}
                         {suggestedDropAddressList?.map((item: SuggestedAddressList) => (
                             <p
                                 key={item.place_id}
