@@ -44,6 +44,42 @@ const AutoSearchAddress = () => {
         }
     };
 
+    const getAddressData = async (latitude: number, longitude: number, type: 'pickup' | 'drop') => {
+        try {
+            const res = await fetch('/api/address-get?lat=' + latitude + '&lon=' + longitude);
+            const addressData = await res.json();
+
+            if (res.status == 200) {
+                setHasSelectedAddress(true);
+            };
+
+            type === 'pickup' && setPickupAddressFromInput(addressData.display_name);
+            type === 'drop' && setDropAddressFromInput(addressData.display_name);
+        } catch(err) {
+            console.error("Error getting address data", err)
+        }
+    };
+
+    const onYourLocationClick = (coords: UserLocationCoordinates, type: 'pickup' | 'drop') => {
+        if (type === 'pickup') {
+            setPickupCoordinate({
+                latitude: coords.latitude,
+                longitude: coords.longitude
+            });
+
+            getAddressData(coords.latitude, coords.longitude, 'pickup');
+            setIsCallGetSuggestedAddresses(false);
+        } else {
+            setDropCoordinate({
+                latitude: coords.latitude,
+                longitude: coords.longitude
+            });
+
+            getAddressData(coords.latitude, coords.longitude, 'drop');
+            setIsCallGetSuggestedAddresses(false);
+        }
+    };
+
     const getSuggestedAddresses = async (address: string, type: 'pickup' | 'drop') => {
         if (!address || address.trim() === "" || hasSelectedAddress) {
             // Currently with API from LocationIQ, if input is undefined/null/space,
@@ -68,22 +104,6 @@ const AutoSearchAddress = () => {
             }
         } catch(err) {
             console.error("Error fetching addresses: ", err)
-        }
-    };
-
-    const getAddressData = async (latitude: number, longitude: number, type: 'pickup' | 'drop') => {
-        try {
-            const res = await fetch('/api/address-get?lat=' + latitude + '&lon=' + longitude);
-            const addressData = await res.json();
-
-            if (res.status == 200) {
-                setHasSelectedAddress(true);
-            };
-
-            type === 'pickup' && setPickupAddressFromInput(addressData.display_name);
-            type === 'drop' && setDropAddressFromInput(addressData.display_name);
-        } catch(err) {
-            console.error("Error getting address data", err)
         }
     };
 
@@ -135,20 +155,6 @@ const AutoSearchAddress = () => {
         }
     };
 
-    const onSetYourLocationToCoordinatesClick = (coord: UserLocationCoordinates, type: 'pickup' | 'drop') => {
-        if (type === 'pickup') {
-            setPickupCoordinate({
-                latitude: coord.latitude,
-                longitude: coord.longitude
-            })
-        } else {
-            setDropCoordinate({
-                latitude: coord.latitude,
-                longitude: coord.longitude
-            })
-        }
-    };
-
     return (
         <div className='p-1'>
             <div
@@ -181,11 +187,7 @@ const AutoSearchAddress = () => {
                         {showPickupYourLocationOption && (
                             <p
                                 className='p-2 hover:bg-gray-200 cursor-pointer'
-                                onMouseDown={() => {
-                                    onSetYourLocationToCoordinatesClick(userLocation, 'pickup')
-                                    getAddressData(userLocation.latitude, userLocation.longitude, 'pickup')
-                                    setIsCallGetSuggestedAddresses(false)
-                                }}
+                                onMouseDown={() => onYourLocationClick(userLocation, 'pickup')}
                             >
                                 Your location
                             </p>
@@ -234,11 +236,7 @@ const AutoSearchAddress = () => {
                         {showDropYourLocationOption && (
                             <p
                                 className='p-2 hover:bg-gray-200 cursor-pointer'
-                                onMouseDown={() => {
-                                    onSetYourLocationToCoordinatesClick(userLocation, 'drop')
-                                    getAddressData(userLocation.latitude, userLocation.longitude, 'drop')
-                                    setIsCallGetSuggestedAddresses(false)
-                                }}
+                                onMouseDown={() => onYourLocationClick(userLocation, 'drop')}
                             >
                                 Your location
                             </p>
