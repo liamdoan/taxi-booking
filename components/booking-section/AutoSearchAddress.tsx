@@ -6,12 +6,11 @@ import { useHasSelectedAddressContext, useInputCoordsContext } from '@/app/conte
 import { useHasFetchTravelingRouteDataSuccessfullyContext } from '@/app/context/TravelingRouteDataContext';
 import Image from 'next/image';
 import { useUserLocation } from '@/app/context/UserLocationContext';
+import { useAddressNameContext } from '@/app/context/AddressNameContext';
+import { useGetAddressData } from '@/app/utils/getSingleAddressData';
 
 const AutoSearchAddress = () => {
-    const [pickupAddressFromInput, setPickupAddressFromInput] = useState<any>('');
     const [suggestedPickupAddressList, setSuggestedPickupAddressList] = useState<any>([]);
-
-    const [dropAddressFromInput, setDropAddressFromInput] = useState<any>('');
     const [suggestedDropAddressList, setSuggestedDropAddressList] = useState<any>([])
 
     const [showPickupYourLocationOption, setShowPickupYourLocationOption] = useState<boolean>(false);
@@ -22,11 +21,18 @@ const AutoSearchAddress = () => {
     const {userLocation} = useUserLocation();
     const {hasSelectedAddress, setHasSelectedAddress} = useHasSelectedAddressContext();
     const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
-
+    const {
+        pickupAddressFromInput,
+        setPickupAddressFromInput,
+        dropAddressFromInput,
+        setDropAddressFromInput
+    } = useAddressNameContext();
     const {
         setPickupCoordinate,
         setDropCoordinate
     } = useInputCoordsContext();
+
+    const { getAddressData } = useGetAddressData();
 
     const showYourLocationOption = (address: string, type: 'pickup' | 'drop') => {
         if (type === 'pickup'){
@@ -41,22 +47,6 @@ const AutoSearchAddress = () => {
             } else {
                 setShowDropYourLocationOption(false);
             }
-        }
-    };
-
-    const getAddressData = async (latitude: number, longitude: number, type: 'pickup' | 'drop') => {
-        try {
-            const res = await fetch('/api/address-get?lat=' + latitude + '&lon=' + longitude);
-            const addressData = await res.json();
-
-            if (res.status == 200) {
-                setHasSelectedAddress(true);
-            };
-
-            type === 'pickup' && setPickupAddressFromInput(addressData.display_name);
-            type === 'drop' && setDropAddressFromInput(addressData.display_name);
-        } catch(err) {
-            console.error("Error getting address data", err)
         }
     };
 
