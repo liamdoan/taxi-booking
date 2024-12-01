@@ -76,6 +76,10 @@ const AutoSearchAddress = () => {
             const res = await fetch('/api/address-get?lat=' + latitude + '&lon=' + longitude);
             const addressData = await res.json();
 
+            if (res.status == 200) {
+                setHasSelectedAddress(true);
+            };
+
             type === 'pickup' && setPickupAddressFromInput(addressData.display_name);
             type === 'drop' && setDropAddressFromInput(addressData.display_name);
         } catch(err) {
