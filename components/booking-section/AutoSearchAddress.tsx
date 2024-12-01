@@ -17,8 +17,9 @@ const AutoSearchAddress = () => {
     const [showPickupYourLocationOption, setShowPickupYourLocationOption] = useState<boolean>(false);
     const [showDropYourLocationOption, setShowDropYourLocationOption] = useState<boolean>(false);
 
-    const {userLocation} = useUserLocation();
+    const [isCallGetSuggestedAddresses, setIsCallGetSuggestedAddresses] = useState(true);
 
+    const {userLocation} = useUserLocation();
     const {hasSelectedAddress, setHasSelectedAddress} = useHasSelectedAddressContext();
     const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
 
@@ -84,6 +85,8 @@ const AutoSearchAddress = () => {
 
     // handle pickup input change
     useEffect(() => {
+        if (!isCallGetSuggestedAddresses) return;
+
         const timer = setTimeout(() => {
             if (pickupAddressFromInput) {
                 getSuggestedAddresses(pickupAddressFromInput, 'pickup');
@@ -166,6 +169,7 @@ const AutoSearchAddress = () => {
                         setPickupAddressFromInput(e.target.value);
                         setHasSelectedAddress(false);
                         setHasFetchTravelingRouteDataSuccessfully(false);
+                        setIsCallGetSuggestedAddresses(true)
                     }}
                 />
                 {suggestedPickupAddressList ?
@@ -176,6 +180,7 @@ const AutoSearchAddress = () => {
                                 onMouseDown={() => {
                                     onSetYourLocationToCoordinatesClick(userLocation, 'pickup')
                                     getAddressData(userLocation.latitude, userLocation.longitude, 'pickup')
+                                    setIsCallGetSuggestedAddresses(false)
                                 }}
                             >
                                 Your location
@@ -216,6 +221,8 @@ const AutoSearchAddress = () => {
                         setDropAddressFromInput(e.target.value);
                         setHasSelectedAddress(false);
                         setHasFetchTravelingRouteDataSuccessfully(false);
+                        setIsCallGetSuggestedAddresses(true)
+
                     }}
                 />
                 {suggestedDropAddressList ?
@@ -226,7 +233,7 @@ const AutoSearchAddress = () => {
                                 onMouseDown={() => {
                                     onSetYourLocationToCoordinatesClick(userLocation, 'drop')
                                     getAddressData(userLocation.latitude, userLocation.longitude, 'drop')
-
+                                    setIsCallGetSuggestedAddresses(false)
                                 }}
                             >
                                 Your location
