@@ -1,11 +1,32 @@
-import React from 'react'
+import React from 'react';
 import {Marker} from 'react-map-gl/maplibre';
 import { useUserLocation } from '@/app/context/UserLocationContext';
 import { useInputCoordsContext } from '@/app/context/InputCoordsContext';
+import { useGetAddressData } from '@/app/utils/getSingleAddressData';
 
 const Markers = () => {
     const {userLocation} = useUserLocation();
-    const {pickupCoordinate, dropCoordinate} = useInputCoordsContext();
+    const {pickupCoordinate, setPickupCoordinate, dropCoordinate, setDropCoordinate} = useInputCoordsContext();
+    const { getAddressData } = useGetAddressData();
+
+    const handleDragEnd = async (e: any, type: 'pickup' | 'drop') => {
+        const newLatitude = e.lngLat.lat;
+        const newLongitude = e.lngLat.lng;
+
+        if (type === 'pickup') {
+            setPickupCoordinate({
+                latitude: newLatitude,
+                longitude: newLongitude
+            });
+        } else {
+            setDropCoordinate({
+                latitude: newLatitude,
+                longitude: newLongitude
+            });
+        }
+
+        await getAddressData(newLatitude, newLongitude, type);
+    };
 
     return (
         <div>
@@ -26,10 +47,11 @@ const Markers = () => {
             } */}
             {pickupCoordinate && 
                 <Marker
-                longitude={pickupCoordinate.longitude}
-                latitude={pickupCoordinate.latitude}
-                anchor="bottom"
-                draggable
+                    longitude={pickupCoordinate.longitude}
+                    latitude={pickupCoordinate.latitude}
+                    anchor="bottom"
+                    draggable
+                    onDragEnd={(e) => handleDragEnd(e, 'pickup')}
                 >
                     <img
                         src="/location-pin-img/pin-red.png"
@@ -39,10 +61,11 @@ const Markers = () => {
             }
             {dropCoordinate && 
                 <Marker
-                longitude={dropCoordinate.longitude}
-                latitude={dropCoordinate.latitude}
-                anchor="bottom"
-                draggable
+                    longitude={dropCoordinate.longitude}
+                    latitude={dropCoordinate.latitude}
+                    anchor="bottom"
+                    draggable
+                    onDragEnd={(e) => handleDragEnd(e, 'drop')}
                 >
                     <img
                         src="/location-pin-img/pin-green.png"
