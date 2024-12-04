@@ -22,6 +22,6 @@ const DriveInfoSchema = new Schema({
     timestamps: true
 });
 
-const DriveInfo = mongoose.model('DriveInfo', DriveInfoSchema);
+const DriveInfo = mongoose.models.DriveInfo || mongoose.model('DriveInfo', DriveInfoSchema);
 
 export default DriveInfo;
