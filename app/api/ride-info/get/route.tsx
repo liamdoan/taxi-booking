@@ -6,5 +6,5 @@ export async function GET(request: any) {
     await connectMongoDB();
 
     const allRideInfo = await RideInfo.find();
-    return NextResponse.json({ allRideInfo});
+    return NextResponse.json(allRideInfo);
 };
