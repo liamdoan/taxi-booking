@@ -3,7 +3,8 @@ import connectMongoDB from "@/app/database/mongodb";
 import { NextResponse } from "next/server";
 
 export async function PUT(request: any, { params }: { params: { id: string } }) {
-    const id = params.id;
+        const url = new URL(request.url);
+    const id = url.pathname.split("/").pop(); // Extract ID from the URL
     
     await connectMongoDB();
 
@@ -13,12 +14,14 @@ export async function PUT(request: any, { params }: { params: { id: string } }) 
             [
                 { 
                     $set: { 
-                        isRideReceived: { $not: "$isRideReceived" }
-                    } 
+                        isRideReceived: { $not: "$isRideReceived" },
+                        // isRideFinished: { $cond: {if:{ "$eq": ['$isRideReceived', true] }, then: '$isRideReceived', else: false} } // in question
+                    },
                 }
             ],
             { new: true } // update updatedAt
         );
+        console.log(updatedRideReceived.isRideFinished)
 
         if(!updatedRideReceived) {
             return NextResponse.json({
