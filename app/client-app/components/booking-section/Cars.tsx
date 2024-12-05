@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import CarOptions from '@/app/data/CarOptions';
+import CarOptions from '@/app/client-app/data/CarOptions';
 import Image from 'next/image';
 import { userTravelingRouteDataContext } from '@/app/shared/context/TravelingRouteDataContext';
 import { useSelectedCarContext } from '@/app/shared/context/SelectedCarContext';

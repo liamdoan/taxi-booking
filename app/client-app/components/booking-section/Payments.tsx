@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react'
-import PaymentMethods from '@/app/data/PaymentMethods'
+import PaymentMethods from '@/app/client-app/data/PaymentMethods'
 
 const Payments = () => {
     const [selectedPayment, setSelecedPayment] = useState<any>();
