@@ -44,7 +44,8 @@ export async function PUT(
             }
         );
 
-        const message = ride.isRideFinished ? "Ride finished!" : "Ride not finished."
+        const message = updatedRideFinished.isRideFinished ? "Ride finished!" : "Ride not finished."
+
         return NextResponse.json({
             message: message,
             updatedRideFinished
