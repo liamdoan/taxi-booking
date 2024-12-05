@@ -8,7 +8,8 @@ export async function PUT(
         id: string
     }}
 ) {
-    const id = params.id;
+    const url = new URL(request.url);
+    const id = url.pathname.split("/").pop(); // Extract ID from the URL
 
     await connectMongoDB();
 
