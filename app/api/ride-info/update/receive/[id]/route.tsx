@@ -13,7 +13,8 @@ export async function PUT(request: any, { params }: { params: { id: string } }) 
             [
                 { 
                     $set: { 
-                        isRideReceived: { $not: "$isRideReceived" } 
+                        isRideReceived: { $not: "$isRideReceived" },
+                        isRideFinished: { $cond: [{$eq: ['$isRideReceived', true]}, '$isRideFinished', false]}
                     } 
                 }
             ],
@@ -42,3 +43,6 @@ export async function PUT(request: any, { params }: { params: { id: string } }) 
         console.error(error)
     }
 };
+
+// { $cond: [ <condition>, <value_if_true>, <value_if_false> ] }
+// { $eq: [<value1>, <value2>] } = equality check of value1 and value2
