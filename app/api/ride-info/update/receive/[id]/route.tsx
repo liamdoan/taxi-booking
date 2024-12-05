@@ -13,8 +13,7 @@ export async function PUT(request: any, { params }: { params: { id: string } }) 
             [
                 { 
                     $set: { 
-                        isRideReceived: { $not: "$isRideReceived" },
-                        isRideFinished: { $cond: [{$eq: ['$isRideReceived', true]}, '$isRideFinished', false]}
+                        isRideReceived: { $not: "$isRideReceived" }
                     } 
                 }
             ],
@@ -28,6 +27,15 @@ export async function PUT(request: any, { params }: { params: { id: string } }) 
                 status: 404
             })
         };
+
+        // if isRideReceived = false, isRideFinished will always be false regardless its current state
+        if (!updatedRideReceived.isRideReceived) {
+            await RideInfo.findByIdAndUpdate(
+                id,
+                { $set: { isRideFinished: false } },
+                { new: true }
+            );
+        }
 
         const message = updatedRideReceived.isRideReceived ? 'Ride received!' : 'Ride not received';
     
