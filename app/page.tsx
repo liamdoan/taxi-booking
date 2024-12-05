@@ -1,38 +1,13 @@
-'use client';
-
-import Booking from "@/components/booking-section/Booking";
-import MapLibre from "@/components/map-section/MapLibre"
-import { UserLocationProvider } from "./context/UserLocationContext";
-import { HasSelectedAddressProvider, InputCoordsProvider } from "./context/InputCoordsContext";
-import { HasFetchTravelingRouteDataSuccessfullyProvider, TravelingRouteDataProvider } from "./context/TravelingRouteDataContext";
-import { SelectedCarProvider } from "./context/SelectedCarContext";
-import { AddressNameProvider } from "./context/AddressNameContext";
-
 export default function Home() {
     return (
-        <UserLocationProvider>
-            <InputCoordsProvider>
-                <HasSelectedAddressProvider>
-                    <TravelingRouteDataProvider>
-                        <HasFetchTravelingRouteDataSuccessfullyProvider>
-                            <AddressNameProvider>
-                                <SelectedCarProvider>
-                                    <div>
-                                        <div className="grid grid-cols-1 lg:grid-cols-3">
-                                            <div className="bg-[var(--foreground)]">
-                                                <Booking />
-                                            </div>
-                                            <div className="bg-[var(--foreground)] col-span-2">
-                                                <MapLibre />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SelectedCarProvider>
-                            </AddressNameProvider>
-                        </HasFetchTravelingRouteDataSuccessfullyProvider>
-                    </TravelingRouteDataProvider>
-                </HasSelectedAddressProvider>
-            </InputCoordsProvider>
-        </UserLocationProvider>
+        <div className="bg-black flex flex-col justify-center items-center h-[100vh]">
+            <div className="w-[500px] h-[200px] bg-gradient-to-r from-yellow-400 to-yellow-800 rounded-lg p-5 text-black">
+                <h1>Thank you for stopping by</h1>
+                <p>client side of this app is at:</p>
+                <a  className='update-link' href="http://localhost:3000/client-app" target='_blank' rel="noopener noreferrer">
+                http://localhost:3000/client-app/
+                </a>
+            </div>
+        </div>
     );
 }
