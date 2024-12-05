@@ -7,6 +7,10 @@ export default function Home() {
                 <a  className='update-link' href="http://localhost:3000/client-app" target='_blank' rel="noopener noreferrer">
                 http://localhost:3000/client-app/
                 </a>
+                <p>driver side of this app is at:</p>
+                <a  className='update-link' href="http://localhost:3000/driver-app" target='_blank' rel="noopener noreferrer">
+                http://localhost:3000/driver-app/
+                </a>
             </div>
         </div>
     );
