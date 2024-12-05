@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function PUT(request: any, { params }: { params: { id: string } }) {
         const url = new URL(request.url);
-    const id = url.pathname.split("/").pop(); // Extract ID from the URL
+    const id = url.pathname.split("/").pop();
     
     await connectMongoDB();
 
