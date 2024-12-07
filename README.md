@@ -1,6 +1,6 @@
 (On-going) beta version of a car/taxi booking app built with NextJS, Tailwind, MapLibre for map, and MongoDB for database. Traveling route, price calculation are handled and displayed after user's selection. This project is initially for private event, which is suitable for those having their own cars/cabs to transport guests and attendees.
 
-The project has 2 separate view:
+The project has 2 separate views:
 
 - client view (for users): where booking form and map are placed.
 - driver view: where drivers and admins can see ride details.
@@ -19,9 +19,9 @@ Frontend aims to providing:
 Backend focuses on:
 
 - building custom API to fetch data.
-- build custom hook to reuse function in multiple components.
-- build API to handle CRUD operations.
-- (for future) manage auth method to manage roles (users, drivers, admins)
+- building custom hook to reuse function in multiple components.
+- building API to handle CRUD operations.
+- (for future) manaing auth methods to manage roles (users, drivers, admins)
 
 ---
 
