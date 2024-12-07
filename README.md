@@ -21,7 +21,7 @@ Backend focuses on:
 - building custom API to fetch data.
 - building custom hook to reuse function in multiple components.
 - building API to handle CRUD operations.
-- (for future) manaing auth methods to manage roles (users, drivers, admins)
+- (for future) managing auth methods to manage roles (users, drivers, admins)
 
 ---
 
