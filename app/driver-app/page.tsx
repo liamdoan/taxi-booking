@@ -133,56 +133,75 @@ const Home = () => {
                                 <div className='flex flex-wrap justify-around mt-4'>
                                     <div className='flex flex-wrap justify-between w-[200px] mx-2 my-3 py-3'>
                                         <label
-                                            htmlFor="ride-received-checkbox"
+                                            htmlFor={`ride-received-checkbox-${rideInfo._id}`}
                                             className='
                                                 my-1 mx-4 
                                                 font-bold text-yellow-400
                                                 flex flex-row justify-center items-center
                                                 hover:cursor-pointer
+                                                relative
                                             '
                                         >
                                             Ride received
                                             <input
-                                                id="ride-received-checkbox"
+                                                id={`ride-received-checkbox-${rideInfo._id}`}
                                                 type="checkbox"
                                                 checked={rideInfo.isRideReceived}
                                                 onChange={() => toggleRideReceived(rideInfo._id)}
                                                 className='
-                                                    w-[25px] h-[25px] mx-4 my-1 hover:cursor-pointer
+                                                    w-[30px] h-[30px] mx-4 my-1 hover:cursor-pointer
                                                     appearance-none
-                                                    border-yellow-400 border-2 rounded-[50%]
-                                                    checked:bg-green-900
+                                                    border-2 border-yellow-400 rounded-[50%]
+                                                    peer
                                                 '
                                             />
+                                            <div className='
+                                                absolute
+                                                right-0 mx-[22px] my-1
+                                                w-[20px] h-[20px]
+                                                peer-checked:rounded-[50%]
+                                                peer-checked:bg-green-500
+                                                '
+                                            >
+                                            </div>
                                         </label> 
                                     </div>
-                                    <div className='flex flex-wrap justify-between w-[200px] mx-1 my-3 py-3'>
+                                    <div className='flex flex-wrap justify-between w-[200px] mx-2 my-3 py-3'>
                                         <label
-                                            htmlFor="ride-finished-checkbox"
+                                            htmlFor={`ride-finished-checkbox-${rideInfo._id}`}
                                             className={`
                                                 my-1 mx-4 
                                                 font-bold
                                                 ${!rideInfo.isRideReceived ? 'text-gray-600' : 'text-yellow-400'}
                                                 flex flex-row justify-center items-center
-                                                hover:cursor-pointer
-                                                ${!rideInfo.isRideReceived && 'hover:cursor-not-allowed'}
+                                                ${!rideInfo.isRideReceived ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'}
+                                                relative
                                             `}
                                         >
                                             Ride finished
                                             <input
-                                                id='ride-finished-checkbox'
+                                                id={`ride-finished-checkbox-${rideInfo._id}`}
                                                 type="checkbox"
                                                 checked={rideInfo.isRideFinished}
                                                 onChange={() => toggleRideFinished(rideInfo._id)}
                                                 className='
-                                                    w-[25px] h-[25px] mx-4 my-1 hover:cursor-pointer
+                                                    w-[30px] h-[30px] mx-4 my-1 hover:cursor-pointer
                                                     appearance-none
-                                                    border-yellow-400 border-2 rounded-[50%]
-                                                    checked:bg-green-900
+                                                    border-2 border-yellow-400 rounded-[50%]
                                                     disabled:cursor-not-allowed
+                                                    peer
                                                 ' 
                                                 disabled={!rideInfo.isRideReceived}
                                             />
+                                            <div className='
+                                                absolute
+                                                right-0 mx-[21px] my-1
+                                                w-[20px] h-[20px]
+                                                peer-checked:rounded-[50%]
+                                                peer-checked:bg-green-500
+                                                '
+                                            >
+                                            </div>
                                         </label>
                                     </div>
                                 </div>
