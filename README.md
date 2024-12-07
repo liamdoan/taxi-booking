@@ -1,4 +1,4 @@
-(On-going) beta version of a car/taxi booking app built with NextJS, Tailwind, MapLibre for map, and MongoDB for database. Traveling route, price calculation are handled and displayed after user's selection. This project is initially for specific event, which is suitable for events that have their own cars/cabs to transport guests and attendees.
+(On-going) beta version of a car/taxi booking app built with NextJS, Tailwind, MapLibre for map, and MongoDB for database. Traveling route, price calculation are handled and displayed after user's selection. This project is initially for private event, which is suitable for those having their own cars/cabs to transport guests and attendees.
 
 The project has 2 separate view:
 
