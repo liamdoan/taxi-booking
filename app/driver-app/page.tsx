@@ -8,7 +8,14 @@ const BASE_URL = "http://localhost:3000";
 const Home = () => {
     const [rideInfos, setRideInfos] = useState<any>([]);
     const [loadingInitial, setLoadingInitial] = useState(true);
-    const [loadingFetchReceived, setLoadingFetchReceived] = useState<{ [key: string]: boolean }>({});;
+
+    const [loadingFetchReceived, setLoadingFetchReceived] = useState<{ [key: string]: boolean }>({});
+    const [successReceivedMessage, setSuccessReceivedMessage] = useState<{ [key: string]: boolean }>({});
+    const [failReceivedMessage, setFailReceivedMessage] = useState<{ [key: string]: boolean }>({});
+
+    const [loadingFetchFinished, setLoadingFetchFinished] = useState<{ [key: string]: boolean }>({});
+    const [successFinishedMessage, setSuccessFinishedMessage] = useState<{ [key: string]: boolean }>({});
+    const [failFinishedMessage, setFailFinishedMessage] = useState<{ [key: string]: boolean }>({});
 
     useEffect(() => {
         const getAllRides = async () => {
@@ -27,21 +34,20 @@ const Home = () => {
             }
         };
         
-        const timer = setTimeout(()=> {
-            getAllRides();
-        }, 1000) 
-
-        return () => clearTimeout(timer)
+        getAllRides();
     }, []);
 
     const toggleRideReceived = async (id: any) => {
         setLoadingFetchReceived((prev) => ({ ...prev, [id]: true }));
+        setSuccessReceivedMessage((prev) => ({ ...prev, [id]: false }));
+        setFailReceivedMessage((prev) => ({ ...prev, [id]: false }));
 
+        // avoid spamming database
         const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
         try {
+            await delay(1000);
 
-            await delay(4000);
             const res = await fetch(`/api/ride-info/update/receive/${id}`, {
                 method: 'PUT',
                 headers: {
@@ -54,7 +60,9 @@ const Home = () => {
             };
 
             const data = await res.json();
-            console.log(data)
+
+            setSuccessReceivedMessage((prev) => ({ ...prev, [id]: true }));
+            setTimeout(() => setSuccessReceivedMessage((prev) => ({ ...prev, [id]: false })), 3000);
 
             const updatedRideInfos = rideInfos.map((rideInfo: any) =>
                 rideInfo._id === id
@@ -63,17 +71,30 @@ const Home = () => {
                     isRideReceived: data.updatedRideReceived.isRideReceived,
                     isRideFinished: data.updatedRideReceived.isRideReceived ? data.updatedRideReceived.isRideFinished : false
                 } : rideInfo
-            )
+            );
+
             setRideInfos(updatedRideInfos);
         } catch (error) {
             console.error(error);
+
+            setFailReceivedMessage((prev) => ({ ...prev, [id]: true }));
+            setTimeout(() => setFailReceivedMessage((prev) => ({ ...prev, [id]: false })), 3000);
         } finally {
             setLoadingFetchReceived((prev) => ({ ...prev, [id]: false }));
         }
     };
 
     const toggleRideFinished = async (id: any) => {
+        setLoadingFetchFinished((prev) => ({ ...prev, [id]: true }));
+        setSuccessFinishedMessage((prev) => ({ ...prev, [id]: false }));
+        setFailFinishedMessage((prev) => ({ ...prev, [id]: false }));
+
+        // avoid spamming database
+        const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
         try {
+            await delay(1000);
+
             const res = await fetch(`/api/ride-info/update/finish/${id}`, {
                 method: 'PUT',
                 headers: {
@@ -86,7 +107,9 @@ const Home = () => {
             };
 
             const data = await res.json();
-            console.log(data)
+
+            setSuccessFinishedMessage((prev) => ({ ...prev, [id]: true }));
+            setTimeout(() => setSuccessFinishedMessage((prev) => ({ ...prev, [id]: false })), 3000);
 
             const updateRideInfos = rideInfos.map((rideInfo: any) =>
                 rideInfo._id === id
@@ -94,10 +117,16 @@ const Home = () => {
                     ...rideInfo,
                     isRideFinished: data.updatedRideFinished.isRideFinished
                 } : rideInfo
-            )
-            setRideInfos(updateRideInfos)
+            );
+
+            setRideInfos(updateRideInfos);
         } catch (error) {
             console.error(error);
+
+            setFailFinishedMessage((prev) => ({ ...prev, [id]: true }));
+            setTimeout(() => setFailFinishedMessage((prev) => ({ ...prev, [id]: false })), 3000);
+        } finally {
+            setLoadingFetchFinished((prev) => ({ ...prev, [id]: false }));
         }
     };
 
@@ -178,17 +207,21 @@ const Home = () => {
                                             >
                                             </div>
                                         </label>
-                                        {loadingFetchReceived[rideInfo._id] &&
-                                            <div
-                                            className='
-                                                w-full
-                                                my-1 mx-4
-                                                flex justify-center items-center
-                                                '
-                                            >
-                                                <Spinner width={32} height={32}/>
-                                            </div>
-                                        }
+                                        <div className='
+                                            w-full
+                                            my-1 mx-4
+                                            flex justify-center items-center
+                                            '
+                                        >
+                                            {loadingFetchReceived[rideInfo._id] && <Spinner width={32} height={32}/>}
+                                            {successReceivedMessage[rideInfo._id] && 
+                                                <span className='text-green-500'>Update Success!</span>
+                                            }
+                                            {failReceivedMessage[rideInfo._id] && 
+                                                <span className='text-red-700'>Update Failed!</span>
+                                            }
+
+                                        </div>
                                     </div>
                                     <div className='flex flex-wrap justify-between w-[200px] mx-2 my-3 py-3'>
                                         <label
@@ -227,6 +260,21 @@ const Home = () => {
                                             >
                                             </div>
                                         </label>
+                                        <div className='
+                                            w-full
+                                            my-1 mx-4
+                                            flex justify-center items-center
+                                            h-[4px]
+                                            '
+                                        >
+                                            {loadingFetchFinished[rideInfo._id] && <Spinner width={32} height={32}/>}
+                                            {successFinishedMessage[rideInfo._id] && 
+                                                <span className='text-green-500'>Update Success!</span>
+                                            }
+                                            {failFinishedMessage[rideInfo._id] && 
+                                                <span className='text-red-700'>Update Failed!</span>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
