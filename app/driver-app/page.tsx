@@ -95,58 +95,99 @@ const Home = () => {
                 ? <Spinner />
                 : (
                     <>
-                    {rideInfos.map((rideInfo: any) => (
-                        <div
-                            key={rideInfo._id}
-                            className="min-w-[300px] max-w-[600px] bg-gradient-to-r from-yellow-400 to-yellow-800 rounded-lg p-5 text-black mb-2 mx-5"
-                        >
-                            <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
-                                <p className='col-span-1 font-bold'>
-                                    Pickup point:
-                                </p>
-                                <span className='col-span-2'>adasdasdasda asdasdasdasd asdasdasdasd asdasdasdas adsasdasd </span>
-                            </div>
-                            <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
-                                <p className='col-span-1 font-bold'>
-                                    Dropping point:
-                                </p>
-                                <span className='col-span-2'>{rideInfo.drop}</span>
-                            </div>
-                            <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
-                                <p className='col-span-1 font-bold'>
-                                    Distance:
-                                </p>
-                                <span className='col-span-2'>10km hard-coded</span>
-                            </div>
-                            <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
-                                <p className='col-span-1 font-bold'>
-                                    Estimated time:
-                                </p>
-                                <span className='col-span-2'>25mins hard-coded</span>
-                            </div>
-                            <div className='flex flex-wrap justify-around mt-4'>
-                                <div className='flex flex-wrap justify-between w-[200px] mx-2 my-3 py-3'>
-                                    <span className='my-1 mx-4 font-bold'>Ride received</span>
-                                    <input 
-                                        type="checkbox"
-                                        checked={rideInfo.isRideReceived}
-                                        onChange={() => toggleRideReceived(rideInfo._id)}
-                                        className='w-[25px] h-[25px] mx-4 my-1 hover:cursor-pointer'
-                                    />    
+                        {rideInfos.map((rideInfo: any) => (
+                            <div
+                                key={rideInfo._id}
+                                className="
+                                    min-w-[300px] max-w-[600px]
+                                    border-2 border-yellow-400
+                                    rounded-md
+                                    p-5 mb-2 mx-5
+                                    text-white
+                                "
+                            >
+                                <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
+                                    <p className='col-span-1 font-bold'>
+                                        Pickup point:
+                                    </p>
+                                    <span className='col-span-2'>adasdasdasda asdasdasdasd asdasdasdasd asdasdasdas adsasdasd </span>
                                 </div>
-                                <div className='flex flex-wrap justify-between w-[200px] mx-1 my-3 py-3'>
-                                    <span className={`my-1 mx-4 font-bold ${!rideInfo.isRideReceived && 'text-gray-600'}`}>Ride finished</span>
-                                    <input 
-                                        type="checkbox"
-                                        checked={rideInfo.isRideFinished}
-                                        onChange={() => toggleRideFinished(rideInfo._id)}
-                                        className='w-[25px] h-[25px] mx-4 my-1 hover:cursor-pointer disabled:cursor-not-allowed' 
-                                        disabled={!rideInfo.isRideReceived}
-                                    />    
+                                <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
+                                    <p className='col-span-1 font-bold'>
+                                        Dropping point:
+                                    </p>
+                                    <span className='col-span-2'>{rideInfo.drop}</span>
+                                </div>
+                                <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
+                                    <p className='col-span-1 font-bold'>
+                                        Distance:
+                                    </p>
+                                    <span className='col-span-2'>10km hard-coded</span>
+                                </div>
+                                <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
+                                    <p className='col-span-1 font-bold'>
+                                        Estimated time:
+                                    </p>
+                                    <span className='col-span-2'>25mins hard-coded</span>
+                                </div>
+                                <div className='flex flex-wrap justify-around mt-4'>
+                                    <div className='flex flex-wrap justify-between w-[200px] mx-2 my-3 py-3'>
+                                        <label
+                                            htmlFor="ride-received-checkbox"
+                                            className='
+                                                my-1 mx-4 
+                                                font-bold text-yellow-400
+                                                flex flex-row justify-center items-center
+                                                hover:cursor-pointer
+                                            '
+                                        >
+                                            Ride received
+                                            <input
+                                                id="ride-received-checkbox"
+                                                type="checkbox"
+                                                checked={rideInfo.isRideReceived}
+                                                onChange={() => toggleRideReceived(rideInfo._id)}
+                                                className='
+                                                    w-[25px] h-[25px] mx-4 my-1 hover:cursor-pointer
+                                                    appearance-none
+                                                    border-yellow-400 border-2 rounded-[50%]
+                                                    checked:bg-green-900
+                                                '
+                                            />
+                                        </label> 
+                                    </div>
+                                    <div className='flex flex-wrap justify-between w-[200px] mx-1 my-3 py-3'>
+                                        <label
+                                            htmlFor="ride-finished-checkbox"
+                                            className={`
+                                                my-1 mx-4 
+                                                font-bold
+                                                ${!rideInfo.isRideReceived ? 'text-gray-600' : 'text-yellow-400'}
+                                                flex flex-row justify-center items-center
+                                                hover:cursor-pointer
+                                                ${!rideInfo.isRideReceived && 'hover:cursor-not-allowed'}
+                                            `}
+                                        >
+                                            Ride finished
+                                            <input
+                                                id='ride-finished-checkbox'
+                                                type="checkbox"
+                                                checked={rideInfo.isRideFinished}
+                                                onChange={() => toggleRideFinished(rideInfo._id)}
+                                                className='
+                                                    w-[25px] h-[25px] mx-4 my-1 hover:cursor-pointer
+                                                    appearance-none
+                                                    border-yellow-400 border-2 rounded-[50%]
+                                                    checked:bg-green-900
+                                                    disabled:cursor-not-allowed
+                                                ' 
+                                                disabled={!rideInfo.isRideReceived}
+                                            />
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
                     </>
                 )
             }
