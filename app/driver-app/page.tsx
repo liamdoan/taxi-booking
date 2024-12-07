@@ -144,7 +144,7 @@ const Home = () => {
                                     min-w-[300px] max-w-[600px]
                                     border-2 border-yellow-400
                                     rounded-md
-                                    p-5 mb-2 mx-5
+                                    pt-5 px-5 mb-2 mx-5
                                     text-white
                                 "
                             >
@@ -173,11 +173,11 @@ const Home = () => {
                                     <span className='col-span-2'>25mins hard-coded</span>
                                 </div>
                                 <div className='flex flex-wrap justify-around mt-4'>
-                                    <div className='flex flex-wrap justify-between w-[200px] mx-2 my-3 py-3'>
+                                    <div className='w-[200px] mx-2 my-3 py-1 min-h-[100px]'>
                                         <label
                                             htmlFor={`ride-received-checkbox-${rideInfo._id}`}
                                             className='
-                                                my-1 mx-4 
+                                                mt-1 mb-3 mx-4
                                                 font-bold text-yellow-400
                                                 flex flex-row justify-center items-center
                                                 hover:cursor-pointer
@@ -191,7 +191,7 @@ const Home = () => {
                                                 checked={rideInfo.isRideReceived}
                                                 onChange={() => toggleRideReceived(rideInfo._id)}
                                                 className='
-                                                    w-[30px] h-[30px] mx-4 my-1 hover:cursor-pointer
+                                                    w-[30px] h-[30px] ml-4 my-1 hover:cursor-pointer
                                                     appearance-none
                                                     border-2 border-yellow-400 rounded-[50%]
                                                     peer
@@ -199,7 +199,7 @@ const Home = () => {
                                             />
                                             <div className='
                                                 absolute
-                                                right-0 mx-[22px] my-1
+                                                right-0 mx-[14px] my-1
                                                 w-[20px] h-[20px]
                                                 peer-checked:rounded-[50%]
                                                 peer-checked:bg-green-500
@@ -207,27 +207,31 @@ const Home = () => {
                                             >
                                             </div>
                                         </label>
-                                        <div className='
-                                            w-full
-                                            my-1 mx-4
-                                            flex justify-center items-center
-                                            '
-                                        >
-                                            {loadingFetchReceived[rideInfo._id] && <Spinner width={32} height={32}/>}
-                                            {successReceivedMessage[rideInfo._id] && 
-                                                <span className='text-green-500'>Update Success!</span>
-                                            }
-                                            {failReceivedMessage[rideInfo._id] && 
-                                                <span className='text-red-700'>Update Failed!</span>
-                                            }
+                                        { (loadingFetchReceived[rideInfo._id] || successReceivedMessage[rideInfo._id] || failReceivedMessage[rideInfo._id]) &&
+                                            <div
+                                                className='
+                                                    my-1 mx-4
+                                                    flex justify-center items-center
+                                                '
+                                            >
+                                                {loadingFetchReceived[rideInfo._id] &&
+                                                    <Spinner width={32} height={32}/>
+                                                }
+                                                {successReceivedMessage[rideInfo._id] &&
+                                                    <span className='text-green-500'>Update Succeeded!</span>
+                                                }
+                                                {failReceivedMessage[rideInfo._id] &&
+                                                    <span className='text-red-700'>Update Failed!</span>
+                                                }
 
-                                        </div>
+                                            </div>
+                                        }
                                     </div>
-                                    <div className='flex flex-wrap justify-between w-[200px] mx-2 my-3 py-3'>
+                                    <div className='w-[200px] mx-2 my-3 py-1 min-h-[100px]'>
                                         <label
                                             htmlFor={`ride-finished-checkbox-${rideInfo._id}`}
                                             className={`
-                                                my-1 mx-4 
+                                                mt-1 mb-3 mx-4
                                                 font-bold
                                                 ${!rideInfo.isRideReceived ? 'text-gray-600' : 'text-yellow-400'}
                                                 flex flex-row justify-center items-center
@@ -242,7 +246,7 @@ const Home = () => {
                                                 checked={rideInfo.isRideFinished}
                                                 onChange={() => toggleRideFinished(rideInfo._id)}
                                                 className='
-                                                    w-[30px] h-[30px] mx-4 my-1 hover:cursor-pointer
+                                                    w-[30px] h-[30px] ml-4 my-1 hover:cursor-pointer
                                                     appearance-none
                                                     border-2 border-yellow-400 rounded-[50%]
                                                     disabled:cursor-not-allowed
@@ -252,7 +256,7 @@ const Home = () => {
                                             />
                                             <div className='
                                                 absolute
-                                                right-0 mx-[21px] my-1
+                                                right-0 mx-[16px] my-1
                                                 w-[20px] h-[20px]
                                                 peer-checked:rounded-[50%]
                                                 peer-checked:bg-green-500
@@ -260,21 +264,23 @@ const Home = () => {
                                             >
                                             </div>
                                         </label>
-                                        <div className='
-                                            w-full
-                                            my-1 mx-4
-                                            flex justify-center items-center
-                                            h-[4px]
-                                            '
-                                        >
-                                            {loadingFetchFinished[rideInfo._id] && <Spinner width={32} height={32}/>}
-                                            {successFinishedMessage[rideInfo._id] && 
-                                                <span className='text-green-500'>Update Success!</span>
-                                            }
-                                            {failFinishedMessage[rideInfo._id] && 
-                                                <span className='text-red-700'>Update Failed!</span>
-                                            }
-                                        </div>
+                                        { (loadingFetchFinished[rideInfo._id] || successFinishedMessage[rideInfo._id] || failFinishedMessage[rideInfo._id]) &&
+                                            <div className='
+                                                my-1 mx-4
+                                                flex justify-center items-center
+                                                '
+                                                >
+                                                {loadingFetchFinished[rideInfo._id] &&
+                                                    <Spinner width={32} height={32}/>
+                                                }
+                                                {successFinishedMessage[rideInfo._id] &&
+                                                    <span className='text-green-500'>Update Succeeded!</span>
+                                                }
+                                                {failFinishedMessage[rideInfo._id] &&
+                                                    <span className='text-red-700'>Update Failed!</span>
+                                                }
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
