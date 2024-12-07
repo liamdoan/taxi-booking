@@ -7,7 +7,8 @@ const BASE_URL = "http://localhost:3000";
 
 const Home = () => {
     const [rideInfos, setRideInfos] = useState<any>([]);
-    const [loading, setLoading] = useState(true);
+    const [loadingInitial, setLoadingInitial] = useState(true);
+    const [loadingFetchReceived, setLoadingFetchReceived] = useState<{ [key: string]: boolean }>({});;
 
     useEffect(() => {
         const getAllRides = async () => {
@@ -17,7 +18,7 @@ const Home = () => {
                 if (res.ok) {
                     const data = await res.json();
                     setRideInfos(data);
-                    setLoading(false)
+                    setLoadingInitial(false)
                 } else {
                     throw new Error('Something is wrong. Failed to fetch ride data.')
                 }
@@ -28,13 +29,19 @@ const Home = () => {
         
         const timer = setTimeout(()=> {
             getAllRides();
-        }, 5000) 
+        }, 1000) 
 
         return () => clearTimeout(timer)
     }, []);
 
     const toggleRideReceived = async (id: any) => {
+        setLoadingFetchReceived((prev) => ({ ...prev, [id]: true }));
+
+        const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
         try {
+
+            await delay(4000);
             const res = await fetch(`/api/ride-info/update/receive/${id}`, {
                 method: 'PUT',
                 headers: {
@@ -60,6 +67,8 @@ const Home = () => {
             setRideInfos(updatedRideInfos);
         } catch (error) {
             console.error(error);
+        } finally {
+            setLoadingFetchReceived((prev) => ({ ...prev, [id]: false }));
         }
     };
 
@@ -95,8 +104,8 @@ const Home = () => {
     return (
         <div className="bg-black flex flex-col justify-center items-center min-h-[100vh] pb-6">
             <h1 className='text-yellow-500 m-[2rem] text-[2rem]'>List of rides</h1>
-            {loading 
-                ? <Spinner width={16} height={16}/>
+            {loadingInitial 
+                ? <Spinner width={64} height={64}/>
                 : (
                     <>
                         {rideInfos.map((rideInfo: any) => (
@@ -168,7 +177,18 @@ const Home = () => {
                                                 '
                                             >
                                             </div>
-                                        </label> 
+                                        </label>
+                                        {loadingFetchReceived[rideInfo._id] &&
+                                            <div
+                                            className='
+                                                w-full
+                                                my-1 mx-4
+                                                flex justify-center items-center
+                                                '
+                                            >
+                                                <Spinner width={32} height={32}/>
+                                            </div>
+                                        }
                                     </div>
                                     <div className='flex flex-wrap justify-between w-[200px] mx-2 my-3 py-3'>
                                         <label
