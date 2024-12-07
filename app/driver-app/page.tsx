@@ -156,6 +156,12 @@ const Home = () => {
                                 </div>
                                 <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
                                     <p className='col-span-1 font-bold'>
+                                        Pickup time:
+                                    </p>
+                                    <span className='col-span-2'>10AM hardcoded</span>
+                                </div>
+                                <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
+                                    <p className='col-span-1 font-bold'>
                                         Dropping point:
                                     </p>
                                     <span className='col-span-2'>{rideInfo.drop}</span>
