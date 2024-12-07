@@ -25,8 +25,12 @@ const Home = () => {
                 console.error(error)
             }
         };
+        
+        const timer = setTimeout(()=> {
+            getAllRides();
+        }, 5000) 
 
-        getAllRides();
+        return () => clearTimeout(timer)
     }, []);
 
     const toggleRideReceived = async (id: any) => {
@@ -92,7 +96,7 @@ const Home = () => {
         <div className="bg-black flex flex-col justify-center items-center min-h-[100vh] pb-6">
             <h1 className='text-yellow-500 m-[2rem] text-[2rem]'>List of rides</h1>
             {loading 
-                ? <Spinner />
+                ? <Spinner width={16} height={16}/>
                 : (
                     <>
                         {rideInfos.map((rideInfo: any) => (
