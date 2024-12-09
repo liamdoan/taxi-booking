@@ -152,7 +152,7 @@ const Home = () => {
                                     <p className='col-span-1 font-bold'>
                                         Pickup point:
                                     </p>
-                                    <span className='col-span-2'>adasdasdasda asdasdasdasd asdasdasdasd asdasdasdas adsasdasd </span>
+                                    <span className='col-span-2'>{rideInfo.pickup}</span>
                                 </div>
                                 <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
                                     <p className='col-span-1 font-bold'>
