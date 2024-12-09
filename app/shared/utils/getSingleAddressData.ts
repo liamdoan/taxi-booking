@@ -2,7 +2,7 @@ import { useAddressNameContext } from "../context/AddressNameContext";
 import { useHasSelectedAddressContext } from "../context/InputCoordsContext";
 
 export const useGetAddressData = () => {
-    const {setHasSelectedAddress} = useHasSelectedAddressContext();
+    const {setHasSelectedPickupAddress, setHasSelectedDropAddress} = useHasSelectedAddressContext();
     const {
         setPickupAddressFromInput,
         setDropAddressFromInput
@@ -13,8 +13,12 @@ export const useGetAddressData = () => {
             const res = await fetch('/api/address-get?lat=' + latitude + '&lon=' + longitude);
             const addressData = await res.json();
     
-            if (res.status == 200) {
-                setHasSelectedAddress(true);
+            if (type === 'pickup' && res.status == 200) {
+                setHasSelectedPickupAddress(true);
+            };
+
+            if (type === 'drop' && res.status == 200) {
+                setHasSelectedDropAddress(true);
             };
     
             type === 'pickup' && setPickupAddressFromInput(addressData.display_name);
