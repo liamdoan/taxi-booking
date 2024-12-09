@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Spinner from './components/Spinner';
+import Spinner from '../shared/components/Spinner';
 
 const BASE_URL = "http://localhost:3000";
 
