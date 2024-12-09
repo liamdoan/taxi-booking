@@ -11,6 +11,7 @@ import { useGetAddressData } from '@/app/shared/utils/getSingleAddressData';
 import PreselectedPickup from './PreselectedPickup';
 import PreselectedDrop from './PreselectedDrop';
 import TimePicker from './TimePicker';
+import DayPicker from './DayPicker';
 
 const AutoSearchAddress = () => {
     const [suggestedPickupAddressList, setSuggestedPickupAddressList] = useState<any>([]);
@@ -207,6 +208,7 @@ const AutoSearchAddress = () => {
                     }
                 </div>
                 <PreselectedPickup />
+                <DayPicker />
                 <TimePicker />
             </div>
             <div>
