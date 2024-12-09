@@ -10,7 +10,7 @@ const Booking = () => {
     // const screenHeight = window.innerHeight;
     
     return (
-        <div className='p-5'>
+        <div className='px-5 pt-5 pb-10'>
             <div 
                 className='rounded-md'
                 // style={{height: screenHeight}}
