@@ -7,6 +7,7 @@ import { HasSelectedAddressProvider, InputCoordsProvider } from "../shared/conte
 import { HasFetchTravelingRouteDataSuccessfullyProvider, TravelingRouteDataProvider } from "../shared/context/TravelingRouteDataContext";
 import { SelectedCarProvider } from "../shared/context/SelectedCarContext";
 import { AddressNameProvider } from "../shared/context/AddressNameContext";
+import { SelectedDayProvider } from "../shared/context/SelectedDay";
 
 export default function Home() {
     return (
@@ -16,18 +17,20 @@ export default function Home() {
                     <TravelingRouteDataProvider>
                         <HasFetchTravelingRouteDataSuccessfullyProvider>
                             <AddressNameProvider>
-                                <SelectedCarProvider>
-                                    <div>
-                                        <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[100vh]">
-                                            <div className="bg-[var(--foreground)]">
-                                                <Booking />
-                                            </div>
-                                            <div className="bg-[var(--foreground)] col-span-2">
-                                                <MapLibre />
+                                <SelectedDayProvider>
+                                    <SelectedCarProvider>
+                                        <div>
+                                            <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[100vh]">
+                                                <div className="bg-[var(--foreground)]">
+                                                    <Booking />
+                                                </div>
+                                                <div className="bg-[var(--foreground)] col-span-2">
+                                                    <MapLibre />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </SelectedCarProvider>
+                                    </SelectedCarProvider>
+                                </SelectedDayProvider>
                             </AddressNameProvider>
                         </HasFetchTravelingRouteDataSuccessfullyProvider>
                     </TravelingRouteDataProvider>
