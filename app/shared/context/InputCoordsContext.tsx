@@ -47,11 +47,17 @@ export const useInputCoordsContext = () => {
 const HasSelectedAddressContext = createContext<any>(null);
 
 export const HasSelectedAddressProvider: React.FC<{children: ReactNode}> = ({children}) => {
-    const [hasSelectedAddress, setHasSelectedAddress] = useState<boolean>(false);
+    const [hasSelectedPickupAddress, setHasSelectedPickupAddress] = useState<boolean>(false);
+    const [hasSelectedDropAddress, setHasSelectedDropAddress] = useState<boolean>(false);
 
     return (
         <HasSelectedAddressContext.Provider
-            value={{ hasSelectedAddress, setHasSelectedAddress}}
+            value={{
+                hasSelectedPickupAddress,
+                setHasSelectedPickupAddress,
+                hasSelectedDropAddress,
+                setHasSelectedDropAddress
+            }}
         >
             {children}
         </HasSelectedAddressContext.Provider>
