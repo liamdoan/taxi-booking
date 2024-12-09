@@ -16,11 +16,18 @@ const AutoSearchAddress = () => {
     const [showPickupYourLocationOption, setShowPickupYourLocationOption] = useState<boolean>(false);
     const [showDropYourLocationOption, setShowDropYourLocationOption] = useState<boolean>(false);
 
+    const [tickedPickupOption, setTickedPickupOption] = useState('');
+    const [tickedDropOption, setTickedDropOption] = useState('');
+
     const [isCallGetSuggestedAddresses, setIsCallGetSuggestedAddresses] = useState(true);
 
     const {userLocation} = useUserLocation();
-    const {hasSelectedAddress, setHasSelectedAddress} = useHasSelectedAddressContext();
-    const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
+    const {
+        hasSelectedPickupAddress,
+        setHasSelectedPickupAddress,
+        hasSelectedDropAddress,
+        setHasSelectedDropAddress
+    } = useHasSelectedAddressContext();
     const {
         pickupAddressFromInput,
         setPickupAddressFromInput,
@@ -31,11 +38,9 @@ const AutoSearchAddress = () => {
         setPickupCoordinate,
         setDropCoordinate
     } = useInputCoordsContext();
+    const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
 
     const { getAddressData } = useGetAddressData();
-
-    const [tickedPickupOption, setTickedPickupOption] = useState('');
-    const [tickedDropOption, setTickedDropOption] = useState('');
 
     const showYourLocationOption = (address: string, type: 'pickup' | 'drop') => {
         if (type === 'pickup'){
@@ -74,13 +79,13 @@ const AutoSearchAddress = () => {
     };
 
     const getSuggestedAddresses = async (address: string, type: 'pickup' | 'drop') => {
-        if (!address || address.trim() === "" || hasSelectedAddress) {
+        if (!address || address.trim() === "") {
             // Currently with API from LocationIQ, if input is undefined/null/space,
             // the call is still made. It leads to the suggestion for those values,
             // which might be from API's default behaviour for empty queries.
-            if (type === 'pickup') {
+            if (type === 'pickup' && hasSelectedPickupAddress) {
                 setSuggestedPickupAddressList([]);
-            } else {
+            } else if ((type === 'drop' && hasSelectedDropAddress)) {
                 setSuggestedDropAddressList([]);
             }
             return;
@@ -102,7 +107,7 @@ const AutoSearchAddress = () => {
 
     // handle pickup input change
     useEffect(() => {
-        if (!isCallGetSuggestedAddresses) return;
+        if (!isCallGetSuggestedAddresses || hasSelectedPickupAddress) return;
 
         const timer = setTimeout(() => {
             if (pickupAddressFromInput) {
@@ -117,6 +122,8 @@ const AutoSearchAddress = () => {
 
     // handle dropping input change
     useEffect(() => {
+        if (!isCallGetSuggestedAddresses || hasSelectedDropAddress) return;
+
         const timer = setTimeout(() => {
             if (dropAddressFromInput) {
                 getSuggestedAddresses(dropAddressFromInput, 'drop');
@@ -132,7 +139,7 @@ const AutoSearchAddress = () => {
         if (type === 'pickup') {
             setPickupAddressFromInput(item.display_name);
             setSuggestedPickupAddressList([]);
-            setHasSelectedAddress(true);
+            setHasSelectedPickupAddress(true);
             setPickupCoordinate({
                 latitude: item.lat,
                 longitude: item.lon
@@ -140,7 +147,7 @@ const AutoSearchAddress = () => {
         } else {
             setDropAddressFromInput(item.display_name);
             setSuggestedDropAddressList([]);
-            setHasSelectedAddress(true);
+            setHasSelectedDropAddress(true);
             setDropCoordinate({
                 latitude: item.lat,
                 longitude: item.lon
@@ -191,7 +198,7 @@ const AutoSearchAddress = () => {
                         onChange={e => {
                             showYourLocationOption(e.target.value, 'pickup')
                             setPickupAddressFromInput(e.target.value);
-                            setHasSelectedAddress(false);
+                            setHasSelectedPickupAddress(false);
                             setHasFetchTravelingRouteDataSuccessfully(false);
                             setIsCallGetSuggestedAddresses(true)
                         }}
@@ -304,7 +311,7 @@ const AutoSearchAddress = () => {
                         onChange={e => {
                             showYourLocationOption(e.target.value, 'drop')
                             setDropAddressFromInput(e.target.value);
-                            setHasSelectedAddress(false);
+                            setHasSelectedDropAddress(false);
                             setHasFetchTravelingRouteDataSuccessfully(false);
                             setIsCallGetSuggestedAddresses(true)
 
