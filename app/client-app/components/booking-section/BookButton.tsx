@@ -10,16 +10,23 @@ const BookButton = () => {
     const [loading, setLoading] = useState(false);
 
     const {selectedCar} = useSelectedCarContext();
-    const {hasSelectedAddress} = useHasSelectedAddressContext();
+    const {
+        hasSelectedPickupAddress,
+        setHasSelectedPickupAddress,
+        hasSelectedDropAddress,
+        setHasSelectedDropAddress
+    } = useHasSelectedAddressContext();
     const {hasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
     const {
         pickupAddressFromInput,
+        setPickupAddressFromInput,
         dropAddressFromInput,
+        setDropAddressFromInput
     } = useAddressNameContext();
 
     // const router = useRouter();
 
-    const isButtonEnabled = selectedCar && hasSelectedAddress && hasFetchTravelingRouteDataSuccessfully;
+    const isButtonEnabled = selectedCar && hasSelectedPickupAddress && hasSelectedDropAddress && hasFetchTravelingRouteDataSuccessfully;
 
     const handleSubmit = async () => {
         const bookingData ={
@@ -27,7 +34,7 @@ const BookButton = () => {
             drop: dropAddressFromInput
         }
 
-        if (!isButtonEnabled || !hasSelectedAddress || !hasFetchTravelingRouteDataSuccessfully) return;
+        if (!isButtonEnabled || !hasSelectedPickupAddress || !hasSelectedDropAddress || !hasFetchTravelingRouteDataSuccessfully) return;
 
         const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -42,16 +49,20 @@ const BookButton = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(bookingData)
-            })
-
-            console.log(hasSelectedAddress)
+            });
 
             if (!res.ok) {
                 throw new Error('Failed to book ride');
             };
 
+            setPickupAddressFromInput('');
+            setDropAddressFromInput('');
+            setHasSelectedPickupAddress(false);
+            setHasSelectedDropAddress(false);
+
             const resData = await res.json();
             console.log("booking ok", resData)
+
         } catch (error) {
             console.error(error);
         } finally {
