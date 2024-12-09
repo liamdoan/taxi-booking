@@ -10,6 +10,7 @@ import { useAddressNameContext } from '@/app/shared/context/AddressNameContext';
 import { useGetAddressData } from '@/app/shared/utils/getSingleAddressData';
 import PreselectedPickup from './PreselectedPickup';
 import PreselectedDrop from './PreselectedDrop';
+import TimePicker from './TimePicker';
 
 const AutoSearchAddress = () => {
     const [suggestedPickupAddressList, setSuggestedPickupAddressList] = useState<any>([]);
@@ -206,6 +207,7 @@ const AutoSearchAddress = () => {
                     }
                 </div>
                 <PreselectedPickup />
+                <TimePicker />
             </div>
             <div>
                 <div
