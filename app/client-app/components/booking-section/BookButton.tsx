@@ -8,6 +8,8 @@ import LoadingBar from '@/app/shared/components/LoadingBar';
 
 const BookButton = () => {
     const [loading, setLoading] = useState(false);
+    const [successBookMessage , setSuccessBookMessage] = useState(false);
+    const [failedBookMessage , setFailedBookMessage] = useState(false);
 
     const {selectedCar} = useSelectedCarContext();
     const {
@@ -60,11 +62,17 @@ const BookButton = () => {
             setHasSelectedPickupAddress(false);
             setHasSelectedDropAddress(false);
 
+            setSuccessBookMessage(true);
+            setTimeout(() => setSuccessBookMessage(false), 3000);
+
             const resData = await res.json();
             console.log("booking ok", resData)
 
         } catch (error) {
             console.error(error);
+
+            setFailedBookMessage(true);
+            setTimeout(() => setFailedBookMessage(false), 3000);
         } finally {
             setLoading(false);
         }
@@ -87,6 +95,16 @@ const BookButton = () => {
                 Book
             </button>
             {loading && <LoadingBar/>}
+            {successBookMessage &&
+                <div className='text-center'>
+                    <span className='text-green-500'>Your ride has been booked.</span>
+                </div>
+            }
+            {failedBookMessage &&
+                <div className='text-center'>
+                    <span className='text-red-700'>Failed to book. Please try again!</span>
+                </div>
+            }
         </>
     )
 }
