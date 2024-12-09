@@ -7,7 +7,7 @@ import { HasSelectedAddressProvider, InputCoordsProvider } from "../shared/conte
 import { HasFetchTravelingRouteDataSuccessfullyProvider, TravelingRouteDataProvider } from "../shared/context/TravelingRouteDataContext";
 import { SelectedCarProvider } from "../shared/context/SelectedCarContext";
 import { AddressNameProvider } from "../shared/context/AddressNameContext";
-import { SelectedDayProvider } from "../shared/context/SelectedDay";
+import { SelectedDayProvider } from "../shared/context/SelectedDayContext";
 
 export default function Home() {
     return (
