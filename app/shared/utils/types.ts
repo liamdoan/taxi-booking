@@ -33,4 +33,11 @@ export interface SuggestedAddressList {
 export interface UserLocationCoordinates {
     latitude: number,
     longitude: number
-}
+};
+
+export interface TimePickerDropdownProps {
+    options: string[];
+    selected: string;
+    onSelect: any;
+    label?: string;
+};
