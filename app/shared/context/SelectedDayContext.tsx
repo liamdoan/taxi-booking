@@ -3,19 +3,22 @@ import { createContext, ReactNode, useContext, useState } from "react";
 const SelectedDayContext = createContext<any>(null);
 
 export const SelectedDayProvider: React.FC<{children: ReactNode}> = ({children}) => {
-    const [selectedDay, setSelectedDay] = useState<any>(null);
+    const [selectedDayId, setSelectedDayId] = useState<any>(null);
     const [selectedDayName, setSelectedDayName] = useState<string>('');
     const [selectedDayDate, setSelectedDayDate] = useState<string>('');
+    const [completedDate, setCompletedDate] = useState('');
 
     return(
         <SelectedDayContext.Provider
             value={{
-                selectedDay,
-                setSelectedDay,
+                selectedDayId,
+                setSelectedDayId,
                 selectedDayName,
                 setSelectedDayName,
                 selectedDayDate,
-                setSelectedDayDate
+                setSelectedDayDate,
+                completedDate,
+                setCompletedDate
             }}
         >
             {children}
