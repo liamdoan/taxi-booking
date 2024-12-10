@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RideInfo } from '@/app/shared/utils/types';
-import Spinner from '@/app/shared/components/Spinner';
+import LoadingBar from '@/app/shared/components/LoadingBar';
 
 const RideToggleStatus: React.FC<{rideInfo: RideInfo}> = ({rideInfo}) => {
     const [localRideInfo, setLocalRideInfo] = useState<RideInfo>(rideInfo);
@@ -104,7 +104,7 @@ const RideToggleStatus: React.FC<{rideInfo: RideInfo}> = ({rideInfo}) => {
 
     return (
         <div className='flex flex-wrap justify-around mt-4'>
-            <div className='w-[200px] mx-2 my-3 py-1 min-h-[100px]'>
+            <div className='w-[200px] mx-2 my-3 py-1 min-h-[90px]'>
                 <label
                     htmlFor={`ride-received-checkbox-${localRideInfo._id}`}
                     className='
@@ -145,9 +145,7 @@ const RideToggleStatus: React.FC<{rideInfo: RideInfo}> = ({rideInfo}) => {
                             flex justify-center items-center
                         '
                     >
-                        {loadingFetchReceived &&
-                            <Spinner width={32} height={32}/>
-                        }
+                        {loadingFetchReceived && <LoadingBar />}
                         {successReceivedMessage &&
                             <span className='text-green-500'>Update Succeeded!</span>
                         }
@@ -201,9 +199,7 @@ const RideToggleStatus: React.FC<{rideInfo: RideInfo}> = ({rideInfo}) => {
                         flex justify-center items-center
                         '
                         >
-                        {loadingFetchFinished &&
-                            <Spinner width={32} height={32}/>
-                        }
+                        {loadingFetchFinished && <LoadingBar />}
                         {successFinishedMessage &&
                             <span className='text-green-500'>Update Succeeded!</span>
                         }
