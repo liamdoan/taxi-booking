@@ -35,6 +35,7 @@ const BookButton = () => {
     } = useAddressNameContext();
     const {
         selectedDayId,
+        setSelectedDayId,
         selectedDayName,
         selectedDayDate,
     } = useSelectedDayContext();
@@ -102,6 +103,7 @@ const BookButton = () => {
             setHasSelectedDropAddress(false);
             setTickedPickupOptionCheckbox('');
             setTickedDropOptionCheckbox('');
+            setSelectedDayId(null);
 
             setSuccessBookMessage(true);
             setTimeout(() => setSuccessBookMessage(false), 3000);
