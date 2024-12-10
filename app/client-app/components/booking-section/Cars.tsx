@@ -7,7 +7,7 @@ import { userTravelingRouteDataContext } from '@/app/shared/context/TravelingRou
 import { useSelectedCarContext } from '@/app/shared/context/SelectedCarContext';
 
 const Cars = () => {
-    const {selectedCar, setSelectedCar} = useSelectedCarContext();
+    const {selectedCar, setSelectedCar, setSelectedCategory} = useSelectedCarContext();
     const {travelingRouteData} = userTravelingRouteDataContext();
 
     const getCost = (rate: any) => {
@@ -35,7 +35,10 @@ const Cars = () => {
                                 hover:border-yellow-400 cursor-pointer transition-all
                                 ${item.id == selectedCar && 'border-yellow-400 border-[3px]'}
                             `}
-                            onClick={() => setSelectedCar(item.id)}
+                            onClick={() => {
+                                setSelectedCar(item.id)
+                                setSelectedCategory(item.category)
+                            }}
                         >
                             <div className={`
                                 absolute inset-0 bg-black
