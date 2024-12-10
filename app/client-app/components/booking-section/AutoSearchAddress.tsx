@@ -12,6 +12,7 @@ import PreselectedPickup from './PreselectedPickup';
 import PreselectedDrop from './PreselectedDrop';
 import TimePicker from './TimePicker';
 import DayPicker from './DayPicker';
+import { useCheckBoxContext } from '@/app/shared/context/CheckBoxContext';
 
 const AutoSearchAddress = () => {
     const [suggestedPickupAddressList, setSuggestedPickupAddressList] = useState<any>([]);
@@ -39,6 +40,11 @@ const AutoSearchAddress = () => {
         setPickupCoordinate,
         setDropCoordinate
     } = useInputCoordsContext();
+    const {
+        tickedPickupOptionCheckbox,
+        tickedDropOptionCheckbox
+    } = useCheckBoxContext();
+
     const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
 
     const { getAddressData } = useGetAddressData();
@@ -163,13 +169,28 @@ const AutoSearchAddress = () => {
                     id="pickup-input"
                     className='pt-2 pb-2 relative'
                 >
-                    <label className='text-[var(--text-normal)] flex items-start'>
+                    <label
+                        className={`
+                            text-[var(--text-normal)]
+                            ${tickedPickupOptionCheckbox && 'opacity-50'}
+                            flex items-start
+                        `}>
                         <Image src="/location-pin-img/pin-red.png" alt='pin-red' width={20} height={10} className='mr-1'/>
                         Pickup location&nbsp;<span className='text-red-500'>*</span>
                     </label>
                     <input
+                        disabled={tickedPickupOptionCheckbox}
                         type="text"
-                        className='bg-transparent text-[var(--text-normal)] border-[1px] mt-2 p-3 w-full rounded-md outline-none focus:bg-[var(--input-focus)] transition-all'
+                        className='
+                            bg-transparent text-[var(--text-normal)] border-[1px]
+                            mt-2 p-3
+                            w-full rounded-md
+                            outline-none
+                            focus:bg-[var(--input-focus)]
+                            disabled:opacity-45
+                            disabled:cursor-not-allowed
+                            transition-all
+                        '
                         value={pickupAddressFromInput}
                         onFocus={() => showYourLocationOption(pickupAddressFromInput, 'pickup')}
                         onBlur={() => {
@@ -216,13 +237,28 @@ const AutoSearchAddress = () => {
                     id="dropping-input"
                     className='pt-2 pb-2 relative'
                 >
-                    <label className='text-[var(--text-normal)] flex items-start'>
+                    <label
+                        className={`
+                            text-[var(--text-normal)]
+                            ${tickedDropOptionCheckbox && 'opacity-50'}
+                            flex items-start
+                        `}>
                         <Image src="/location-pin-img/pin-green.png" alt='pin-red' width={20} height={10} className='mr-1'/>
                         Dropping location&nbsp;<span className='text-red-500'>*</span>
                     </label>
                     <input
+                        disabled={tickedDropOptionCheckbox}
                         type="text"
-                        className='bg-transparent text-[var(--text-normal)] border-[1px] mt-2 p-3 w-full rounded-md outline-none focus:bg-[var(--input-focus)] transition-all'
+                        className='
+                            bg-transparent text-[var(--text-normal)] border-[1px]
+                            mt-2 p-3
+                            w-full rounded-md
+                            outline-none
+                            focus:bg-[var(--input-focus)]
+                            disabled:opacity-45
+                            disabled:cursor-not-allowed
+                            transition-all
+                        '
                         value={dropAddressFromInput}
                         onFocus={() => showYourLocationOption(dropAddressFromInput, 'drop')}
                         onBlur={() => {
