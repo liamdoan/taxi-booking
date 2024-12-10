@@ -23,6 +23,12 @@ const RideInfoSchema = new Schema(
             type: String,
             required: true
         },
+        distance: {
+            type: String
+        },
+        estimatedTime: {
+            type: String
+        },
         isRideReceived: {
             type: Boolean,
             default: false
