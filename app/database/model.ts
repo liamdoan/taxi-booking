@@ -11,6 +11,18 @@ const RideInfoSchema = new Schema(
             type: String,
             required: true
         },
+        pickupDay: {
+            type: String,
+            required: true
+        },
+        pickupDate: {
+            type: String,
+            required: true
+        },
+        pickupTime: {
+            type: String,
+            required: true
+        },
         isRideReceived: {
             type: Boolean,
             default: false
