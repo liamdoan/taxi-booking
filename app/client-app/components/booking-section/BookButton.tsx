@@ -16,7 +16,7 @@ const BookButton = () => {
     const [successBookMessage , setSuccessBookMessage] = useState(false);
     const [failedBookMessage , setFailedBookMessage] = useState(false);
 
-    const {guestName, guestAmount} = useGuestAmountContext();
+    const {guestName, setGuestName, guestAmount} = useGuestAmountContext();
 
     const {selectedCar, setSelectedCar, selectedCategory} = useSelectedCarContext();
 
@@ -44,9 +44,7 @@ const BookButton = () => {
         setTickedDropOptionCheckbox
     } = useCheckBoxContext();
     const {
-        travelingRouteData,
         setTravelingRouteData,
-        routeCoordinates,
         setRouteCoordinates
     } = userTravelingRouteDataContext();
 
@@ -103,6 +101,7 @@ const BookButton = () => {
                 throw new Error('Failed to book ride');
             };
 
+            setGuestName('');
             setPickupAddressFromInput('');
             setDropAddressFromInput('');
             setHasSelectedPickupAddress(false);
