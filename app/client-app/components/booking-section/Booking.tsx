@@ -17,7 +17,7 @@ const Booking = () => {
             >
                 <AutoSearchAddress />
                 <Cars />
-                <Payments />
+                {/* <Payments /> */}
                 <BookButton />
             </div>
         </div>
