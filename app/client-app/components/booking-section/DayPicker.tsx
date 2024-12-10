@@ -30,7 +30,7 @@ const DayPicker = () => {
         <div className='text-white mt-2'>
             <h1 className='text-[var(--text-normal)] flex items-center'>
                 <Image src="/location-pin-img/calendar-icon.png" alt='calendar-icon' width={25} height={25} className='mr-1'/>
-                Pickup day
+                Pickup day&nbsp;<span className='text-red-500'>*</span>
             </h1>
             <div className='
                 flex flex-wrap justify-between 
