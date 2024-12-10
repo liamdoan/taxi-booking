@@ -37,6 +37,9 @@ const RideInfoSchema = new Schema(
         estimatedTime: {
             type: String
         },
+        preferredCar: {
+            type: String
+        },
         isRideReceived: {
             type: Boolean,
             default: false
