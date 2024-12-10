@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { TimePickerDropdownProps } from '@/app/shared/utils/types';
 import Image from 'next/image';
 
-const CustomDropdown: React.FC<TimePickerDropdownProps> = ({ options, selected, onSelect }) => {
+const CustomDropdown: React.FC<TimePickerDropdownProps> = ({ options, selectedValue, onSetValue }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -11,7 +11,7 @@ const CustomDropdown: React.FC<TimePickerDropdownProps> = ({ options, selected, 
     };
 
     const handleOptionClick = (value: string) => {
-        onSelect(value);
+        onSetValue(value);
         setIsOpen(false);
     };
 
@@ -45,7 +45,7 @@ const CustomDropdown: React.FC<TimePickerDropdownProps> = ({ options, selected, 
                     flex justify-between items-center
                 "
             >
-                <span>{selected}</span>
+                <span>{selectedValue}</span>
             </div>
             {isOpen && (
                 <div className="absolute w-full mt-1 bg-black border-2 border-gray-600 rounded-md shadow-md z-10">
@@ -65,7 +65,7 @@ const CustomDropdown: React.FC<TimePickerDropdownProps> = ({ options, selected, 
 };
 
 const TimePicker = () => {
-    const [hours, setHours] = useState<string>('0');
+    const [hour, setHour] = useState<string>('0');
     const [minutes, setMinutes] = useState<string>('00');
     const [amPm, setAmPm] = useState<'AM' | 'PM'>('AM');
 
@@ -88,7 +88,7 @@ const TimePicker = () => {
     };
 
     const handleSubmit = () => {
-        const selectedTime = `${hours}:${minutes} ${amPm}`;
+        const selectedTime = `${hour}:${minutes} ${amPm}`;
         console.log('Selected time:', selectedTime);
     };
 
@@ -101,19 +101,19 @@ const TimePicker = () => {
             <div className="flex items-center mt-2 space-x-2 text-white">
                 <CustomDropdown
                     options={generateHourOptions()}
-                    selected={hours}
-                    onSelect={setHours}
+                    selectedValue={hour}
+                    onSetValue={setHour}
                 />
                 <span className='text-white'>:</span>
                 <CustomDropdown
                     options={generateMinuteOptions()}
-                    selected={minutes}
-                    onSelect={setMinutes}
+                    selectedValue={minutes}
+                    onSetValue={setMinutes}
                 />
                 <CustomDropdown
                     options={['AM', 'PM']}
-                    selected={amPm}
-                    onSelect={setAmPm}
+                    selectedValue={amPm}
+                    onSetValue={setAmPm}
                 />
                 <button
                     onClick={handleSubmit}
