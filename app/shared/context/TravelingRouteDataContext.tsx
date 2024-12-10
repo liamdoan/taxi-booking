@@ -5,12 +5,15 @@ const TravelingRouteDataContext = createContext<any>(null);
 
 export const TravelingRouteDataProvider: React.FC<{children: ReactNode}> = ({children}) => {
     const [travelingRouteData, setTravelingRouteData] = useState<any>();
+    const [routeCoordinates, setRouteCoordinates] = useState<any>([]); //coords to draw route lines
 
     return (
     <TravelingRouteDataContext.Provider
         value={{
             travelingRouteData,
-            setTravelingRouteData
+            setTravelingRouteData,
+            routeCoordinates,
+            setRouteCoordinates
         }}
     >
         {children}
