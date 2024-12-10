@@ -1,5 +1,11 @@
 // import { ClerkProvider } from "@clerk/nextjs";
 // import NavBar from "@/app/client-app/components/NavBar";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Splash Cab - Drivers",
+    description: "Driver view",
+};
 
 export default function RootLayout({
     children,
