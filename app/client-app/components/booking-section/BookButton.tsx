@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import { useRouter } from 'next/navigation';
 import { useSelectedCarContext } from '@/app/shared/context/SelectedCarContext';
 import { useHasSelectedAddressContext } from '@/app/shared/context/InputCoordsContext';
-import { useHasFetchTravelingRouteDataSuccessfullyContext } from '@/app/shared/context/TravelingRouteDataContext';
+import { useHasFetchTravelingRouteDataSuccessfullyContext, userTravelingRouteDataContext } from '@/app/shared/context/TravelingRouteDataContext';
 import { useAddressNameContext } from '@/app/shared/context/AddressNameContext';
 import LoadingBar from '@/app/shared/components/LoadingBar';
 import { useSelectedDayContext } from '@/app/shared/context/SelectedDayContext';
@@ -43,6 +43,12 @@ const BookButton = () => {
         setTickedPickupOptionCheckbox,
         setTickedDropOptionCheckbox
     } = useCheckBoxContext();
+    const {
+        travelingRouteData,
+        setTravelingRouteData,
+        routeCoordinates,
+        setRouteCoordinates
+    } = userTravelingRouteDataContext();
 
     const {convert12To24HourFormat} = useSelectedTimeContext();
     const formattedPickupTime = convert12To24HourFormat();
@@ -105,6 +111,8 @@ const BookButton = () => {
             setTickedDropOptionCheckbox('');
             setSelectedDayId(null);
             setSelectedCar(null);
+            setTravelingRouteData(null);
+            setRouteCoordinates([]);
 
             setSuccessBookMessage(true);
             setTimeout(() => setSuccessBookMessage(false), 3000);
