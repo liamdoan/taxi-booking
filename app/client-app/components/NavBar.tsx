@@ -9,14 +9,11 @@ const NavBar = () => {
     const router = useRouter();
   return (
     <div className='flex justify-between py-3 px-4 border-b-[2px] shadow-lg'>
-        <div className='bg-yellow-400 gap-10'>
-            <Image
-                src='/slush-logo.png'
+        <div className='gap-10 flex justify-center items-center'>
+            <img
+                src='/splash-logo.png'
                 alt='logo'
-                width={120}
-                height={60}
-                style={{ width: '100%', height: 'auto' }}
-                priority
+                style={{ width: '200px', height: 'auto' }}
             />
         </div>
         <div className='flex gap-5 items-center'> {/* add 'hidden sm:' in front to hide elem when screen size is small */}
