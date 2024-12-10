@@ -3,10 +3,10 @@ import connectMongoDB from "@/app/database/mongodb";
 import { NextResponse } from "next/server";
 
 export async function POST(request: any) {
-    const { guestName, guestAmount, pickup, drop, pickupDay, pickupDate, pickupTime, distance, estimatedTime } = await request.json();
+    const { guestName, guestAmount, pickup, drop, pickupDay, pickupDate, pickupTime, distance, estimatedTime, preferredCar } = await request.json();
 
     await connectMongoDB();
-    await RideInfo.create({guestName, guestAmount, pickup, drop, pickupDay, pickupDate, pickupTime, distance, estimatedTime});
+    await RideInfo.create({guestName, guestAmount, pickup, drop, pickupDay, pickupDate, pickupTime, distance, estimatedTime, preferredCar});
 
     return NextResponse.json(
         {
@@ -20,7 +20,8 @@ export async function POST(request: any) {
                 pickupDate: pickupDate,
                 pickupTime: pickupTime,
                 distance: distance,
-                estimatedTime: estimatedTime
+                estimatedTime: estimatedTime,
+                preferredCar: preferredCar
             }
         }, {
             status: 201
