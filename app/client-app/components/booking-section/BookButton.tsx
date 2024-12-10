@@ -41,7 +41,15 @@ const BookButton = () => {
 
     // const router = useRouter();
 
-    const isButtonEnabled = selectedCar && hasSelectedPickupAddress && hasSelectedDropAddress && hasFetchTravelingRouteDataSuccessfully && pickupAddressFromInput && dropAddressFromInput && selectedDayId;
+    const isButtonEnabled = [
+        selectedCar, 
+        hasSelectedPickupAddress, 
+        hasSelectedDropAddress, 
+        hasFetchTravelingRouteDataSuccessfully, 
+        pickupAddressFromInput, 
+        dropAddressFromInput, 
+        selectedDayId
+    ].every(Boolean);
 
     const handleSubmit = async () => {
         const bookingData ={
