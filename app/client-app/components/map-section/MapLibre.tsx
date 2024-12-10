@@ -22,10 +22,13 @@ const CentrumHelsinkiDefaultCoords = {
 const MapLibre = () => {
     const {userLocation} = useUserLocation();
     const {pickupCoordinate, dropCoordinate} = useInputCoordsContext();
-    const {travelingRouteData, setTravelingRouteData} = userTravelingRouteDataContext();
+    const {
+        travelingRouteData,
+        setTravelingRouteData,
+        routeCoordinates,
+        setRouteCoordinates
+    } = userTravelingRouteDataContext();
     const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
-
-    const [routeCoordinates, setRouteCoordinates] = useState<any>([]);
 
     const [longitude, setLongitude] = useState(CentrumHelsinkiDefaultCoords.longitude);
     const [latitude, setLatitude] = useState(CentrumHelsinkiDefaultCoords.latitude)
