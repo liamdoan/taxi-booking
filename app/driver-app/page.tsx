@@ -182,13 +182,13 @@ const Home = () => {
                                     <p className='col-span-1 font-bold'>
                                         Distance:
                                     </p>
-                                    <span className='col-span-2'>10km hard-coded</span>
+                                    <span className='col-span-2'>{rideInfo.distance}</span>
                                 </div>
                                 <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
                                     <p className='col-span-1 font-bold'>
                                         Estimated time:
                                     </p>
-                                    <span className='col-span-2'>25mins hard-coded</span>
+                                    <span className='col-span-2'>{rideInfo.estimatedTime}</span>
                                 </div>
                                 <div className='flex flex-wrap justify-around mt-4'>
                                     <div className='w-[200px] mx-2 my-3 py-1 min-h-[100px]'>
