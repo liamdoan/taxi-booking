@@ -3,7 +3,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 const SelectedTimeContext = createContext<any>(null);
 
 export const SelectedTimeProvider: React.FC<{children: ReactNode}> = ({children}) => {
-    const [hour, setHour] = useState<string>('0');
+    const [hour, setHour] = useState<string>('12');
     const [minutes, setMinutes] = useState<string>('00');
     const [amPm, setAmPm] = useState<'AM' | 'PM'>('AM');
 
