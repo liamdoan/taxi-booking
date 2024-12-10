@@ -58,7 +58,7 @@ const Cars = () => {
                         `}>
                             {item.category}
                             {travelingRouteData && (
-                                <span className='float-right'>
+                                <span className='float-right line-through opacity-50'>
                                     {getCost(item.chargeRate)}€
                                 </span>
                             )}
@@ -66,6 +66,8 @@ const Cars = () => {
                     </div>
                 ))}
             </div>
+            <p className='text-yellow-500 text-[0.7rem] italic mt-4 mb-2 text-center opacity-95'>* Comfort and Luxury options are very limited.</p>
+            <p className='text-yellow-500 text-[0.7rem] italic mt-2 text-center opacity-95'>All the pricing is handled by us.</p>
         </div>
     )
 }
