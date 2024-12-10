@@ -32,7 +32,10 @@ const BookButton = () => {
         selectedDayName,
         selectedDayDate,
     } = useSelectedDayContext();
-    const { hour, minutes, amPm, } = useSelectedTimeContext();
+
+    const { hour, minutes, amPm, convert12To24HourFormat} = useSelectedTimeContext();
+    const formattedPickupTime = convert12To24HourFormat();
+
     const { formattedDistance, formattedTime } = useTimeDistanceContext();
 
     // const router = useRouter();
@@ -40,7 +43,7 @@ const BookButton = () => {
     const isButtonEnabled = selectedCar && hasSelectedPickupAddress && hasSelectedDropAddress && hasFetchTravelingRouteDataSuccessfully;
 
     useEffect(() => {
-        console.log("completed time in booking button is:", `${hour}:${minutes} ${amPm}`)
+        console.log("completed time in booking button is:", `${formattedPickupTime}`)
     }, [hour, minutes, amPm])
 
     useEffect(() => {
@@ -58,7 +61,7 @@ const BookButton = () => {
             drop: dropAddressFromInput,
             pickupDay: selectedDayName,
             pickupDate: selectedDayDate,
-            pickupTime: `${hour}:${minutes} ${amPm}`,
+            pickupTime: formattedPickupTime,
             distance: formattedDistance,
             estimatedTime: formattedTime
         }
