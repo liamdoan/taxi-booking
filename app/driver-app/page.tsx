@@ -39,14 +39,14 @@ const Home = () => {
 
     return (
         <div className="bg-black min-h-[100vh] p-[3rem]">
-            <h1 className='text-yellow-500 mb-[2rem] text-[2rem]'>List of rides</h1>
+            <h1 className='text-yellow-500 mb-[1rem] text-[2rem]'>List of rides</h1>
             <div className='flex flex-col'>
                 {loadingInitial
                     ? <Spinner width={64} height={64}/>
                     : (
                         <>
                             <div className='text-[var(--text-normal)] mb-6'>
-                                <h2 className='my-4'>Day 1 (Wed, 20 Nov. 2024)</h2>
+                                <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day -1 (Mon, 18 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {dayMinus1Rides.length > 0 ? (
                                         dayMinus1Rides.map((rideInfo: any) => (
@@ -70,7 +70,7 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className='text-[var(--text-normal)] mb-6'>
-                                <h2 className='my-4'>Day 1 (Wed, 20 Nov. 2024)</h2>
+                                <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day 0 (Tues, 19 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {day0Rides.length > 0 ? (
                                         day0Rides.map((rideInfo: any) => (
@@ -94,7 +94,7 @@ const Home = () => {
                                     </div>
                             </div>
                             <div className='text-[var(--text-normal)] mb-6'>
-                                <h2 className='my-4'>Day 1 (Wed, 20 Nov. 2024)</h2>
+                                <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day 1 (Wed, 20 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {day1Rides.length > 0 ? (
                                         day1Rides.map((rideInfo: any) => (
@@ -118,7 +118,7 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className='text-[var(--text-normal)] mb-6'>
-                                <h2 className='my-4'>Day 1 (Wed, 20 Nov. 2024)</h2>
+                                <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day 2 (Thurs, 21 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {day2Rides.length > 0 ? (
                                         day2Rides.map((rideInfo: any) => (
