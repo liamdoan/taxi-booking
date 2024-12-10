@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import { useRouter } from 'next/navigation';
 import { useSelectedCarContext } from '@/app/shared/context/SelectedCarContext';
 import { useHasSelectedAddressContext } from '@/app/shared/context/InputCoordsContext';
 import { useHasFetchTravelingRouteDataSuccessfullyContext } from '@/app/shared/context/TravelingRouteDataContext';
 import { useAddressNameContext } from '@/app/shared/context/AddressNameContext';
 import LoadingBar from '@/app/shared/components/LoadingBar';
+import { useSelectedDayContext } from '@/app/shared/context/SelectedDayContext';
+import { useSelectedTimeContext } from '@/app/shared/context/selectedTimeContext';
 
 const BookButton = () => {
     const [loading, setLoading] = useState(false);
@@ -25,15 +27,32 @@ const BookButton = () => {
         dropAddressFromInput,
         setDropAddressFromInput
     } = useAddressNameContext();
+    const {
+        selectedDayName,
+        selectedDayDate,
+    } = useSelectedDayContext();
+    const { hour, minutes, amPm, } = useSelectedTimeContext();
 
     // const router = useRouter();
 
     const isButtonEnabled = selectedCar && hasSelectedPickupAddress && hasSelectedDropAddress && hasFetchTravelingRouteDataSuccessfully;
 
+    useEffect(() => {
+        console.log("completed time in booking button is:", `${hour}:${minutes} ${amPm}`)
+    }, [hour, minutes, amPm])
+
+    useEffect(() => {
+        console.log("selected Date time in booking button is:", `${selectedDayName} ${selectedDayDate}`)
+    }, [selectedDayName, selectedDayDate])
+
+
     const handleSubmit = async () => {
         const bookingData ={
             pickup: pickupAddressFromInput,
-            drop: dropAddressFromInput
+            drop: dropAddressFromInput,
+            pickupDay: selectedDayName,
+            pickupDate: selectedDayDate,
+            pickupTime: `${hour}:${minutes} ${amPm}`
         }
 
         if (!isButtonEnabled || !hasSelectedPickupAddress || !hasSelectedDropAddress || !hasFetchTravelingRouteDataSuccessfully) return;
