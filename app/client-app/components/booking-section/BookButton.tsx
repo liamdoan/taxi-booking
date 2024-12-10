@@ -8,11 +8,14 @@ import LoadingBar from '@/app/shared/components/LoadingBar';
 import { useSelectedDayContext } from '@/app/shared/context/SelectedDayContext';
 import { useSelectedTimeContext } from '@/app/shared/context/selectedTimeContext';
 import { useTimeDistanceContext } from '@/app/shared/context/TimeDistanceContext';
+import { useGuestAmountContext } from '@/app/shared/context/GuestAmountContext';
 
 const BookButton = () => {
     const [loading, setLoading] = useState(false);
     const [successBookMessage , setSuccessBookMessage] = useState(false);
     const [failedBookMessage , setFailedBookMessage] = useState(false);
+
+    const {guestName, guestAmount} = useGuestAmountContext();
 
     const {selectedCar} = useSelectedCarContext();
     const {
@@ -42,6 +45,7 @@ const BookButton = () => {
     // const router = useRouter();
 
     const isButtonEnabled = [
+        guestName,
         selectedCar, 
         hasSelectedPickupAddress, 
         hasSelectedDropAddress, 
@@ -52,7 +56,9 @@ const BookButton = () => {
     ].every(Boolean);
 
     const handleSubmit = async () => {
-        const bookingData ={
+        const bookingData = {
+            guestName: guestName,
+            guestAmount: guestAmount,
             pickup: pickupAddressFromInput,
             drop: dropAddressFromInput,
             pickupDay: selectedDayName,
