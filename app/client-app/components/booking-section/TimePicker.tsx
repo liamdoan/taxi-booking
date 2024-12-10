@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { TimePickerDropdownProps } from '@/app/shared/utils/types';
 import Image from 'next/image';
+import { useSelectedTimeContext } from '@/app/shared/context/selectedTimeContext';
 
 const CustomDropdown: React.FC<TimePickerDropdownProps> = ({ options, selectedValue, onSetValue }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -65,9 +66,9 @@ const CustomDropdown: React.FC<TimePickerDropdownProps> = ({ options, selectedVa
 };
 
 const TimePicker = () => {
-    const [hour, setHour] = useState<string>('0');
-    const [minutes, setMinutes] = useState<string>('00');
-    const [amPm, setAmPm] = useState<'AM' | 'PM'>('AM');
+    const {
+        hour, setHour, minutes, setMinutes, amPm, setAmPm
+    } = useSelectedTimeContext();
 
     const generateHourOptions = () => {
         const hoursArray = [];
@@ -85,11 +86,6 @@ const TimePicker = () => {
             minutesArray.push(i < 10 ? `0${i}` : i.toString());
         }
         return minutesArray;
-    };
-
-    const handleSubmit = () => {
-        const selectedTime = `${hour}:${minutes} ${amPm}`;
-        console.log('Selected time:', selectedTime);
     };
 
     return (
@@ -115,12 +111,6 @@ const TimePicker = () => {
                     selectedValue={amPm}
                     onSetValue={setAmPm}
                 />
-                <button
-                    onClick={handleSubmit}
-                    className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                >
-                    Submit
-                </button>
             </div>
         </>
     );
