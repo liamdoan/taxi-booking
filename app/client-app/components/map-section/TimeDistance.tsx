@@ -8,7 +8,7 @@ const TimeDistance = () => {
     const distanceInKilometer = travelingRouteData && travelingRouteData.routes[0].distance * 0.001;
     const roundDistanceInKilometer = Math.round(distanceInKilometer *10)/ 10;
     const roundDistanceInMeter = Math.round(distanceInKilometer * 1000);
-    const formatDistance = distanceInKilometer < 1
+    const formattedDistance = distanceInKilometer < 1
         ? roundDistanceInMeter + 'm'
         : roundDistanceInKilometer + 'km'
 
@@ -24,7 +24,7 @@ const TimeDistance = () => {
 
     return (
         <>
-            <p>Distance: {formatDistance}</p>
+            <p>Distance: {formattedDistance}</p>
             <p>Time: {formattedTime}</p>
         </>
     )
