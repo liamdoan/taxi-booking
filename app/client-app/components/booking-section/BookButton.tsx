@@ -17,7 +17,8 @@ const BookButton = () => {
 
     const {guestName, guestAmount} = useGuestAmountContext();
 
-    const {selectedCar} = useSelectedCarContext();
+    const {selectedCar, selectedCategory} = useSelectedCarContext();
+
     const {
         hasSelectedPickupAddress,
         setHasSelectedPickupAddress,
@@ -65,7 +66,8 @@ const BookButton = () => {
             pickupDate: selectedDayDate,
             pickupTime: formattedPickupTime,
             distance: formattedDistance,
-            estimatedTime: formattedTime
+            estimatedTime: formattedTime,
+            preferredCar: selectedCategory
         }
 
         if (!isButtonEnabled) return;
