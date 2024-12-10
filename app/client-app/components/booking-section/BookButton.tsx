@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import { useRouter } from 'next/navigation';
 import { useSelectedCarContext } from '@/app/shared/context/SelectedCarContext';
-import { useHasSelectedAddressContext } from '@/app/shared/context/InputCoordsContext';
+import { useHasSelectedAddressContext, useInputCoordsContext } from '@/app/shared/context/InputCoordsContext';
 import { useHasFetchTravelingRouteDataSuccessfullyContext, userTravelingRouteDataContext } from '@/app/shared/context/TravelingRouteDataContext';
 import { useAddressNameContext } from '@/app/shared/context/AddressNameContext';
 import LoadingBar from '@/app/shared/components/LoadingBar';
@@ -47,6 +47,8 @@ const BookButton = () => {
         setTravelingRouteData,
         setRouteCoordinates
     } = userTravelingRouteDataContext();
+
+    const {setPickupCoordinate, setDropCoordinate} = useInputCoordsContext();
 
     const {convert12To24HourFormat} = useSelectedTimeContext();
     const formattedPickupTime = convert12To24HourFormat();
@@ -104,6 +106,8 @@ const BookButton = () => {
             setGuestName('');
             setPickupAddressFromInput('');
             setDropAddressFromInput('');
+            setPickupCoordinate(null);
+            setDropCoordinate(null);
             setHasSelectedPickupAddress(false);
             setHasSelectedDropAddress(false);
             setTickedPickupOptionCheckbox('');
