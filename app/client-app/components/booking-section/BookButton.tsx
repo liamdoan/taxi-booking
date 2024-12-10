@@ -18,7 +18,7 @@ const BookButton = () => {
 
     const {guestName, guestAmount} = useGuestAmountContext();
 
-    const {selectedCar, selectedCategory} = useSelectedCarContext();
+    const {selectedCar, setSelectedCar, selectedCategory} = useSelectedCarContext();
 
     const {
         hasSelectedPickupAddress,
@@ -104,6 +104,7 @@ const BookButton = () => {
             setTickedPickupOptionCheckbox('');
             setTickedDropOptionCheckbox('');
             setSelectedDayId(null);
+            setSelectedCar(null);
 
             setSuccessBookMessage(true);
             setTimeout(() => setSuccessBookMessage(false), 3000);
