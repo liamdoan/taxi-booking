@@ -43,6 +43,7 @@ export interface TimePickerDropdownProps {
 };
 
 export interface RideInfo {
+    _id: string,
     pickup: string;
     pickupDay: string;
     pickupDate: string;
@@ -50,4 +51,6 @@ export interface RideInfo {
     drop: string;
     distance: string;
     estimatedTime: string;
+    isRideReceived: boolean;
+    isRideFinished: boolean
 }
