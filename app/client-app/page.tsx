@@ -10,6 +10,7 @@ import { AddressNameProvider } from "../shared/context/AddressNameContext";
 import { SelectedDayProvider } from "../shared/context/SelectedDayContext";
 import { SelectedTimeProvider } from "../shared/context/selectedTimeContext";
 import { TimeDistanceProvider } from "../shared/context/TimeDistanceContext";
+import { CheckboxProvider } from "../shared/context/CheckBoxContext";
 
 export default function Home() {
     return (
@@ -20,22 +21,24 @@ export default function Home() {
                         <HasFetchTravelingRouteDataSuccessfullyProvider>
                             <AddressNameProvider>
                                 <SelectedDayProvider>
-                                    <SelectedTimeProvider>
-                                        <TimeDistanceProvider>
-                                            <SelectedCarProvider>
-                                                <div>
-                                                    <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[100vh]">
-                                                        <div className="bg-[var(--foreground)]">
-                                                            <Booking />
-                                                        </div>
-                                                        <div className="bg-[var(--foreground)] col-span-2">
-                                                            <MapLibre />
+                                    <CheckboxProvider>
+                                        <SelectedTimeProvider>
+                                            <TimeDistanceProvider>
+                                                <SelectedCarProvider>
+                                                    <div>
+                                                        <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[100vh]">
+                                                            <div className="bg-[var(--foreground)]">
+                                                                <Booking />
+                                                            </div>
+                                                            <div className="bg-[var(--foreground)] col-span-2">
+                                                                <MapLibre />
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </SelectedCarProvider>
-                                        </TimeDistanceProvider>
-                                    </SelectedTimeProvider>
+                                                </SelectedCarProvider>
+                                            </TimeDistanceProvider>
+                                        </SelectedTimeProvider>
+                                    </CheckboxProvider>
                                 </SelectedDayProvider>
                             </AddressNameProvider>
                         </HasFetchTravelingRouteDataSuccessfullyProvider>
