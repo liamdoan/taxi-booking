@@ -16,6 +16,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
     title: "Welcome to Splash Cab",
     description: "Home page, guiding to 2 separate view",
+    icons:{
+        icon: "/favicon.png"
+    }
 };
 
 export default function RootLayout({
