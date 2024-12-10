@@ -34,7 +34,7 @@ const DayPicker = () => {
             </h1>
             <div className='
                 flex flex-wrap justify-between 
-                mt-2
+                mt-2 gap-2
             '>
                 {EventDays.map((day) => (
                     <div 
@@ -44,7 +44,7 @@ const DayPicker = () => {
                         onKeyDown={(e) => handleKeyDown(e, day.id, day.name, day.date)}
                         className={`
                             border-2 border-gray-600 rounded-md
-                            p-3
+                            my-1 p-3
                             flex flex-col justify-center items-center
                             cursor-pointer
                             ${day.id == selectedDayId && 'border-yellow-400 border-[3px]'}
