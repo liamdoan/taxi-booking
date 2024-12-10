@@ -3,6 +3,14 @@ import { Schema } from "mongoose";
 
 const RideInfoSchema = new Schema(
     {
+        guestName: {
+            type: String,
+            required: true
+        },
+        guestAmount: {
+            type: String,
+            required: true
+        },
         pickup: {
             type: String,
             required: true
