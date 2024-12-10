@@ -37,7 +37,7 @@ export interface UserLocationCoordinates {
 
 export interface TimePickerDropdownProps {
     options: string[];
-    selected: string;
-    onSelect: any;
+    selectedValue: string;
+    onSetValue: any;
     label?: string;
 };
