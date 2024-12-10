@@ -37,6 +37,31 @@ const Home = () => {
     const day1Rides = rideInfos.filter((ride: any) => ride.pickupDay.toLowerCase() === 'day 1');
     const day2Rides = rideInfos.filter((ride: any) => ride.pickupDay.toLowerCase() === 'day 2');
 
+    //Sorted by soonest to latest time
+    const sortedDayMinus1Rides = dayMinus1Rides.sort((a: any, b: any) => {
+        if (a.pickupTime < b.pickupTime) return -1;
+        if (a.pickupTime > b.pickupTime) return 1;
+        return 0;
+    });
+
+    const sortedDay0Rides = day0Rides.sort((a: any, b: any) => {
+        if (a.pickupTime < b.pickupTime) return -1;
+        if (a.pickupTime > b.pickupTime) return 1;
+        return 0;
+    });
+
+    const sortedDay1Rides = day1Rides.sort((a: any, b: any) => {
+        if (a.pickupTime < b.pickupTime) return -1;
+        if (a.pickupTime > b.pickupTime) return 1;
+        return 0;
+    });
+
+    const sortedDay2Rides = day2Rides.sort((a: any, b: any) => {
+        if (a.pickupTime < b.pickupTime) return -1;
+        if (a.pickupTime > b.pickupTime) return 1;
+        return 0;
+    });
+
     return (
         <div className="bg-black min-h-[100vh] p-[3rem]">
             <h1 className='text-yellow-500 mb-[1rem] text-[2rem]'>List of rides</h1>
@@ -49,7 +74,7 @@ const Home = () => {
                                 <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day -1 (Mon, 18 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {dayMinus1Rides.length > 0 ? (
-                                        dayMinus1Rides.map((rideInfo: any) => (
+                                        sortedDayMinus1Rides.map((rideInfo: any) => (
                                             <div
                                                 key={rideInfo._id}
                                                 className="
@@ -73,7 +98,7 @@ const Home = () => {
                                 <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day 0 (Tues, 19 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {day0Rides.length > 0 ? (
-                                        day0Rides.map((rideInfo: any) => (
+                                        sortedDay0Rides.map((rideInfo: any) => (
                                             <div
                                                 key={rideInfo._id}
                                                 className="
@@ -97,7 +122,7 @@ const Home = () => {
                                 <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day 1 (Wed, 20 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {day1Rides.length > 0 ? (
-                                        day1Rides.map((rideInfo: any) => (
+                                        sortedDay1Rides.map((rideInfo: any) => (
                                             <div
                                                 key={rideInfo._id}
                                                 className="
@@ -121,7 +146,7 @@ const Home = () => {
                                 <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day 2 (Thurs, 21 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {day2Rides.length > 0 ? (
-                                        day2Rides.map((rideInfo: any) => (
+                                        sortedDay2Rides.map((rideInfo: any) => (
                                             <div
                                                 key={rideInfo._id}
                                                 className="
