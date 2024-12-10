@@ -29,6 +29,7 @@ const BookButton = () => {
         setDropAddressFromInput
     } = useAddressNameContext();
     const {
+        selectedDayId,
         selectedDayName,
         selectedDayDate,
     } = useSelectedDayContext();
@@ -40,7 +41,7 @@ const BookButton = () => {
 
     // const router = useRouter();
 
-    const isButtonEnabled = selectedCar && hasSelectedPickupAddress && hasSelectedDropAddress && hasFetchTravelingRouteDataSuccessfully && pickupAddressFromInput && dropAddressFromInput;
+    const isButtonEnabled = selectedCar && hasSelectedPickupAddress && hasSelectedDropAddress && hasFetchTravelingRouteDataSuccessfully && pickupAddressFromInput && dropAddressFromInput && selectedDayId;
 
     useEffect(() => {
         console.log("completed time in booking button is:", `${formattedPickupTime}`)
