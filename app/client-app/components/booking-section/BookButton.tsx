@@ -7,6 +7,7 @@ import { useAddressNameContext } from '@/app/shared/context/AddressNameContext';
 import LoadingBar from '@/app/shared/components/LoadingBar';
 import { useSelectedDayContext } from '@/app/shared/context/SelectedDayContext';
 import { useSelectedTimeContext } from '@/app/shared/context/selectedTimeContext';
+import { useTimeDistanceContext } from '@/app/shared/context/TimeDistanceContext';
 
 const BookButton = () => {
     const [loading, setLoading] = useState(false);
@@ -32,6 +33,7 @@ const BookButton = () => {
         selectedDayDate,
     } = useSelectedDayContext();
     const { hour, minutes, amPm, } = useSelectedTimeContext();
+    const { formattedDistance, formattedTime } = useTimeDistanceContext();
 
     // const router = useRouter();
 
@@ -45,6 +47,10 @@ const BookButton = () => {
         console.log("selected Date time in booking button is:", `${selectedDayName} ${selectedDayDate}`)
     }, [selectedDayName, selectedDayDate])
 
+    useEffect(() => {
+        console.log(`${formattedDistance}, ${formattedTime}`)
+    }, [formattedDistance, formattedTime])
+
 
     const handleSubmit = async () => {
         const bookingData ={
@@ -52,7 +58,9 @@ const BookButton = () => {
             drop: dropAddressFromInput,
             pickupDay: selectedDayName,
             pickupDate: selectedDayDate,
-            pickupTime: `${hour}:${minutes} ${amPm}`
+            pickupTime: `${hour}:${minutes} ${amPm}`,
+            distance: formattedDistance,
+            estimatedTime: formattedTime
         }
 
         if (!isButtonEnabled || !hasSelectedPickupAddress || !hasSelectedDropAddress || !hasFetchTravelingRouteDataSuccessfully) return;
