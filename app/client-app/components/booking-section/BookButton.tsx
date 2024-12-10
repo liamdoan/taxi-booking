@@ -9,6 +9,7 @@ import { useSelectedDayContext } from '@/app/shared/context/SelectedDayContext';
 import { useSelectedTimeContext } from '@/app/shared/context/selectedTimeContext';
 import { useTimeDistanceContext } from '@/app/shared/context/TimeDistanceContext';
 import { useGuestAmountContext } from '@/app/shared/context/GuestAmountContext';
+import { useCheckBoxContext } from '@/app/shared/context/CheckBoxContext';
 
 const BookButton = () => {
     const [loading, setLoading] = useState(false);
@@ -37,6 +38,10 @@ const BookButton = () => {
         selectedDayName,
         selectedDayDate,
     } = useSelectedDayContext();
+    const {
+        setTickedPickupOptionCheckbox,
+        setTickedDropOptionCheckbox
+    } = useCheckBoxContext();
 
     const {convert12To24HourFormat} = useSelectedTimeContext();
     const formattedPickupTime = convert12To24HourFormat();
@@ -95,6 +100,8 @@ const BookButton = () => {
             setDropAddressFromInput('');
             setHasSelectedPickupAddress(false);
             setHasSelectedDropAddress(false);
+            setTickedPickupOptionCheckbox('');
+            setTickedDropOptionCheckbox('');
 
             setSuccessBookMessage(true);
             setTimeout(() => setSuccessBookMessage(false), 3000);
