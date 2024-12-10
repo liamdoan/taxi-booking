@@ -34,7 +34,7 @@ const BookButton = () => {
         selectedDayDate,
     } = useSelectedDayContext();
 
-    const { hour, minutes, amPm, convert12To24HourFormat} = useSelectedTimeContext();
+    const {convert12To24HourFormat} = useSelectedTimeContext();
     const formattedPickupTime = convert12To24HourFormat();
 
     const { formattedDistance, formattedTime } = useTimeDistanceContext();
@@ -42,19 +42,6 @@ const BookButton = () => {
     // const router = useRouter();
 
     const isButtonEnabled = selectedCar && hasSelectedPickupAddress && hasSelectedDropAddress && hasFetchTravelingRouteDataSuccessfully && pickupAddressFromInput && dropAddressFromInput && selectedDayId;
-
-    useEffect(() => {
-        console.log("completed time in booking button is:", `${formattedPickupTime}`)
-    }, [hour, minutes, amPm])
-
-    useEffect(() => {
-        console.log("selected Date time in booking button is:", `${selectedDayName} ${selectedDayDate}`)
-    }, [selectedDayName, selectedDayDate])
-
-    useEffect(() => {
-        console.log(`${formattedDistance}, ${formattedTime}`)
-    }, [formattedDistance, formattedTime])
-
 
     const handleSubmit = async () => {
         const bookingData ={
@@ -95,10 +82,6 @@ const BookButton = () => {
 
             setSuccessBookMessage(true);
             setTimeout(() => setSuccessBookMessage(false), 3000);
-
-            const resData = await res.json();
-            console.log("booking ok", resData)
-
         } catch (error) {
             console.error(error);
 
