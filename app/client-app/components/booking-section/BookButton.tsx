@@ -40,7 +40,7 @@ const BookButton = () => {
 
     // const router = useRouter();
 
-    const isButtonEnabled = selectedCar && hasSelectedPickupAddress && hasSelectedDropAddress && hasFetchTravelingRouteDataSuccessfully;
+    const isButtonEnabled = selectedCar && hasSelectedPickupAddress && hasSelectedDropAddress && hasFetchTravelingRouteDataSuccessfully && pickupAddressFromInput && dropAddressFromInput;
 
     useEffect(() => {
         console.log("completed time in booking button is:", `${formattedPickupTime}`)
@@ -66,7 +66,7 @@ const BookButton = () => {
             estimatedTime: formattedTime
         }
 
-        if (!isButtonEnabled || !hasSelectedPickupAddress || !hasSelectedDropAddress || !hasFetchTravelingRouteDataSuccessfully) return;
+        if (!isButtonEnabled) return;
 
         const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
