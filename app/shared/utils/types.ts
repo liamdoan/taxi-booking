@@ -41,3 +41,13 @@ export interface TimePickerDropdownProps {
     onSetValue: any;
     label?: string;
 };
+
+export interface RideInfo {
+    pickup: string;
+    pickupDay: string;
+    pickupDate: string;
+    pickupTime: string;
+    drop: string;
+    distance: string;
+    estimatedTime: string;
+}
