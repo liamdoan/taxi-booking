@@ -5,6 +5,7 @@ import AutoSearchAddress from './AutoSearchAddress'
 import Cars from './Cars';
 import Payments from './Payments';
 import BookButton from './BookButton';
+import RegisterGuests from './RegisterGuests';
 
 const Booking = () => {
     // const screenHeight = window.innerHeight;
@@ -15,6 +16,7 @@ const Booking = () => {
                 className='rounded-md'
                 // style={{height: screenHeight}}
             >
+                <RegisterGuests />
                 <AutoSearchAddress />
                 <Cars />
                 {/* <Payments /> */}
