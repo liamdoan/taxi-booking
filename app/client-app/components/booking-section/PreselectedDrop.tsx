@@ -1,25 +1,63 @@
-import React, { useState } from 'react'
+import { useAddressNameContext } from '@/app/shared/context/AddressNameContext';
+import { useCheckBoxContext } from '@/app/shared/context/CheckBoxContext';
+import { useHasSelectedAddressContext, useInputCoordsContext } from '@/app/shared/context/InputCoordsContext';
+import React from 'react';
 
 const PreselectedDrop = () => {
-    const [tickedPickupOption, setTickedPickupOption] = useState('');
-    const [tickedDropOption, setTickedDropOption] = useState('');
+    const {
+        tickedPickupOptionCheckbox,
+        setTickedPickupOptionCheckbox,
+        tickedDropOptionCheckbox,
+        setTickedDropOptionCheckbox
+    } = useCheckBoxContext();
+
+    const {setDropAddressFromInput} = useAddressNameContext();
+    const {setHasSelectedDropAddress} = useHasSelectedAddressContext();
+
+    const {setDropCoordinate} = useInputCoordsContext();
+
+    const airportFullAddress = 'Helsinki-Vantaan lentoasema, Ilmakehä, Aviapolis, Veromies, Vantaa, Uusimaa, Manner-Suomi, 01530, Suomi';
+    const airportLabel = 'Helsinki-Vantaa Airport';
+    const airportCoordinates = [60.3189332, 24.9682958];
+
+    const venueFullAddress = 'Messukeskus, Rautatieläisenkatu, Itä-Pasila, Pasila, Helsinki, Uusimaa, Manner-Suomi, 00077, Suomi';
+    const venueLabel = 'Messukeskus Pasila';
+    const venueCoordinates = [60.2014151, 24.93669568];
 
     const handleCheckBoxChange = (e: any, type: 'pickup' | 'drop') => {
         if (type === 'pickup') {
             const {id} = e.target;
 
-            if (tickedPickupOption === id) {
-                setTickedPickupOption('');
+            if (tickedPickupOptionCheckbox === id) {
+                setTickedPickupOptionCheckbox('');
             } else {
-                setTickedPickupOption(id);
+                setTickedPickupOptionCheckbox(id);
             }
         } else {
             const {id} = e.target;
 
-            if (tickedDropOption === id) {
-                setTickedDropOption('');
+            if (tickedDropOptionCheckbox === id) {
+                setTickedDropOptionCheckbox('');
+                setDropAddressFromInput('');
             } else {
-                setTickedDropOption(id);
+                setTickedDropOptionCheckbox(id);
+
+                if (id === 'drop-airport-address') {
+                    setDropAddressFromInput(airportFullAddress);
+
+                    setDropCoordinate({
+                        latitude: airportCoordinates[0],
+                        longitude:  airportCoordinates[1]
+                    });
+                } else if (id === 'drop-venue-address') {
+                    setDropAddressFromInput(venueFullAddress);
+
+                    setDropCoordinate({
+                        latitude: venueCoordinates[0],
+                        longitude:  venueCoordinates[1]
+                    });
+                }
+                setHasSelectedDropAddress(true);
             }
         };
     };
@@ -43,7 +81,7 @@ const PreselectedDrop = () => {
                         <input
                             id='drop-venue-address'
                             type="checkbox"
-                            checked={tickedDropOption === 'drop-venue-address'}
+                            checked={tickedDropOptionCheckbox === 'drop-venue-address'}
                             onChange={(e) => handleCheckBoxChange(e, 'drop')}
                             className='
                                 mr-4
@@ -55,7 +93,7 @@ const PreselectedDrop = () => {
                                 checked:bg-yellow-500
                             '
                         />
-                        Messukeskus Special Entrance
+                        {venueLabel}
                     </label>
                 </div>
                 <div>
@@ -71,7 +109,7 @@ const PreselectedDrop = () => {
                         <input
                             id='drop-airport-address'
                             type="checkbox"
-                            checked={tickedDropOption === 'drop-airport-address'}
+                            checked={tickedDropOptionCheckbox === 'drop-airport-address'}
                             onChange={(e) => handleCheckBoxChange(e, 'drop')}
                             className='
                                 mr-4
@@ -83,7 +121,7 @@ const PreselectedDrop = () => {
                                 checked:bg-yellow-500
                             '
                         />
-                        Helsinki-Vantaa Airport
+                        {airportLabel}
                     </label>
                 </div>
             </div>
