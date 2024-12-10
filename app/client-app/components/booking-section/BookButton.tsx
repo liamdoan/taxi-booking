@@ -17,8 +17,9 @@ const BookButton = () => {
     const [failedBookMessage , setFailedBookMessage] = useState(false);
 
     const {guestName, setGuestName, guestAmount} = useGuestAmountContext();
-
     const {selectedCar, setSelectedCar, selectedCategory} = useSelectedCarContext();
+    const {setPickupCoordinate, setDropCoordinate} = useInputCoordsContext();
+    const {formattedDistance, formattedTime} = useTimeDistanceContext();
 
     const {
         hasSelectedPickupAddress,
@@ -48,12 +49,8 @@ const BookButton = () => {
         setRouteCoordinates
     } = userTravelingRouteDataContext();
 
-    const {setPickupCoordinate, setDropCoordinate} = useInputCoordsContext();
-
     const {convert12To24HourFormat} = useSelectedTimeContext();
     const formattedPickupTime = convert12To24HourFormat();
-
-    const { formattedDistance, formattedTime } = useTimeDistanceContext();
 
     // const router = useRouter();
 
