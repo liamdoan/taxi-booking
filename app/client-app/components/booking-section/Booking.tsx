@@ -3,9 +3,9 @@
 import React from 'react'
 import AutoSearchAddress from './AutoSearchAddress'
 import Cars from './Cars';
-import Payments from './Payments';
 import BookButton from './BookButton';
 import RegisterGuests from './RegisterGuests';
+// import Payments from './Payments';
 
 const Booking = () => {
     // const screenHeight = window.innerHeight;
