@@ -34,7 +34,7 @@ const RideDetails: React.FC<{rideInfo: RideInfo}> = ({rideInfo}) => {
                 <span className='col-span-2'>{rideInfo.guestName}</span>
             </div>
             <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
-                <p className='col-span-1 font-bold'>Guest amount::</p>
+                <p className='col-span-1 font-bold'>Guest amount:</p>
                 <span className='col-span-2'>{rideInfo.guestAmount}</span>
             </div>
             <div className='mx-1 my-2 grid grid-cols-3 gap-2'>
