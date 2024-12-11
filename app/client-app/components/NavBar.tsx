@@ -35,7 +35,7 @@ const NavBar = () => {
                 className='hover:bg-yellow-400 cursor-pointer py-1 px-3 rounded-md transition-all'
                 onClick={() => router.push('/support')}
             >
-                Help
+                Contact
             </h2>
         </div>
         <div>
