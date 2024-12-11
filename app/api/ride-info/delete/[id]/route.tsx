@@ -1,8 +1,8 @@
 import RideInfo from "@/app/database/model";
 import connectMongoDB from "@/app/database/mongodb";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
     const { id } = params;
 
     await connectMongoDB();
