@@ -10,10 +10,12 @@ const NavBar = () => {
   return (
     <div className='flex justify-between py-3 px-4 border-b-[2px] shadow-lg'>
         <div className='gap-10 flex justify-center items-center'>
-            <img
+            <Image
                 src='/splash-logo.png'
                 alt='logo'
-                style={{ width: '200px', height: 'auto' }}
+                width={200}
+                height={0}
+                style={{ height: 'auto' }}
             />
         </div>
         <div className='flex gap-5 items-center'> {/* add 'hidden sm:' in front to hide elem when screen size is small */}

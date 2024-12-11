@@ -2,6 +2,7 @@ import React from 'react';
 import {Marker} from 'react-map-gl/maplibre';
 import { useInputCoordsContext } from '@/app/shared/context/InputCoordsContext';
 import { useGetAddressData } from '@/app/shared/utils/getSingleAddressData';
+import Image from 'next/image';
 // import { useUserLocation } from '@/app/shared/context/UserLocationContext';
 
 const Markers = () => {
@@ -53,8 +54,9 @@ const Markers = () => {
                     draggable
                     onDragEnd={(e) => handleDragEnd(e, 'pickup')}
                 >
-                    <img
+                    <Image
                         src="/location-pin-img/pin-red.png"
+                        alt='pickup-marker'
                         className='w-10 h-10'
                         />
                 </Marker>
@@ -67,8 +69,9 @@ const Markers = () => {
                     draggable
                     onDragEnd={(e) => handleDragEnd(e, 'drop')}
                 >
-                    <img
+                    <Image
                         src="/location-pin-img/pin-green.png"
+                        alt='drop-marker'
                         className='w-10 h-10'
                         />
                 </Marker>
