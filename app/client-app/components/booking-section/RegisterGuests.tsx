@@ -12,7 +12,7 @@ const RegisterGuests = () => {
                         text-[var(--text-normal)]
                         flex items-start
                     '>
-                    {/* <Image src="/location-pin-img/pin-red.png" alt='pin-red' width={20} height={10} className='mr-1'/> */}
+                    {/* <Image src="/booking-side-icons/pin-red.png" alt='pin-red' width={20} height={10} className='mr-1'/> */}
                     Guest name&nbsp;<span className='text-red-500'>*</span>
                 </label>
                 <input

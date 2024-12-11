@@ -40,7 +40,7 @@ const Markers = () => {
                     draggable
                 >
                     <img
-                        src="/location-pin-img/pin-red.png"
+                        src="/booking-side-icons/pin-red.png"
                         className='w-10 h-10'
                     />
                 </Marker> //default marker, pinpoint user location
@@ -55,7 +55,7 @@ const Markers = () => {
                     onDragEnd={(e) => handleDragEnd(e, 'pickup')}
                 >
                     <Image
-                        src="/location-pin-img/pin-red.png"
+                        src="/booking-side-icons/pin-red.png"
                         alt='pickup-marker'
                         width={40}
                         height={80}
@@ -71,7 +71,7 @@ const Markers = () => {
                     onDragEnd={(e) => handleDragEnd(e, 'drop')}
                 >
                     <Image
-                        src="/location-pin-img/pin-green.png"
+                        src="/booking-side-icons/pin-green.png"
                         alt='drop-marker'
                         width={40}
                         height={80}

@@ -91,7 +91,7 @@ const TimePicker = () => {
     return (
         <>
             <h1 className='text-[var(--text-normal)] flex items-center mt-2'>
-                <Image src="/clock.svg" alt='pin-red' width={25} height={25} className='mr-1'/>
+                <Image src="/booking-side-icons/clock.svg" alt='pin-red' width={25} height={25} className='mr-1'/>
                 Pickup time&nbsp;<span className='text-red-500'>*</span>
             </h1>
             <div className="flex items-center mt-2 space-x-2 text-white">

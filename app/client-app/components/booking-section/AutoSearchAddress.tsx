@@ -177,7 +177,7 @@ const AutoSearchAddress = () => {
                             ${tickedPickupOptionCheckbox && 'opacity-50'}
                             flex items-start
                         `}>
-                        <Image src="/location-pin-img/pin-red.png" alt='pin-red' width={20} height={10} className='mr-1'/>
+                        <Image src="/booking-side-icons/pin-red.png" alt='pin-red' width={20} height={10} className='mr-1'/>
                         Pickup location&nbsp;<span className='text-red-500'>*</span>
                     </label>
                     <input
@@ -245,7 +245,7 @@ const AutoSearchAddress = () => {
                             ${tickedDropOptionCheckbox && 'opacity-50'}
                             flex items-start
                         `}>
-                        <Image src="/location-pin-img/pin-green.png" alt='pin-red' width={20} height={10} className='mr-1'/>
+                        <Image src="/booking-side-icons/pin-green.png" alt='pin-red' width={20} height={10} className='mr-1'/>
                         Dropping location&nbsp;<span className='text-red-500'>*</span>
                     </label>
                     <input
