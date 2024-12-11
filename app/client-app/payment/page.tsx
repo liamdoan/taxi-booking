@@ -3,7 +3,7 @@
 import React from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import CheckOutForm from '@/app/client-app/components/Payment/CheckOutForm';
+// import CheckOutForm from '@/app/client-app/components/Payment/CheckOutForm';
 
 const stripePublishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
 
@@ -19,7 +19,7 @@ const Payment = () => {
 
     return (
         <Elements stripe={stripePromise} options={options}>
-            <CheckOutForm />
+            {/* <CheckOutForm /> */}
         </Elements>
     )
 }
