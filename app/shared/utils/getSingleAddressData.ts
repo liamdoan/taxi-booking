@@ -21,8 +21,11 @@ export const useGetAddressData = () => {
                 setHasSelectedDropAddress(true);
             };
     
-            type === 'pickup' && setPickupAddressFromInput(addressData.display_name);
-            type === 'drop' && setDropAddressFromInput(addressData.display_name);
+            if (type === 'pickup') {
+                setPickupAddressFromInput(addressData.display_name);
+            } else if (type === 'drop') {
+                setDropAddressFromInput(addressData.display_name);
+            };
         } catch(err) {
             console.error("Error getting address data", err)
         }
