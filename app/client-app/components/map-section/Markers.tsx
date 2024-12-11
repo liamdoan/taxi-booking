@@ -57,7 +57,8 @@ const Markers = () => {
                     <Image
                         src="/location-pin-img/pin-red.png"
                         alt='pickup-marker'
-                        className='w-10 h-10'
+                        width={40}
+                        height={80}
                         />
                 </Marker>
             }
@@ -72,7 +73,8 @@ const Markers = () => {
                     <Image
                         src="/location-pin-img/pin-green.png"
                         alt='drop-marker'
-                        className='w-10 h-10'
+                        width={40}
+                        height={80}
                         />
                 </Marker>
             }
