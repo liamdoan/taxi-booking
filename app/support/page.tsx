@@ -1,6 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 import ContactEmails from '../client-app/data/ContactEmails';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Contact Splash",
+    description: "Splash Contact page",
+};
 
 const page = () => {
   return (
