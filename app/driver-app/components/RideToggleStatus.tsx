@@ -112,6 +112,7 @@ const RideToggleStatus: React.FC<{rideInfo: RideInfo}> = ({rideInfo}) => {
                         font-bold text-yellow-400
                         flex flex-row justify-center items-center
                         hover:cursor-pointer
+                        text-[1rem]
                         relative
                     '
                 >
@@ -165,6 +166,7 @@ const RideToggleStatus: React.FC<{rideInfo: RideInfo}> = ({rideInfo}) => {
                         ${!localRideInfo.isRideReceived ? 'text-gray-600' : 'text-yellow-400'}
                         flex flex-row justify-center items-center
                         ${!localRideInfo.isRideReceived ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'}
+                        text-[1rem]
                         relative
                     `}
                 >
