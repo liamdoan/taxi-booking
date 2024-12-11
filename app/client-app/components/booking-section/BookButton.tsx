@@ -86,7 +86,7 @@ const BookButton = () => {
         try {
             setLoading(true);
 
-            await delay(3000);
+            await delay(1000);
 
             const res = await fetch('api/ride-info/send', {
                 method: 'POST', 
