@@ -2,7 +2,7 @@ import RideInfo from "@/app/database/model";
 import connectMongoDB from "@/app/database/mongodb";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET() {
     await connectMongoDB();
 
     const allRideInfo = await RideInfo.find();

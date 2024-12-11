@@ -2,8 +2,8 @@ import RideInfo from "@/app/database/model";
 import connectMongoDB from "@/app/database/mongodb";
 import { NextResponse } from "next/server";
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
-        const url = new URL(request.url);
+export async function PUT(request: Request) {
+    const url = new URL(request.url);
     const id = url.pathname.split("/").pop();
     
     await connectMongoDB();
