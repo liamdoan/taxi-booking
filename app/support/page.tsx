@@ -9,7 +9,7 @@ const page = () => {
             <div className='w-[50%]'>
                 <Image
                     className='py-2'
-                    src='/support/phone-icon.png'
+                    src='/support-img/phone-icon.png'
                     alt='support'
                     width={120}
                     height={120}
