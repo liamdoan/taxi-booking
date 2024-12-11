@@ -5,8 +5,6 @@ import Spinner from '../shared/components/Spinner';
 import RideDetails from './components/RideDetails';
 import RideToggleStatus from './components/RideToggleStatus';
 
-// const BASE_URL = "http://localhost:3000";
-
 const Home = () => {
     const [rideInfos, setRideInfos] = useState<any>([]);
     const [loadingInitial, setLoadingInitial] = useState(true);
@@ -71,7 +69,7 @@ const Home = () => {
                     : (
                         <>
                             <div className='text-[var(--text-normal)] mb-6'>
-                                <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day -1 (Mon, 18 Nov. 2024)</h2>
+                                <h2 className='my-4 text-[clamp(0.7rem,5vw,1.6rem)] text-gray-400 italic font-bold'>Day -1 (Mon, 18 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {dayMinus1Rides.length > 0 ? (
                                         sortedDayMinus1Rides.map((rideInfo: any) => (
@@ -83,6 +81,7 @@ const Home = () => {
                                                     rounded-md
                                                     pt-5 px-5 mb-2 mr-5
                                                     text-[var(--text-normal)]
+                                                    text-[clamp(0.8rem,2vw,1rem)]
                                                 "
                                             >
                                                 <RideDetails rideInfo={rideInfo}/>
@@ -95,7 +94,7 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className='text-[var(--text-normal)] mb-6'>
-                                <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day 0 (Tues, 19 Nov. 2024)</h2>
+                                <h2 className='my-4 text-[clamp(0.7rem,5vw,1.6rem)] text-gray-400 italic font-bold'>Day 0 (Tues, 19 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {day0Rides.length > 0 ? (
                                         sortedDay0Rides.map((rideInfo: any) => (
@@ -119,7 +118,7 @@ const Home = () => {
                                     </div>
                             </div>
                             <div className='text-[var(--text-normal)] mb-6'>
-                                <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day 1 (Wed, 20 Nov. 2024)</h2>
+                                <h2 className='my-4 text-[clamp(0.7rem,5vw,1.6rem)] text-gray-400 italic font-bold'>Day 1 (Wed, 20 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {day1Rides.length > 0 ? (
                                         sortedDay1Rides.map((rideInfo: any) => (
@@ -143,7 +142,7 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className='text-[var(--text-normal)] mb-6'>
-                                <h2 className='my-4 text-[1.5rem] text-gray-400 italic font-bold'>Day 2 (Thurs, 21 Nov. 2024)</h2>
+                                <h2 className='my-4 text-[clamp(0.7rem,5vw,1.6rem)] text-gray-400 italic font-bold'>Day 2 (Thurs, 21 Nov. 2024)</h2>
                                 <div className='flex flex-wrap'>
                                     {day2Rides.length > 0 ? (
                                         sortedDay2Rides.map((rideInfo: any) => (
