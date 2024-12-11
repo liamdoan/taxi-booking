@@ -125,6 +125,7 @@ const AutoSearchAddress = () => {
         }, 1000);
 
         return () => clearTimeout(timer);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pickupAddressFromInput]);
 
     // handle dropping input change
@@ -140,6 +141,7 @@ const AutoSearchAddress = () => {
         }, 1000);
 
         return () => clearTimeout(timer);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dropAddressFromInput]);
 
     const onAddressInputClick = (item: any, type: 'pickup' | 'drop') => {
