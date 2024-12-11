@@ -22,6 +22,7 @@ const CheckOutForm = () => {
 
         const secretKey = await res.json();
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const {error} = await stripe.confirmPayment({
             clientSecret: secretKey,
             elements,

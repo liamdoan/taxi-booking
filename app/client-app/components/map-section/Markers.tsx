@@ -1,11 +1,11 @@
 import React from 'react';
 import {Marker} from 'react-map-gl/maplibre';
-import { useUserLocation } from '@/app/shared/context/UserLocationContext';
 import { useInputCoordsContext } from '@/app/shared/context/InputCoordsContext';
 import { useGetAddressData } from '@/app/shared/utils/getSingleAddressData';
+// import { useUserLocation } from '@/app/shared/context/UserLocationContext';
 
 const Markers = () => {
-    const {userLocation} = useUserLocation();
+    // const {userLocation} = useUserLocation();
     const {pickupCoordinate, setPickupCoordinate, dropCoordinate, setDropCoordinate} = useInputCoordsContext();
     const { getAddressData } = useGetAddressData();
 

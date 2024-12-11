@@ -5,7 +5,7 @@ import Spinner from '../shared/components/Spinner';
 import RideDetails from './components/RideDetails';
 import RideToggleStatus from './components/RideToggleStatus';
 
-const BASE_URL = "http://localhost:3000";
+// const BASE_URL = "http://localhost:3000";
 
 const Home = () => {
     const [rideInfos, setRideInfos] = useState<any>([]);
