@@ -9,7 +9,7 @@ import Map from 'react-map-gl/maplibre';
 import Markers from './Markers';
 import MapTravelingRoutes from './MapTravelingRoutes';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { useHasFetchTravelingRouteDataSuccessfullyContext, userTravelingRouteDataContext } from '@/app/shared/context/TravelingRouteDataContext';
+import { useHasFetchTravelingRouteDataSuccessfullyContext, useTravelingRouteDataContext } from '@/app/shared/context/TravelingRouteDataContext';
 import TimeDistance from './TimeDistance';
 
 const mapTilerApiKey = process.env.NEXT_PUBLIC_MAPTILER_API_KEY;
@@ -27,7 +27,7 @@ const MapLibre = () => {
         setTravelingRouteData,
         routeCoordinates,
         setRouteCoordinates
-    } = userTravelingRouteDataContext();
+    } = useTravelingRouteDataContext();
     const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
 
     const [longitude, setLongitude] = useState(CentrumHelsinkiDefaultCoords.longitude);

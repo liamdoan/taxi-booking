@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { userTravelingRouteDataContext } from '@/app/shared/context/TravelingRouteDataContext';
+import { useTravelingRouteDataContext } from '@/app/shared/context/TravelingRouteDataContext';
 import { useTimeDistanceContext } from '@/app/shared/context/TimeDistanceContext';
 
 const TimeDistance = () => {
-    const {travelingRouteData} = userTravelingRouteDataContext();
+    const {travelingRouteData} = useTravelingRouteDataContext();
     const {
         formattedDistance,
         setFormattedDistance,

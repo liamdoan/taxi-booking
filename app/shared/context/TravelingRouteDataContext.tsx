@@ -21,7 +21,7 @@ export const TravelingRouteDataProvider: React.FC<{children: ReactNode}> = ({chi
     )
 };
 
-export const userTravelingRouteDataContext = () => useContext(TravelingRouteDataContext);
+export const useTravelingRouteDataContext = () => useContext(TravelingRouteDataContext);
 
 // if getting data successfully context
 //hasSelectedAddress context

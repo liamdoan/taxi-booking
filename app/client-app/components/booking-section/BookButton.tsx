@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import LoadingBar from '@/app/shared/components/LoadingBar';
 import { useSelectedCarContext } from '@/app/shared/context/SelectedCarContext';
 import { useHasSelectedAddressContext, useInputCoordsContext } from '@/app/shared/context/InputCoordsContext';
-import { useHasFetchTravelingRouteDataSuccessfullyContext, userTravelingRouteDataContext } from '@/app/shared/context/TravelingRouteDataContext';
+import { useHasFetchTravelingRouteDataSuccessfullyContext, useTravelingRouteDataContext } from '@/app/shared/context/TravelingRouteDataContext';
 import { useAddressNameContext } from '@/app/shared/context/AddressNameContext';
 import { useSelectedDayContext } from '@/app/shared/context/SelectedDayContext';
 import { useSelectedTimeContext } from '@/app/shared/context/selectedTimeContext';
@@ -47,7 +47,7 @@ const BookButton = () => {
     const {
         setTravelingRouteData,
         setRouteCoordinates
-    } = userTravelingRouteDataContext();
+    } = useTravelingRouteDataContext();
 
     const {convert12To24HourFormat} = useSelectedTimeContext();
     const formattedPickupTime = convert12To24HourFormat();
