@@ -41,9 +41,11 @@ const MapLibre = () => {
             const res = await fetch('/api/calculate-routing?pickup=' + coord1 + '&drop=' + coord2);
             const routeData = await res.json();
 
-            (routeData.code == 200 || routeData.code == 'Ok')
-            ? setHasFetchTravelingRouteDataSuccessfully(true)
-            : setHasFetchTravelingRouteDataSuccessfully(false);
+            if (routeData.code == 200 || routeData.code == 'Ok') {
+                setHasFetchTravelingRouteDataSuccessfully(true);
+            } else {
+                setHasFetchTravelingRouteDataSuccessfully(false);
+            };
             
             const allRoutes = routeData.routes;
 
