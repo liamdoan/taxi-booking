@@ -91,6 +91,7 @@ const MapLibre = () => {
 
             getTravelingRouteData(pickupCoordinateToString, dropCoordinateToString);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pickupCoordinate, dropCoordinate])
 
     useEffect(() => {

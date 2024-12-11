@@ -34,6 +34,7 @@ const TimeDistance = () => {
             setFormattedDistance(formattedDistance);
             setformattedTime(formattedTime)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [travelingRouteData, formattedDistance, formattedTime])
 
     return (
