@@ -1,4 +1,4 @@
-export default [
+const PaymentMethods = [
     {
         id: 1,
         category: 'Master Card',
@@ -20,3 +20,5 @@ export default [
         img: '/payment-img/cash.avif',
     },
 ]
+
+export default PaymentMethods;

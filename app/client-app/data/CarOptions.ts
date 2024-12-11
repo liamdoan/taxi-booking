@@ -1,4 +1,4 @@
-export default [
+const CarOptions =  [
     {
         id: 1,
         category: 'Economy',
@@ -24,3 +24,5 @@ export default [
         chargeRate: 4
     },
 ]
+
+export default CarOptions;

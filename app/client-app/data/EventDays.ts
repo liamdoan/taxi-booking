@@ -1,4 +1,4 @@
-export default [
+const EventDays = [
     {
         id: 1,
         name: 'Day -1',
@@ -20,3 +20,5 @@ export default [
         date: '21 Nov. 2024'
     }
 ];
+
+export default EventDays;
