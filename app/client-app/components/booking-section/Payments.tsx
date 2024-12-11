@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import PaymentMethods from '@/app/client-app/data/PaymentMethods'
+import Image from 'next/image';
 
 const Payments = () => {
     const [selectedPayment, setSelecedPayment] = useState<any>();
@@ -20,7 +21,7 @@ const Payments = () => {
                         `}
                         onClick={() => setSelecedPayment(item.id)}
                     >
-                        <img src={item.img} alt={item.category} width={50}/>
+                        <Image src={item.img} alt={item.category} width={50}/>
                     </div>
                 ))}
             </div>
