@@ -4,7 +4,7 @@ const locationIqAccessToken = process.env.NEXT_PUBLIC_LOCATIONIQ_ACCESS_TOKEN;
 const BASE_URL_1= 'https://us1.locationiq.com/v1/directions/driving/';
 const BASE_URL_2='&steps=true&alternatives=true&geometries=polyline&overview=full&';
 
-export async function GET(request: any) {
+export async function GET(request: Request) {
     const {searchParams} = new URL(request.url);
     const coord1 = searchParams.get('pickup');
     const coord2 = searchParams.get('drop');

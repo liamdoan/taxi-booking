@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 const locationIqAccessToken = process.env.NEXT_PUBLIC_LOCATIONIQ_ACCESS_TOKEN;
 const BASE_URL=`https://us1.locationiq.com/v1/reverse?key=${locationIqAccessToken}`;
 
-export async function GET(request: any) {
+export async function GET(request: Request) {
     const {searchParams} = new URL(request.url);
     const latitude = searchParams.get('lat');
     const longitude = searchParams.get('lon');

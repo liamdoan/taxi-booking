@@ -3,7 +3,7 @@ import connectMongoDB from "@/app/database/mongodb";
 import { NextResponse } from "next/server";
 
 export async function PUT(
-    request: any,
+    request: Request,
     {params}: {params: {
         id: string
     }}
