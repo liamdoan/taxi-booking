@@ -3,7 +3,7 @@ import connectMongoDB from "@/app/database/mongodb";
 import { NextResponse } from "next/server";
 
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
-    const id = params.id;
+    const { id } = params;
 
     await connectMongoDB();
     await RideInfo.findByIdAndDelete(id);
