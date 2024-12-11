@@ -2,27 +2,27 @@ const ContactEmails = [
     {
         id: 1,
         department: 'General Inquiries',
-        email: 'email@mycompany.com'
+        email: 'hello@splash.com'
     },
     {
         id: 2,
         department: 'Technical support',
-        email: 'tech-support@mycompany.com'
+        email: 'tech-support@splash.com'
     },
     {
         id: 3,
         department: 'Partnership',
-        email: 'partners@mycompany.com'
+        email: 'partners@splash.com'
     },
     {
         id: 4,
         department: 'Media',
-        email: 'media@mycompany.com'
+        email: 'media@splash.com'
     },
     {
         id: 5,
         department: 'Marketing',
-        email: 'marketing@mycompany.com'
+        email: 'marketing@splash.com'
     },
 ]
 
