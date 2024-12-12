@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Spinner from '@/app/shared/components/Spinner';
 import RideDetails from './RideDetails';
 import RideToggleStatus from './RideToggleStatus';
+import LogOutButton from './LogOutButton';
 
 const AllRideInfo = () => {
     const [rideInfos, setRideInfos] = useState<any>([]);
@@ -62,7 +63,10 @@ const AllRideInfo = () => {
 
     return (
         <div className="bg-black min-h-[100vh] p-[3rem]">
-            <h1 className='text-yellow-500 mb-[1rem] text-[2rem]'>List of rides</h1>
+            <div className='flex flex-wrap justify-between items-center'>
+                <h1 className='text-yellow-500 mb-[1rem] text-[2rem] mr-7'>List of rides</h1>
+                <LogOutButton />
+            </div>
             <div className='flex flex-col'>
                 {loadingInitial
                     ? <Spinner width={64} height={64}/>
