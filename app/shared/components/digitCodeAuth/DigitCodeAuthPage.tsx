@@ -1,14 +1,13 @@
 import React, { useRef, useState } from 'react'
 import { useDigitCodeAuthContext } from '../../context/DigitCodeAuthContext';
+import { DigitCodeAuthPageProps } from '../../utils/types';
 
-const DigitCodeAuthPage = () => {
+const DigitCodeAuthPage: React.FC<DigitCodeAuthPageProps> = ({accessCode}) => {
     const {setIsAuthorized} = useDigitCodeAuthContext();
-    
+
     const [failMessage, setFailMessage] = useState(false);
     const [code, setCode] = useState(["", "", "", ""]); 
     const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-
-    const correctCode = '2024';
 
     const handleInputChange = (value: string, index: number) => {
         if (isNaN(Number(value)) || value.length > 1) return;
@@ -26,7 +25,7 @@ const DigitCodeAuthPage = () => {
         if (isAllInputsFilled) {
             const enteredCode = newCode.join("");
 
-            if (enteredCode === correctCode) {
+            if (enteredCode === accessCode) {
                 setIsAuthorized(true);
             } else {
                 setFailMessage(true);
