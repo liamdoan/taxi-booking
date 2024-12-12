@@ -17,7 +17,7 @@ import DigitCodeAuthPage from "../shared/components/digitCodeAuth/DigitCodeAuthP
 
 export default function Home() {
     const {isAuthorized} = useDigitCodeAuthContext();
-    const accessCodeClientSide = process.env.NEXT_PUBLIC_CLIENT_PASSWORD;
+    const accessCodeClientSide = process.env.NEXT_PUBLIC_CLIENT_ACCESS_CODE;
 
     if (!isAuthorized) {
         return (
