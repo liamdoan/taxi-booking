@@ -13,15 +13,15 @@ import { TimeDistanceProvider } from "../shared/context/TimeDistanceContext";
 import { CheckboxProvider } from "../shared/context/CheckBoxContext";
 import { GuestAmountProvider } from "../shared/context/GuestAmountContext";
 import { DigitCodeAuthProvider, useDigitCodeAuthContext } from "../shared/context/DigitCodeAuthContext";
-import DigitCodeAuthPage from "../shared/components/digitCodeAuth/DigitCodeAuthPage";
+import CodeAuthPageClientPage from "./components/codeAuthClient/CodeAuthClientPage";
 
 export default function Home() {
-    const {isAuthorized} = useDigitCodeAuthContext();
+    const {isAuthorizedClient} = useDigitCodeAuthContext();
     const accessCodeClientSide = process.env.NEXT_PUBLIC_CLIENT_ACCESS_CODE;
 
-    if (!isAuthorized) {
+    if (!isAuthorizedClient) {
         return (
-            <DigitCodeAuthPage accessCode={accessCodeClientSide as string}/>
+            <CodeAuthPageClientPage accessCode={accessCodeClientSide as string}/>
         );
     };
 
