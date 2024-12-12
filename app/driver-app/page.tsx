@@ -3,15 +3,15 @@
 import React from 'react';
 import AllRideInfo from './components/AllRideInfo';
 import { useDigitCodeAuthContext } from '../shared/context/DigitCodeAuthContext';
-import DigitCodeAuthPage from '../shared/components/digitCodeAuth/DigitCodeAuthPage';
+import CodeAuthDriverPage from './components/codeAuthDriver/CodeAuthPageDriverPage';
 
 const Home = () => {
-    const {isAuthorized} = useDigitCodeAuthContext();
+    const {isAuthorizedDriver} = useDigitCodeAuthContext();
     const accessCodeDriverSide = process.env.NEXT_PUBLIC_DRIVER_ACCESS_CODE;
 
-    if (!isAuthorized) {
+    if (!isAuthorizedDriver) {
         return (
-            <DigitCodeAuthPage accessCode={accessCodeDriverSide as string}/>
+            <CodeAuthDriverPage accessCode={accessCodeDriverSide as string}/>
         );
     };
 
