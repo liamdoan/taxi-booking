@@ -3,7 +3,7 @@
 import React from 'react';
 import AllRideInfo from './components/AllRideInfo';
 import { useDigitCodeAuthContext } from '../shared/context/DigitCodeAuthContext';
-import CodeAuthDriverPage from './components/codeAuthDriver/CodeAuthPageDriverPage';
+import CodeAuthDriverPage from './components/codeAuthDriver/CodeAuthDriverPage';
 
 const Home = () => {
     const {isAuthorizedDriver} = useDigitCodeAuthContext();
