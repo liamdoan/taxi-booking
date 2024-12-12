@@ -27,6 +27,9 @@ const CodeAuthDriverPage: React.FC<DigitCodeAuthPageProps> = ({accessCode}) => {
 
             if (enteredCode === accessCode) {
                 setIsAuthorizedDriver(true);
+
+                const currentTime = Date.now();
+                localStorage.setItem("accessedTimeDriver", currentTime.toString());
             } else {
                 setFailMessage(true);
                 setCode(["", "", "", ""]);
