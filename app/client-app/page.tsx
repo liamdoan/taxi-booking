@@ -17,10 +17,11 @@ import DigitCodeAuthPage from "../shared/components/digitCodeAuth/DigitCodeAuthP
 
 export default function Home() {
     const {isAuthorized} = useDigitCodeAuthContext();
+    const accessCodeClientSide = process.env.NEXT_PUBLIC_CLIENT_PASSWORD;
 
     if (!isAuthorized) {
         return (
-            <DigitCodeAuthPage />
+            <DigitCodeAuthPage accessCode={accessCodeClientSide as string}/>
         );
     };
 
