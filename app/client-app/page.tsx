@@ -20,7 +20,7 @@ export default function Home() {
     const {isAuthorizedClient, setIsAuthorizedClient} = useDigitCodeAuthContext();
     const accessCodeClientSide = process.env.NEXT_PUBLIC_CLIENT_ACCESS_CODE;
 
-    const AUTHORIZATION_TIMEOUT = 10 * 60 * 1000; // 10s
+    const AUTHORIZATION_TIMEOUT = 10 * 60 * 1000; // 10min
 
     useEffect(() => {
         const checkAuthorization = () => {
