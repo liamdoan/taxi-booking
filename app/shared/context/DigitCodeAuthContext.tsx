@@ -3,10 +3,11 @@ import { createContext, ReactNode, useContext, useState } from "react";
 const DigitCodeAuthContext = createContext<any>(null);
 
 export const DigitCodeAuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
-    const [isAuthorized, setIsAuthorized] = useState(false);
+    const [isAuthorizedClient, setIsAuthorizedClient] = useState(false);
+    const [isAuthorizedDriver, setIsAuthorizedDriver] = useState(false);
 
     return (
-        <DigitCodeAuthContext.Provider value={{isAuthorized, setIsAuthorized}}>
+        <DigitCodeAuthContext.Provider value={{isAuthorizedClient, setIsAuthorizedClient, isAuthorizedDriver, setIsAuthorizedDriver}}>
             {children}
         </DigitCodeAuthContext.Provider>
     )
