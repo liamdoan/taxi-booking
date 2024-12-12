@@ -14,10 +14,33 @@ import { CheckboxProvider } from "../shared/context/CheckBoxContext";
 import { GuestAmountProvider } from "../shared/context/GuestAmountContext";
 import { DigitCodeAuthProvider, useDigitCodeAuthContext } from "../shared/context/DigitCodeAuthContext";
 import CodeAuthPageClientPage from "./components/codeAuthClient/CodeAuthClientPage";
+import { useEffect } from "react";
 
 export default function Home() {
-    const {isAuthorizedClient} = useDigitCodeAuthContext();
+    const {isAuthorizedClient, setIsAuthorizedClient} = useDigitCodeAuthContext();
     const accessCodeClientSide = process.env.NEXT_PUBLIC_CLIENT_ACCESS_CODE;
+
+    const AUTHORIZATION_TIMEOUT = 10 * 60 * 1000; // 10s
+
+    useEffect(() => {
+        const checkAuthorization = () => {
+            const accessedTimeClient = localStorage.getItem("accessedTimeClient");
+
+            if (accessedTimeClient) {
+                const elapsedTime = Date.now() - Number(accessedTimeClient);
+
+                if (elapsedTime <= AUTHORIZATION_TIMEOUT) {
+                    setIsAuthorizedClient(true);
+                } else {
+                    setIsAuthorizedClient(false);
+                }
+            } else {
+                setIsAuthorizedClient(false);
+            }
+        };
+
+        checkAuthorization();
+    }, []);
 
     if (!isAuthorizedClient) {
         return (
