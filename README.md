@@ -2,10 +2,10 @@ Demo at: https://splash-cab-booking.vercel.app/
 
 (On-going) beta version of a car/taxi booking app built with NextJS, Tailwind, MapLibre for map, and MongoDB for database. Traveling route, price calculation are handled and displayed after user's selection. This project is initially for private event, which is suitable for those having their own cars/cabs to transport guests and attendees.
 
-The project has 2 separate views:
+The project has 2 separate views, each view requires providing access code again after a certain amount of time:
 
-- client view (for users): where booking form and map are placed.
-- driver view: where drivers and admins can see ride details.
+- client view (for users): where booking form and map are placed, required to enter code after 10mins.
+- driver view: where drivers and admins can see ride details, required to enter code after 1 hour.
 
 Driver view provides data about rides (pickup/dropping point, time, distance, ...). Drivers can see:
 
