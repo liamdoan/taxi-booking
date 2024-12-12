@@ -27,6 +27,9 @@ const CodeAuthClientPage: React.FC<DigitCodeAuthPageProps> = ({accessCode}) => {
 
             if (enteredCode === accessCode) {
                 setIsAuthorizedClient(true);
+
+                const currentTime = Date.now();
+                localStorage.setItem("accessedTimeClient", currentTime.toString());
             } else {
                 setFailMessage(true);
                 setCode(["", "", "", ""]);
