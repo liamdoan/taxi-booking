@@ -57,3 +57,7 @@ export interface RideInfo {
     isRideReceived: boolean;
     isRideFinished: boolean
 }
+
+export interface DigitCodeAuthPageProps {
+    accessCode: string
+}
