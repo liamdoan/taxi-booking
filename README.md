@@ -1,28 +1,29 @@
 Demo at: https://splash-cab-booking.vercel.app/
 
-(On-going) beta version of a car/taxi booking app built with NextJS, Tailwind, MapLibre for map, and MongoDB for database. Traveling route, price calculation are handled and displayed after user's selection. This project is initially for private event, which is suitable for those having their own cars/cabs to transport guests and attendees.
+(On-going) beta version of a car/taxi booking app built with NextJS, Tailwind, MapLibre for map, MongoDB for database. Traveling route, price calculation are handled and displayed after user's selection. This project is initially for private event, which is suitable for organizations having their own cars/cabs to transport guests and attendees.
 
-The project has 2 separate views, each view requires providing access code again after a certain amount of time:
+The project has 2 separate views.
+Each view requires access code after a certain amount of time:
 
-- client view (for users): where booking form and map are placed, required to enter code after 10mins.
-- driver view: where drivers and admins can see ride details, required to enter code after 1 hour.
+- client view (users): booking form and map, required Access Code after 10mins.
+- driver view (drivers and admins): tracking ride details, required Access Code after 1 hour.
 
-Driver view provides data about rides (pickup/dropping point, time, distance, ...). Drivers can see:
+Driver view provides details about rides (pickup/dropping point, time, distance, ...):
 
-- ride booked details.
-- if ride is received (drivers control).
-- if ride is finished (drivers control).
+- see booked rides' details.
+- toggle if ride is received.
+- toggle if ride is finished.
 
-Frontend aims to providing:
+Frontend focuses on:
 
-- good and clear UI.
-- using as much Context and reusabled component as possible.
+- good, clear UI.
+- using context and reusabled components, avoid repetition.
 
 Backend focuses on:
 
-- building custom API to fetch data.
-- building custom hook to reuse function in multiple components.
-- building API to handle CRUD operations.
+- custom API to fetch data.
+- custom hook to reuse function in multiple components.
+- API to handle CRUD operations.
 - (for future) managing auth methods to manage roles (users, drivers, admins)
 
 ---
