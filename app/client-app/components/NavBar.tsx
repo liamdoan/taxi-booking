@@ -8,9 +8,9 @@ import { useDigitCodeAuthContext } from '@/app/shared/context/DigitCodeAuthConte
 
 const NavBar = () => {
     const router = useRouter();
-    const {isAuthorized} = useDigitCodeAuthContext();
+    const {isAuthorizedClient} = useDigitCodeAuthContext();
 
-    if (!isAuthorized) {
+    if (!isAuthorizedClient) {
         return;
     }
 
