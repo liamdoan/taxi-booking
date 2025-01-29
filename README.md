@@ -23,7 +23,7 @@ Backend focuses on:
 - custom API to fetch data.
 - custom hook to reuse function in multiple components.
 - API to handle CRUD operations.
-- (for future) managing auth methods to manage roles (users, drivers, admins)
+- (for future) managing auth methods to manage roles (users, drivers, admins), integrate with this [MERN Full Auth model](https://github.com/liamdoan/react-MERN-auth-module) project.
 
 ---
 
