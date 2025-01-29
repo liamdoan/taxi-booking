@@ -19,3 +19,9 @@ yarn.lock
 # Ignore build files
 coverage
 public
+
+# Ignore assets
+# Ignore assets
+app/**/*.jpg
+app/**/*.png
+app/**/*.woff
