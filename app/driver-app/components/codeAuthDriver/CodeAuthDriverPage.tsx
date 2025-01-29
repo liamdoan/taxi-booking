@@ -1,38 +1,38 @@
 import { useDigitCodeAuthContext } from '@/app/shared/context/DigitCodeAuthContext';
 import { DigitCodeAuthPageProps } from '@/app/shared/utils/types';
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 
-const CodeAuthDriverPage: React.FC<DigitCodeAuthPageProps> = ({accessCode}) => {
-    const {setIsAuthorizedDriver} = useDigitCodeAuthContext();
+const CodeAuthDriverPage: React.FC<DigitCodeAuthPageProps> = ({ accessCode }) => {
+    const { setIsAuthorizedDriver } = useDigitCodeAuthContext();
 
     const [failMessage, setFailMessage] = useState(false);
-    const [code, setCode] = useState(["", "", "", ""]); 
+    const [code, setCode] = useState(['', '', '', '']);
     const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
     const handleInputChange = (value: string, index: number) => {
         if (isNaN(Number(value)) || value.length > 1) return;
-    
+
         const newCode = [...code];
         newCode[index] = value;
         setCode(newCode);
-    
-        const isAllInputsFilled = newCode.every((digit) => digit !== "");
 
-        if (failMessage && value!== '') {
+        const isAllInputsFilled = newCode.every((digit) => digit !== '');
+
+        if (failMessage && value !== '') {
             setFailMessage(false);
-        };
+        }
 
         if (isAllInputsFilled) {
-            const enteredCode = newCode.join("");
+            const enteredCode = newCode.join('');
 
             if (enteredCode === accessCode) {
                 setIsAuthorizedDriver(true);
 
                 const currentTime = Date.now();
-                localStorage.setItem("accessedTimeDriver", currentTime.toString());
+                localStorage.setItem('accessedTimeDriver', currentTime.toString());
             } else {
                 setFailMessage(true);
-                setCode(["", "", "", ""]);
+                setCode(['', '', '', '']);
 
                 inputRefs.current[0]?.focus();
             }
@@ -40,16 +40,17 @@ const CodeAuthDriverPage: React.FC<DigitCodeAuthPageProps> = ({accessCode}) => {
             inputRefs.current[index + 1]?.focus();
         }
     };
-    
+
     const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
-        if (e.key === "Backspace" && code[index] === "") {
+        if (e.key === 'Backspace' && code[index] === '') {
             inputRefs.current[index - 1]?.focus();
         }
     };
 
     return (
-        <div className='min-h-[100vh]'>
-            <div className="
+        <div className="min-h-[100vh]">
+            <div
+                className="
                 flex items-center justify-center
                 bg-[var(--foreground)]
                 text-white"
@@ -78,24 +79,27 @@ const CodeAuthDriverPage: React.FC<DigitCodeAuthPageProps> = ({accessCode}) => {
                             />
                         ))}
                     </div>
-                    {failMessage &&
-                        <p className='my-6 text-red-500'>Incorrect code. Please provide the correct code or contact us.</p>
-                    }
+                    {failMessage && (
+                        <p className="my-6 text-red-500">
+                            Incorrect code. Please provide the correct code or contact us.
+                        </p>
+                    )}
                 </div>
             </div>
-            <p className='
+            <p
+                className="
                 text-[var(--text-normal)] text-center 
                 flex justify-center items-center h-[6rem]
                 bg-[var(--foreground)]
-                '
+                "
             >
                 Should any issue arise, please contact us!
             </p>
         </div>
     );
-}
+};
 
-export default CodeAuthDriverPage
+export default CodeAuthDriverPage;
 
 // Plan flow of the code auth:
 // validate if input is number, and each input can only has 1 value

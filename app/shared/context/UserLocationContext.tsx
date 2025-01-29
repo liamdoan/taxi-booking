@@ -1,8 +1,8 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 const UserLocationContext = createContext<any>(null);
 
-export const UserLocationProvider: React.FC<{ children: ReactNode }> = ({children}) => {
+export const UserLocationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [userLocation, setUserLocation] = useState<any>();
 
     useEffect(() => {
@@ -10,16 +10,16 @@ export const UserLocationProvider: React.FC<{ children: ReactNode }> = ({childre
             navigator.geolocation.getCurrentPosition((location) => {
                 setUserLocation({
                     latitude: location.coords.latitude,
-                    longitude: location.coords.longitude
+                    longitude: location.coords.longitude,
                 });
-            })
+            });
         };
 
         getUserLocation();
-    }, [])
+    }, []);
 
     return (
-        <UserLocationContext.Provider value={{userLocation, setUserLocation}}>
+        <UserLocationContext.Provider value={{ userLocation, setUserLocation }}>
             {children}
         </UserLocationContext.Provider>
     );

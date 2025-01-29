@@ -1,57 +1,57 @@
-import mongoose from "mongoose";
-import { Schema } from "mongoose";
+import mongoose from 'mongoose';
+import { Schema } from 'mongoose';
 
 const RideInfoSchema = new Schema(
     {
         guestName: {
             type: String,
-            required: true
+            required: true,
         },
         guestAmount: {
             type: String,
-            required: true
+            required: true,
         },
         pickup: {
             type: String,
-            required: true
+            required: true,
         },
         drop: {
             type: String,
-            required: true
+            required: true,
         },
         pickupDay: {
             type: String,
-            required: true
+            required: true,
         },
         pickupDate: {
             type: String,
-            required: true
+            required: true,
         },
         pickupTime: {
             type: String,
-            required: true
+            required: true,
         },
         distance: {
-            type: String
+            type: String,
         },
         estimatedTime: {
-            type: String
+            type: String,
         },
         preferredCar: {
-            type: String
+            type: String,
         },
         isRideReceived: {
             type: Boolean,
-            default: false
+            default: false,
         },
         isRideFinished: {
             type: Boolean,
-            default: false
-        }
-    }, 
+            default: false,
+        },
+    },
     {
-        timestamps: true
-    }
+        timestamps: true,
+    },
 );
 
 const RideInfo = mongoose.models.RideInfo || mongoose.model('RideInfo', RideInfoSchema);

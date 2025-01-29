@@ -1,14 +1,14 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 const SelectedDayContext = createContext<any>(null);
 
-export const SelectedDayProvider: React.FC<{children: ReactNode}> = ({children}) => {
+export const SelectedDayProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [selectedDayId, setSelectedDayId] = useState<any>(null);
     const [selectedDayName, setSelectedDayName] = useState<string>('');
     const [selectedDayDate, setSelectedDayDate] = useState<string>('');
     const [completedDate, setCompletedDate] = useState('');
 
-    return(
+    return (
         <SelectedDayContext.Provider
             value={{
                 selectedDayId,
@@ -18,12 +18,12 @@ export const SelectedDayProvider: React.FC<{children: ReactNode}> = ({children})
                 selectedDayDate,
                 setSelectedDayDate,
                 completedDate,
-                setCompletedDate
+                setCompletedDate,
             }}
         >
             {children}
         </SelectedDayContext.Provider>
-    )
-}
+    );
+};
 
 export const useSelectedDayContext = () => useContext(SelectedDayContext);

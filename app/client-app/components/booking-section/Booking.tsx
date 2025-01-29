@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react'
-import AutoSearchAddress from './AutoSearchAddress'
+import React from 'react';
+import AutoSearchAddress from './AutoSearchAddress';
 import Cars from './Cars';
 import BookButton from './BookButton';
 import RegisterGuests from './RegisterGuests';
@@ -9,11 +9,11 @@ import RegisterGuests from './RegisterGuests';
 
 const Booking = () => {
     // const screenHeight = window.innerHeight;
-    
+
     return (
-        <div className='px-5 pt-5 pb-10'>
-            <div 
-                className='rounded-md'
+        <div className="px-5 pt-5 pb-10">
+            <div
+                className="rounded-md"
                 // style={{height: screenHeight}}
             >
                 <RegisterGuests />
@@ -23,7 +23,7 @@ const Booking = () => {
                 <BookButton />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Booking
+export default Booking;

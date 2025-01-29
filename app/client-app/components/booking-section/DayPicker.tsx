@@ -6,12 +6,7 @@ import EventDays from '../../data/EventDays';
 import { useSelectedDayContext } from '@/app/shared/context/SelectedDayContext';
 
 const DayPicker = () => {
-    const {
-        selectedDayId,
-        setSelectedDayId,
-        setSelectedDayName,
-        setSelectedDayDate,
-    } = useSelectedDayContext();
+    const { selectedDayId, setSelectedDayId, setSelectedDayName, setSelectedDayDate } = useSelectedDayContext();
 
     const handleClick = (id: number, name: string, date: string) => {
         setSelectedDayId(id);
@@ -20,24 +15,32 @@ const DayPicker = () => {
     };
 
     const handleKeyDown = (e: any, id: number, name: string, date: string) => {
-        if (e.key === 'Enter' || e.key ===' '){
+        if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             handleClick(id, name, date);
         }
     };
 
     return (
-        <div className='text-white mt-2'>
-            <h1 className='text-[var(--text-normal)] flex items-center'>
-                <Image src="/booking-side-icons/calendar-icon.png" alt='calendar-icon' width={25} height={25} className='mr-1'/>
-                Pickup day&nbsp;<span className='text-red-500'>*</span>
+        <div className="text-white mt-2">
+            <h1 className="text-[var(--text-normal)] flex items-center">
+                <Image
+                    src="/booking-side-icons/calendar-icon.png"
+                    alt="calendar-icon"
+                    width={25}
+                    height={25}
+                    className="mr-1"
+                />
+                Pickup day&nbsp;<span className="text-red-500">*</span>
             </h1>
-            <div className='
+            <div
+                className="
                 flex flex-wrap justify-between 
                 mt-2 gap-2
-            '>
+            "
+            >
                 {EventDays.map((day) => (
-                    <div 
+                    <div
                         key={day.id}
                         tabIndex={0}
                         onClick={() => handleClick(day.id, day.name, day.date)}
@@ -50,13 +53,13 @@ const DayPicker = () => {
                             ${day.id == selectedDayId && 'border-yellow-400 border-[3px]'}
                         `}
                     >
-                        <h1 className='mb-2 font-bold text-yellow-400'>{day.name}</h1>
-                        <p className='text-[14px] text-gray-300'>{day.date}</p>
+                        <h1 className="mb-2 font-bold text-yellow-400">{day.name}</h1>
+                        <p className="text-[14px] text-gray-300">{day.date}</p>
                     </div>
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default DayPicker
+export default DayPicker;

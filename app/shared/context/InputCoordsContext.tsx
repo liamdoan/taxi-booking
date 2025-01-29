@@ -1,21 +1,21 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react';
 
 //Coordinates context
 interface Coordidates {
     latitude: number;
     longitude: number;
-};
+}
 
 interface InputCoordsContext {
-    pickupCoordinate: Coordidates | null,
+    pickupCoordinate: Coordidates | null;
     setPickupCoordinate: Dispatch<SetStateAction<Coordidates | null>>;
-    dropCoordinate: Coordidates | null,
+    dropCoordinate: Coordidates | null;
     setDropCoordinate: Dispatch<SetStateAction<Coordidates | null>>;
 }
 
 const InputCoordsContext = createContext<InputCoordsContext | null>(null);
 
-export const InputCoordsProvider: React.FC<{ children: ReactNode }> = ({children}) => {
+export const InputCoordsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [pickupCoordinate, setPickupCoordinate] = useState<Coordidates | null>(null);
     const [dropCoordinate, setDropCoordinate] = useState<Coordidates | null>(null);
 
@@ -35,7 +35,7 @@ export const InputCoordsProvider: React.FC<{ children: ReactNode }> = ({children
 
 export const useInputCoordsContext = () => {
     const context = useContext(InputCoordsContext);
-    
+
     if (!context) {
         throw new Error('useInputCoordsContext must be used within a InputCoordsProvider');
     }
@@ -46,7 +46,7 @@ export const useInputCoordsContext = () => {
 //hasSelectedAddress context
 const HasSelectedAddressContext = createContext<any>(null);
 
-export const HasSelectedAddressProvider: React.FC<{children: ReactNode}> = ({children}) => {
+export const HasSelectedAddressProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [hasSelectedPickupAddress, setHasSelectedPickupAddress] = useState<boolean>(false);
     const [hasSelectedDropAddress, setHasSelectedDropAddress] = useState<boolean>(false);
 
@@ -56,12 +56,12 @@ export const HasSelectedAddressProvider: React.FC<{children: ReactNode}> = ({chi
                 hasSelectedPickupAddress,
                 setHasSelectedPickupAddress,
                 hasSelectedDropAddress,
-                setHasSelectedDropAddress
+                setHasSelectedDropAddress,
             }}
         >
             {children}
         </HasSelectedAddressContext.Provider>
-    )
-}
+    );
+};
 
 export const useHasSelectedAddressContext = () => useContext(HasSelectedAddressContext);

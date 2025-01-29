@@ -1,16 +1,38 @@
-import RideInfo from "@/app/database/model";
-import connectMongoDB from "@/app/database/mongodb";
-import { NextResponse } from "next/server";
+import RideInfo from '@/app/database/model';
+import connectMongoDB from '@/app/database/mongodb';
+import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
-    const { guestName, guestAmount, pickup, drop, pickupDay, pickupDate, pickupTime, distance, estimatedTime, preferredCar } = await request.json();
+    const {
+        guestName,
+        guestAmount,
+        pickup,
+        drop,
+        pickupDay,
+        pickupDate,
+        pickupTime,
+        distance,
+        estimatedTime,
+        preferredCar,
+    } = await request.json();
 
     await connectMongoDB();
-    await RideInfo.create({guestName, guestAmount, pickup, drop, pickupDay, pickupDate, pickupTime, distance, estimatedTime, preferredCar});
+    await RideInfo.create({
+        guestName,
+        guestAmount,
+        pickup,
+        drop,
+        pickupDay,
+        pickupDate,
+        pickupTime,
+        distance,
+        estimatedTime,
+        preferredCar,
+    });
 
     return NextResponse.json(
         {
-            message: "drive info sent",
+            message: 'drive info sent',
             info: {
                 guestName: guestName,
                 guestAmount: guestAmount,
@@ -21,10 +43,11 @@ export async function POST(request: Request) {
                 pickupTime: pickupTime,
                 distance: distance,
                 estimatedTime: estimatedTime,
-                preferredCar: preferredCar
-            }
-        }, {
-            status: 201
-        }
-    )
-};
+                preferredCar: preferredCar,
+            },
+        },
+        {
+            status: 201,
+        },
+    );
+}

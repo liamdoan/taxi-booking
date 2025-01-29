@@ -23,11 +23,14 @@ const TimePicker = () => {
     //     onTimeSelect(time); // Send the time to the parent or backend
     //   };
 
-
     const generateHourOptions = () => {
         const options = [];
         for (let i = 0; i <= 12; i++) {
-        options.push(<option key={i} value={i}>{i}</option>);
+            options.push(
+                <option key={i} value={i}>
+                    {i}
+                </option>,
+            );
         }
         return options;
     };
@@ -35,8 +38,12 @@ const TimePicker = () => {
     const generateMinuteOptions = () => {
         const options = [];
         for (let i = 0; i < 60; i += 5) {
-        const minute = i < 10 ? `0${i}` : `${i}`;
-        options.push(<option key={minute} value={minute}>{minute}</option>);
+            const minute = i < 10 ? `0${i}` : `${i}`;
+            options.push(
+                <option key={minute} value={minute}>
+                    {minute}
+                </option>,
+            );
         }
         return options;
     };
@@ -44,47 +51,50 @@ const TimePicker = () => {
     return (
         <div className="time-picker text-white">
             <select
-                className='
+                className="
                     p-2
                     mr-1
                     bg-transparent
                     border-2 border-gray-600 rounded-md
                     appearance-none
                     focus:border-yellow-400 focus:outline-none
-                '
-                onChange={handleHoursChange} value={hours}
+                "
+                onChange={handleHoursChange}
+                value={hours}
             >
                 {generateHourOptions()}
             </select>
-            <span className='text-white mr-1'>:</span>
+            <span className="text-white mr-1">:</span>
             <select
-                className='
+                className="
                     p-2
                     mr-2
                     bg-transparent
                     border-2 border-gray-600 rounded-md
                     appearance-none
                     focus:border-yellow-400 focus:outline-none
-                '
-                onChange={handleMinutesChange} value={minutes}
+                "
+                onChange={handleMinutesChange}
+                value={minutes}
             >
                 {generateMinuteOptions()}
             </select>
             <select
-                className='
+                className="
                     p-2
                     mr-2
                     bg-transparent
                     border-2 border-gray-600 rounded-md
                     appearance-none
                     focus:border-yellow-400 focus:outline-none
-                '
-                onChange={handlePeriodChange} value={period}
+                "
+                onChange={handlePeriodChange}
+                value={period}
             >
                 <option value="AM">AM</option>
                 <option value="PM">PM</option>
             </select>
-            <button className='text-white'>Submit</button>
+            <button className="text-white">Submit</button>
         </div>
     );
 };

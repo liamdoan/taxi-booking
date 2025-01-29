@@ -15,13 +15,13 @@ const Payment = () => {
         mode: 'payment',
         currency: 'eur',
         amount: 50,
-      };
+    };
 
     return (
         <Elements stripe={stripePromise} options={options}>
             {/* <CheckOutForm /> */}
         </Elements>
-    )
-}
+    );
+};
 
-export default Payment
+export default Payment;

@@ -19,6 +19,6 @@ const PaymentMethods = [
         category: 'Cash',
         img: '/payment-img/cash.avif',
     },
-]
+];
 
 export default PaymentMethods;

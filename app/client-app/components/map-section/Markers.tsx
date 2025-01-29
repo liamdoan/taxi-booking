@@ -1,5 +1,5 @@
 import React from 'react';
-import {Marker} from 'react-map-gl/maplibre';
+import { Marker } from 'react-map-gl/maplibre';
 import { useInputCoordsContext } from '@/app/shared/context/InputCoordsContext';
 import { useGetAddressData } from '@/app/shared/utils/getSingleAddressData';
 import Image from 'next/image';
@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 const Markers = () => {
     // const {userLocation} = useUserLocation();
-    const {pickupCoordinate, setPickupCoordinate, dropCoordinate, setDropCoordinate} = useInputCoordsContext();
+    const { pickupCoordinate, setPickupCoordinate, dropCoordinate, setDropCoordinate } = useInputCoordsContext();
     const { getAddressData } = useGetAddressData();
 
     const handleDragEnd = async (e: any, type: 'pickup' | 'drop') => {
@@ -17,12 +17,12 @@ const Markers = () => {
         if (type === 'pickup') {
             setPickupCoordinate({
                 latitude: newLatitude,
-                longitude: newLongitude
+                longitude: newLongitude,
             });
         } else {
             setDropCoordinate({
                 latitude: newLatitude,
-                longitude: newLongitude
+                longitude: newLongitude,
             });
         }
 
@@ -46,7 +46,7 @@ const Markers = () => {
                 </Marker> //default marker, pinpoint user location
                 : null
             } */}
-            {pickupCoordinate && 
+            {pickupCoordinate && (
                 <Marker
                     longitude={pickupCoordinate.longitude}
                     latitude={pickupCoordinate.latitude}
@@ -54,15 +54,10 @@ const Markers = () => {
                     draggable
                     onDragEnd={(e) => handleDragEnd(e, 'pickup')}
                 >
-                    <Image
-                        src="/booking-side-icons/pin-red.png"
-                        alt='pickup-marker'
-                        width={40}
-                        height={80}
-                        />
+                    <Image src="/booking-side-icons/pin-red.png" alt="pickup-marker" width={40} height={80} />
                 </Marker>
-            }
-            {dropCoordinate && 
+            )}
+            {dropCoordinate && (
                 <Marker
                     longitude={dropCoordinate.longitude}
                     latitude={dropCoordinate.latitude}
@@ -70,16 +65,11 @@ const Markers = () => {
                     draggable
                     onDragEnd={(e) => handleDragEnd(e, 'drop')}
                 >
-                    <Image
-                        src="/booking-side-icons/pin-green.png"
-                        alt='drop-marker'
-                        width={40}
-                        height={80}
-                        />
+                    <Image src="/booking-side-icons/pin-green.png" alt="drop-marker" width={40} height={80} />
                 </Marker>
-            }
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default Markers
+export default Markers;

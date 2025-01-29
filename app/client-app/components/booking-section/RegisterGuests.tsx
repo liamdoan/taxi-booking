@@ -2,23 +2,24 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useGuestAmountContext } from '@/app/shared/context/GuestAmountContext';
 
 const RegisterGuests = () => {
-    const{guestName, setGuestName} = useGuestAmountContext();
+    const { guestName, setGuestName } = useGuestAmountContext();
 
     return (
-        <div className='p-1 flex flex-wrap justify-between gap-4 items-center'>
-            <div className='py-2 w-[70%]'>
+        <div className="p-1 flex flex-wrap justify-between gap-4 items-center">
+            <div className="py-2 w-[70%]">
                 <label
-                    className='
+                    className="
                         text-[var(--text-normal)]
                         flex items-start
-                    '>
+                    "
+                >
                     {/* <Image src="/booking-side-icons/pin-red.png" alt='pin-red' width={20} height={10} className='mr-1'/> */}
-                    Guest name&nbsp;<span className='text-red-500'>*</span>
+                    Guest name&nbsp;<span className="text-red-500">*</span>
                 </label>
                 <input
                     type="text"
                     value={guestName}
-                    className='
+                    className="
                         bg-transparent text-[var(--text-normal)] border-[1px]
                         mt-2 p-3
                         w-full rounded-md
@@ -27,7 +28,7 @@ const RegisterGuests = () => {
                         disabled:opacity-45
                         disabled:cursor-not-allowed
                         transition-all
-                    '
+                    "
                     onChange={(e) => setGuestName(e.target.value)}
                 />
             </div>
@@ -35,8 +36,8 @@ const RegisterGuests = () => {
                 <GuestNumberPicker />
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default RegisterGuests;
 
@@ -69,11 +70,7 @@ const CustomDropdown: React.FC<any> = ({ options, selectedValue, onSetValue }) =
     }, []);
 
     return (
-        <div
-            ref={dropdownRef}
-            className="relative text-white"
-            tabIndex={0}
-        >
+        <div ref={dropdownRef} className="relative text-white" tabIndex={0}>
             <div
                 onClick={toggleDropdown}
                 className="
@@ -92,7 +89,7 @@ const CustomDropdown: React.FC<any> = ({ options, selectedValue, onSetValue }) =
                             key={option}
                             onClick={() => handleOptionClick(option)}
                             className="flex justify-center items-center p-2 hover:bg-gray-700 cursor-pointer"
-                            >
+                        >
                             {option}
                         </div>
                     ))}
@@ -103,7 +100,7 @@ const CustomDropdown: React.FC<any> = ({ options, selectedValue, onSetValue }) =
 };
 
 const GuestNumberPicker = () => {
-    const {guestAmount, setGuestAmount} = useGuestAmountContext();
+    const { guestAmount, setGuestAmount } = useGuestAmountContext();
 
     const generateOptions = () => {
         const guestAmountOptionArray = [];
@@ -116,15 +113,11 @@ const GuestNumberPicker = () => {
 
     return (
         <>
-            <h1 className='text-[var(--text-normal)] flex items-center '>
-                Amount of guests&nbsp;<span className='text-red-500'>*</span>
+            <h1 className="text-[var(--text-normal)] flex items-center ">
+                Amount of guests&nbsp;<span className="text-red-500">*</span>
             </h1>
             <div className="flex items-center mt-2 space-x-2 text-white">
-                <CustomDropdown
-                    options={generateOptions()}
-                    selectedValue={guestAmount}
-                    onSetValue={setGuestAmount}
-                />
+                <CustomDropdown options={generateOptions()} selectedValue={guestAmount} onSetValue={setGuestAmount} />
             </div>
         </>
     );

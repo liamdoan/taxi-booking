@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { Source, Layer } from 'react-map-gl/maplibre';
 
 interface MapRouteProps {
-    routeCoordinates: Array<[number, number]>
+    routeCoordinates: Array<[number, number]>;
 }
 
-const MapTravelingRoutes: React.FC<MapRouteProps> = ({routeCoordinates}) => {
+const MapTravelingRoutes: React.FC<MapRouteProps> = ({ routeCoordinates }) => {
     return (
         <>
             {routeCoordinates.map((route, index) => (
@@ -16,7 +16,7 @@ const MapTravelingRoutes: React.FC<MapRouteProps> = ({routeCoordinates}) => {
                         type: 'Feature',
                         geometry: {
                             type: 'LineString',
-                            coordinates: route
+                            coordinates: route,
                         },
                         properties: {},
                     }}
@@ -25,17 +25,17 @@ const MapTravelingRoutes: React.FC<MapRouteProps> = ({routeCoordinates}) => {
                         type="line"
                         paint={{
                             'line-color': index === 0 ? '#218cf8' : '#32cd32',
-                            'line-width': 4
+                            'line-width': 4,
                         }}
                         layout={{
                             'line-join': 'round',
-                            'line-cap': 'round'
+                            'line-cap': 'round',
                         }}
                     />
                 </Source>
             ))}
         </>
-    )
-}
+    );
+};
 
-export default MapTravelingRoutes
+export default MapTravelingRoutes;

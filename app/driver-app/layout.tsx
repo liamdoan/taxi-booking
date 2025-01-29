@@ -1,11 +1,11 @@
 // import { ClerkProvider } from "@clerk/nextjs";
 // import NavBar from "@/app/client-app/components/NavBar";
-import type { Metadata } from "next";
-import DigitCodeAuthProviderWrapper from "../shared/components/digitCodeAuth/DigitCodeAuthProviderWrapper";
+import type { Metadata } from 'next';
+import DigitCodeAuthProviderWrapper from '../shared/components/digitCodeAuth/DigitCodeAuthProviderWrapper';
 
 export const metadata: Metadata = {
-    title: "Splash Cab - Drivers",
-    description: "Driver view",
+    title: 'Splash Cab - Drivers',
+    description: 'Driver view',
 };
 
 export default function RootLayout({
@@ -18,7 +18,7 @@ export default function RootLayout({
         <DigitCodeAuthProviderWrapper>
             <div>
                 {/* <header> */}
-                    {/* <NavBar /> */}
+                {/* <NavBar /> */}
                 {/* </header> */}
                 <main>{children}</main>
             </div>

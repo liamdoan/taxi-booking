@@ -23,41 +23,27 @@ const AutoSearchAddress = () => {
 
     const [isCallGetSuggestedAddresses, setIsCallGetSuggestedAddresses] = useState(true);
 
-    const {userLocation} = useUserLocation();
-    const {
-        hasSelectedPickupAddress,
-        setHasSelectedPickupAddress,
-        hasSelectedDropAddress,
-        setHasSelectedDropAddress
-    } = useHasSelectedAddressContext();
-    const {
-        pickupAddressFromInput,
-        setPickupAddressFromInput,
-        dropAddressFromInput,
-        setDropAddressFromInput
-    } = useAddressNameContext();
-    const {
-        setPickupCoordinate,
-        setDropCoordinate
-    } = useInputCoordsContext();
-    const {
-        tickedPickupOptionCheckbox,
-        tickedDropOptionCheckbox
-    } = useCheckBoxContext();
+    const { userLocation } = useUserLocation();
+    const { hasSelectedPickupAddress, setHasSelectedPickupAddress, hasSelectedDropAddress, setHasSelectedDropAddress } =
+        useHasSelectedAddressContext();
+    const { pickupAddressFromInput, setPickupAddressFromInput, dropAddressFromInput, setDropAddressFromInput } =
+        useAddressNameContext();
+    const { setPickupCoordinate, setDropCoordinate } = useInputCoordsContext();
+    const { tickedPickupOptionCheckbox, tickedDropOptionCheckbox } = useCheckBoxContext();
 
-    const {setHasFetchTravelingRouteDataSuccessfully} = useHasFetchTravelingRouteDataSuccessfullyContext();
+    const { setHasFetchTravelingRouteDataSuccessfully } = useHasFetchTravelingRouteDataSuccessfullyContext();
 
     const { getAddressData } = useGetAddressData();
 
     const showYourLocationOption = (address: string, type: 'pickup' | 'drop') => {
-        if (type === 'pickup'){
-            if (!address || address.trim() === "") {
+        if (type === 'pickup') {
+            if (!address || address.trim() === '') {
                 setShowPickupYourLocationOption(true);
             } else {
                 setShowPickupYourLocationOption(false);
             }
         } else {
-            if (!address || address.trim() === "") {
+            if (!address || address.trim() === '') {
                 setShowDropYourLocationOption(true);
             } else {
                 setShowDropYourLocationOption(false);
@@ -69,7 +55,7 @@ const AutoSearchAddress = () => {
         if (type === 'pickup') {
             setPickupCoordinate({
                 latitude: coords.latitude,
-                longitude: coords.longitude
+                longitude: coords.longitude,
             });
 
             getAddressData(coords.latitude, coords.longitude, 'pickup');
@@ -77,7 +63,7 @@ const AutoSearchAddress = () => {
         } else {
             setDropCoordinate({
                 latitude: coords.latitude,
-                longitude: coords.longitude
+                longitude: coords.longitude,
             });
 
             getAddressData(coords.latitude, coords.longitude, 'drop');
@@ -86,17 +72,17 @@ const AutoSearchAddress = () => {
     };
 
     const getSuggestedAddresses = async (address: string, type: 'pickup' | 'drop') => {
-        if (!address || address.trim() === "") {
+        if (!address || address.trim() === '') {
             // Currently with API from LocationIQ, if input is undefined/null/space,
             // the call is still made. It leads to the suggestion for those values,
             // which might be from API's default behaviour for empty queries.
             if (type === 'pickup' && hasSelectedPickupAddress) {
                 setSuggestedPickupAddressList([]);
-            } else if ((type === 'drop' && hasSelectedDropAddress)) {
+            } else if (type === 'drop' && hasSelectedDropAddress) {
                 setSuggestedDropAddressList([]);
             }
             return;
-        };
+        }
 
         try {
             const res = await fetch('/api/address-search?q=' + address);
@@ -107,8 +93,8 @@ const AutoSearchAddress = () => {
             } else {
                 setSuggestedDropAddressList(result);
             }
-        } catch(err) {
-            console.error("Error fetching addresses: ", err)
+        } catch (err) {
+            console.error('Error fetching addresses: ', err);
         }
     };
 
@@ -151,39 +137,43 @@ const AutoSearchAddress = () => {
             setHasSelectedPickupAddress(true);
             setPickupCoordinate({
                 latitude: item.lat,
-                longitude: item.lon
-            })
+                longitude: item.lon,
+            });
         } else {
             setDropAddressFromInput(item.display_name);
             setSuggestedDropAddressList([]);
             setHasSelectedDropAddress(true);
             setDropCoordinate({
                 latitude: item.lat,
-                longitude: item.lon
-            })
+                longitude: item.lon,
+            });
         }
     };
 
     return (
-        <div className='p-1'>
-            <div className='mb-4'>
-                <div
-                    id="pickup-input"
-                    className='pt-2 pb-2 relative'
-                >
+        <div className="p-1">
+            <div className="mb-4">
+                <div id="pickup-input" className="pt-2 pb-2 relative">
                     <label
                         className={`
                             text-[var(--text-normal)]
                             ${tickedPickupOptionCheckbox && 'opacity-50'}
                             flex items-start
-                        `}>
-                        <Image src="/booking-side-icons/pin-red.png" alt='pin-red' width={20} height={10} className='mr-1'/>
-                        Pickup location&nbsp;<span className='text-red-500'>*</span>
+                        `}
+                    >
+                        <Image
+                            src="/booking-side-icons/pin-red.png"
+                            alt="pin-red"
+                            width={20}
+                            height={10}
+                            className="mr-1"
+                        />
+                        Pickup location&nbsp;<span className="text-red-500">*</span>
                     </label>
                     <input
                         disabled={tickedPickupOptionCheckbox}
                         type="text"
-                        className='
+                        className="
                             bg-transparent text-[var(--text-normal)] border-[1px]
                             mt-2 p-3
                             w-full rounded-md
@@ -192,26 +182,26 @@ const AutoSearchAddress = () => {
                             disabled:opacity-45
                             disabled:cursor-not-allowed
                             transition-all
-                        '
+                        "
                         value={pickupAddressFromInput}
                         onFocus={() => showYourLocationOption(pickupAddressFromInput, 'pickup')}
                         onBlur={() => {
-                            setShowPickupYourLocationOption(false)
-                            setSuggestedPickupAddressList([])
+                            setShowPickupYourLocationOption(false);
+                            setSuggestedPickupAddressList([]);
                         }}
-                        onChange={e => {
-                            showYourLocationOption(e.target.value, 'pickup')
+                        onChange={(e) => {
+                            showYourLocationOption(e.target.value, 'pickup');
                             setPickupAddressFromInput(e.target.value);
                             setHasSelectedPickupAddress(false);
                             setHasFetchTravelingRouteDataSuccessfully(false);
-                            setIsCallGetSuggestedAddresses(true)
+                            setIsCallGetSuggestedAddresses(true);
                         }}
                     />
-                    {suggestedPickupAddressList ?
-                        <div className='absolute z-20 bg-white w-full shadow-md rounded-md'>
+                    {suggestedPickupAddressList ? (
+                        <div className="absolute z-20 bg-white w-full shadow-md rounded-md">
                             {showPickupYourLocationOption && (
                                 <p
-                                    className='p-2 hover:bg-gray-200 cursor-pointer'
+                                    className="p-2 hover:bg-gray-200 cursor-pointer"
                                     onMouseDown={() => onYourLocationClick(userLocation, 'pickup')}
                                 >
                                     Your location
@@ -220,38 +210,41 @@ const AutoSearchAddress = () => {
                             {suggestedPickupAddressList?.map((item: SuggestedAddressList) => (
                                 <p
                                     key={item.place_id}
-                                    className='p-2 hover:bg-gray-200 cursor-pointer'
+                                    className="p-2 hover:bg-gray-200 cursor-pointer"
                                     onMouseDown={() => onAddressInputClick(item, 'pickup')}
                                 >
                                     {item.display_name}
                                 </p>
                             ))}
                         </div>
-                        : null
-                    }
+                    ) : null}
                 </div>
                 <PreselectedPickup />
                 <DayPicker />
                 <TimePicker />
             </div>
             <div>
-                <div
-                    id="dropping-input"
-                    className='pt-2 pb-2 relative'
-                >
+                <div id="dropping-input" className="pt-2 pb-2 relative">
                     <label
                         className={`
                             text-[var(--text-normal)]
                             ${tickedDropOptionCheckbox && 'opacity-50'}
                             flex items-start
-                        `}>
-                        <Image src="/booking-side-icons/pin-green.png" alt='pin-red' width={20} height={10} className='mr-1'/>
-                        Dropping location&nbsp;<span className='text-red-500'>*</span>
+                        `}
+                    >
+                        <Image
+                            src="/booking-side-icons/pin-green.png"
+                            alt="pin-red"
+                            width={20}
+                            height={10}
+                            className="mr-1"
+                        />
+                        Dropping location&nbsp;<span className="text-red-500">*</span>
                     </label>
                     <input
                         disabled={tickedDropOptionCheckbox}
                         type="text"
-                        className='
+                        className="
                             bg-transparent text-[var(--text-normal)] border-[1px]
                             mt-2 p-3
                             w-full rounded-md
@@ -260,27 +253,26 @@ const AutoSearchAddress = () => {
                             disabled:opacity-45
                             disabled:cursor-not-allowed
                             transition-all
-                        '
+                        "
                         value={dropAddressFromInput}
                         onFocus={() => showYourLocationOption(dropAddressFromInput, 'drop')}
                         onBlur={() => {
-                            setShowDropYourLocationOption(false)
-                            setSuggestedDropAddressList([])
+                            setShowDropYourLocationOption(false);
+                            setSuggestedDropAddressList([]);
                         }}
-                        onChange={e => {
-                            showYourLocationOption(e.target.value, 'drop')
+                        onChange={(e) => {
+                            showYourLocationOption(e.target.value, 'drop');
                             setDropAddressFromInput(e.target.value);
                             setHasSelectedDropAddress(false);
                             setHasFetchTravelingRouteDataSuccessfully(false);
-                            setIsCallGetSuggestedAddresses(true)
-
+                            setIsCallGetSuggestedAddresses(true);
                         }}
                     />
-                    {suggestedDropAddressList ?
-                        <div className='absolute z-10 bg-white w-full shadow-md rounded-md'>
+                    {suggestedDropAddressList ? (
+                        <div className="absolute z-10 bg-white w-full shadow-md rounded-md">
                             {showDropYourLocationOption && (
                                 <p
-                                    className='p-2 hover:bg-gray-200 cursor-pointer'
+                                    className="p-2 hover:bg-gray-200 cursor-pointer"
                                     onMouseDown={() => onYourLocationClick(userLocation, 'drop')}
                                 >
                                     Your location
@@ -289,22 +281,21 @@ const AutoSearchAddress = () => {
                             {suggestedDropAddressList?.map((item: SuggestedAddressList) => (
                                 <p
                                     key={item.place_id}
-                                    className='p-2 hover:bg-gray-200 cursor-pointer'
+                                    className="p-2 hover:bg-gray-200 cursor-pointer"
                                     onMouseDown={() => onAddressInputClick(item, 'drop')}
                                 >
                                     {item.display_name}
                                 </p>
                             ))}
                         </div>
-                        : null
-                    }
+                    ) : null}
                 </div>
                 <PreselectedDrop />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default AutoSearchAddress
+export default AutoSearchAddress;
 
 //https://my.locationiq.com/dashboard#playground

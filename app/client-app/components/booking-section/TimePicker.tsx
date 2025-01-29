@@ -32,11 +32,7 @@ const CustomDropdown: React.FC<TimePickerDropdownProps> = ({ options, selectedVa
     }, []);
 
     return (
-        <div
-            ref={dropdownRef}
-            className="relative text-white"
-            tabIndex={0}
-        >
+        <div ref={dropdownRef} className="relative text-white" tabIndex={0}>
             <div
                 onClick={toggleDropdown}
                 className="
@@ -55,7 +51,7 @@ const CustomDropdown: React.FC<TimePickerDropdownProps> = ({ options, selectedVa
                             key={option}
                             onClick={() => handleOptionClick(option)}
                             className="flex justify-center items-center p-2 hover:bg-gray-700 cursor-pointer"
-                            >
+                        >
                             {option}
                         </div>
                     ))}
@@ -66,9 +62,7 @@ const CustomDropdown: React.FC<TimePickerDropdownProps> = ({ options, selectedVa
 };
 
 const TimePicker = () => {
-    const {
-        hour, setHour, minutes, setMinutes, amPm, setAmPm
-    } = useSelectedTimeContext();
+    const { hour, setHour, minutes, setMinutes, amPm, setAmPm } = useSelectedTimeContext();
 
     const generateHourOptions = () => {
         const hoursArray = [];
@@ -90,27 +84,15 @@ const TimePicker = () => {
 
     return (
         <>
-            <h1 className='text-[var(--text-normal)] flex items-center mt-2'>
-                <Image src="/booking-side-icons/clock.svg" alt='pin-red' width={25} height={25} className='mr-1'/>
-                Pickup time&nbsp;<span className='text-red-500'>*</span>
+            <h1 className="text-[var(--text-normal)] flex items-center mt-2">
+                <Image src="/booking-side-icons/clock.svg" alt="pin-red" width={25} height={25} className="mr-1" />
+                Pickup time&nbsp;<span className="text-red-500">*</span>
             </h1>
             <div className="flex items-center mt-2 space-x-2 text-white">
-                <CustomDropdown
-                    options={generateHourOptions()}
-                    selectedValue={hour}
-                    onSetValue={setHour}
-                />
-                <span className='text-white'>:</span>
-                <CustomDropdown
-                    options={generateMinuteOptions()}
-                    selectedValue={minutes}
-                    onSetValue={setMinutes}
-                />
-                <CustomDropdown
-                    options={['AM', 'PM']}
-                    selectedValue={amPm}
-                    onSetValue={setAmPm}
-                />
+                <CustomDropdown options={generateHourOptions()} selectedValue={hour} onSetValue={setHour} />
+                <span className="text-white">:</span>
+                <CustomDropdown options={generateMinuteOptions()} selectedValue={minutes} onSetValue={setMinutes} />
+                <CustomDropdown options={['AM', 'PM']} selectedValue={amPm} onSetValue={setAmPm} />
             </div>
         </>
     );

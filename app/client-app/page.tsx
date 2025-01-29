@@ -1,30 +1,33 @@
 'use client';
 
-import Booking from "@/app/client-app/components/booking-section/Booking";
-import MapLibre from "@/app/client-app/components/map-section/MapLibre"
-import { UserLocationProvider } from "../shared/context/UserLocationContext";
-import { HasSelectedAddressProvider, InputCoordsProvider } from "../shared/context/InputCoordsContext";
-import { HasFetchTravelingRouteDataSuccessfullyProvider, TravelingRouteDataProvider } from "../shared/context/TravelingRouteDataContext";
-import { SelectedCarProvider } from "../shared/context/SelectedCarContext";
-import { AddressNameProvider } from "../shared/context/AddressNameContext";
-import { SelectedDayProvider } from "../shared/context/SelectedDayContext";
-import { SelectedTimeProvider } from "../shared/context/selectedTimeContext";
-import { TimeDistanceProvider } from "../shared/context/TimeDistanceContext";
-import { CheckboxProvider } from "../shared/context/CheckBoxContext";
-import { GuestAmountProvider } from "../shared/context/GuestAmountContext";
-import { DigitCodeAuthProvider, useDigitCodeAuthContext } from "../shared/context/DigitCodeAuthContext";
-import CodeAuthPageClientPage from "./components/codeAuthClient/CodeAuthClientPage";
-import { useEffect } from "react";
+import Booking from '@/app/client-app/components/booking-section/Booking';
+import MapLibre from '@/app/client-app/components/map-section/MapLibre';
+import { UserLocationProvider } from '../shared/context/UserLocationContext';
+import { HasSelectedAddressProvider, InputCoordsProvider } from '../shared/context/InputCoordsContext';
+import {
+    HasFetchTravelingRouteDataSuccessfullyProvider,
+    TravelingRouteDataProvider,
+} from '../shared/context/TravelingRouteDataContext';
+import { SelectedCarProvider } from '../shared/context/SelectedCarContext';
+import { AddressNameProvider } from '../shared/context/AddressNameContext';
+import { SelectedDayProvider } from '../shared/context/SelectedDayContext';
+import { SelectedTimeProvider } from '../shared/context/selectedTimeContext';
+import { TimeDistanceProvider } from '../shared/context/TimeDistanceContext';
+import { CheckboxProvider } from '../shared/context/CheckBoxContext';
+import { GuestAmountProvider } from '../shared/context/GuestAmountContext';
+import { DigitCodeAuthProvider, useDigitCodeAuthContext } from '../shared/context/DigitCodeAuthContext';
+import CodeAuthPageClientPage from './components/codeAuthClient/CodeAuthClientPage';
+import { useEffect } from 'react';
 
 export default function Home() {
-    const {isAuthorizedClient, setIsAuthorizedClient} = useDigitCodeAuthContext();
+    const { isAuthorizedClient, setIsAuthorizedClient } = useDigitCodeAuthContext();
     const accessCodeClientSide = process.env.NEXT_PUBLIC_CLIENT_ACCESS_CODE;
 
     const AUTHORIZATION_TIMEOUT = 10 * 60 * 1000; // 10min
 
     useEffect(() => {
         const checkAuthorization = () => {
-            const accessedTimeClient = localStorage.getItem("accessedTimeClient");
+            const accessedTimeClient = localStorage.getItem('accessedTimeClient');
 
             if (accessedTimeClient) {
                 const elapsedTime = Date.now() - Number(accessedTimeClient);
@@ -43,10 +46,8 @@ export default function Home() {
     }, []);
 
     if (!isAuthorizedClient) {
-        return (
-            <CodeAuthPageClientPage accessCode={accessCodeClientSide as string}/>
-        );
-    };
+        return <CodeAuthPageClientPage accessCode={accessCodeClientSide as string} />;
+    }
 
     return (
         <DigitCodeAuthProvider>

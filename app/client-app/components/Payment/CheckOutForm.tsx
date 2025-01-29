@@ -40,7 +40,7 @@
 //                     <div className='flex justify-center items-center'>
 //                         <button
 //                             className='bg-yellow-400 w-[50%] mt-4 p-2 rounded-md hover:bg-yellow-500 transition-all'
-//                             type='submit' 
+//                             type='submit'
 //                             disabled={!stripe || !elements}
 //                         >
 //                             Pay

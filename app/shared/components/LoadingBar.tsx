@@ -16,7 +16,7 @@ const LoadingBar: React.FC = () => {
             <div
                 className="absolute top-0 left-0 h-full bg-yellow-400 rounded"
                 style={{
-                    animation: 'loading 2s linear infinite'
+                    animation: 'loading 2s linear infinite',
                 }}
             ></div>
         </div>
