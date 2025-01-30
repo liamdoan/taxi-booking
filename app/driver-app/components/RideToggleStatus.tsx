@@ -109,14 +109,14 @@ const RideToggleStatus: React.FC<{ rideInfo: RideInfo }> = ({ rideInfo }) => {
     };
 
     return (
-        <div className="flex flex-wrap justify-around mt-4">
-            <div className="w-[200px] mx-2 my-3 py-1 min-h-[90px]">
+        <div className="flex flex-wrap justify-around">
+            <div className="w-[200px] mx-1 mb-1">
                 <label
                     htmlFor={`ride-received-checkbox-${localRideInfo._id}`}
                     className="
-                        mt-1 mb-3 mx-4
+                        mx-4
                         font-bold text-yellow-400
-                        flex flex-row justify-center items-center
+                        flex flex-row justify-between items-center
                         hover:cursor-pointer
                         text-[1rem]
                         relative
@@ -138,7 +138,7 @@ const RideToggleStatus: React.FC<{ rideInfo: RideInfo }> = ({ rideInfo }) => {
                     <div
                         className="
                         absolute
-                        right-0 mx-[14px] my-1
+                        right-0 mx-[5px] my-1
                         w-[20px] h-[20px]
                         peer-checked:rounded-[50%]
                         peer-checked:bg-green-500
@@ -158,14 +158,14 @@ const RideToggleStatus: React.FC<{ rideInfo: RideInfo }> = ({ rideInfo }) => {
                     </div>
                 )}
             </div>
-            <div className="w-[200px] mx-2 my-3 py-1 min-h-[100px]">
+            <div className="w-[200px] mx-1 mt-1">
                 <label
                     htmlFor={`ride-finished-checkbox-${localRideInfo._id}`}
                     className={`
-                        mt-1 mb-3 mx-4
+                        mx-4
                         font-bold
                         ${!localRideInfo.isRideReceived ? 'text-gray-600' : 'text-yellow-400'}
-                        flex flex-row justify-center items-center
+                        flex flex-row justify-between items-center
                         ${!localRideInfo.isRideReceived ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'}
                         text-[1rem]
                         relative
@@ -189,7 +189,7 @@ const RideToggleStatus: React.FC<{ rideInfo: RideInfo }> = ({ rideInfo }) => {
                     <div
                         className="
                         absolute
-                        right-0 mx-[16px] my-1
+                        right-0 mx-[5px] my-1
                         w-[20px] h-[20px]
                         peer-checked:rounded-[50%]
                         peer-checked:bg-green-500

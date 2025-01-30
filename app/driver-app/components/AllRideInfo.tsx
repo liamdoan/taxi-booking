@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import Spinner from '@/app/shared/components/Spinner';
 import RideDetails from './RideDetails';
-import RideToggleStatus from './RideToggleStatus';
 import LogOutButton from './LogOutButton';
 
 const AllRideInfo = () => {
@@ -78,22 +77,7 @@ const AllRideInfo = () => {
                             </h2>
                             <div className="flex flex-wrap">
                                 {dayMinus1Rides.length > 0 ? (
-                                    sortedDayMinus1Rides.map((rideInfo: any) => (
-                                        <div
-                                            key={rideInfo._id}
-                                            className="
-                                                    min-w-[300px] max-w-[600px]
-                                                    border-2 border-yellow-400
-                                                    rounded-md
-                                                    pt-5 px-5 mb-2 mr-5
-                                                    text-[var(--text-normal)]
-                                                    text-[clamp(0.8rem,2vw,1rem)]
-                                                "
-                                        >
-                                            <RideDetails rideInfo={rideInfo} />
-                                            <RideToggleStatus rideInfo={rideInfo} />
-                                        </div>
-                                    ))
+                                    <RideDetails sortedRides={sortedDayMinus1Rides} />
                                 ) : (
                                     <span className="text-gray-500 italic">
                                         No rides have been booked for this day.
@@ -107,21 +91,7 @@ const AllRideInfo = () => {
                             </h2>
                             <div className="flex flex-wrap">
                                 {day0Rides.length > 0 ? (
-                                    sortedDay0Rides.map((rideInfo: any) => (
-                                        <div
-                                            key={rideInfo._id}
-                                            className="
-                                                    min-w-[300px] max-w-[600px]
-                                                    border-2 border-yellow-400
-                                                    rounded-md
-                                                    pt-5 px-5 mb-2 mr-5
-                                                    text-[var(--text-normal)]
-                                                "
-                                        >
-                                            <RideDetails rideInfo={rideInfo} />
-                                            <RideToggleStatus rideInfo={rideInfo} />
-                                        </div>
-                                    ))
+                                    <RideDetails sortedRides={sortedDay0Rides} />
                                 ) : (
                                     <span className="text-gray-500 italic">
                                         No rides have been booked for this day.
@@ -135,21 +105,7 @@ const AllRideInfo = () => {
                             </h2>
                             <div className="flex flex-wrap">
                                 {day1Rides.length > 0 ? (
-                                    sortedDay1Rides.map((rideInfo: any) => (
-                                        <div
-                                            key={rideInfo._id}
-                                            className="
-                                                    min-w-[300px] max-w-[600px]
-                                                    border-2 border-yellow-400
-                                                    rounded-md
-                                                    pt-5 px-5 mb-2 mr-5
-                                                    text-[var(--text-normal)]
-                                                "
-                                        >
-                                            <RideDetails rideInfo={rideInfo} />
-                                            <RideToggleStatus rideInfo={rideInfo} />
-                                        </div>
-                                    ))
+                                    <RideDetails sortedRides={sortedDay1Rides} />
                                 ) : (
                                     <span className="text-gray-500 italic">
                                         No rides have been booked for this day.
@@ -163,21 +119,7 @@ const AllRideInfo = () => {
                             </h2>
                             <div className="flex flex-wrap">
                                 {day2Rides.length > 0 ? (
-                                    sortedDay2Rides.map((rideInfo: any) => (
-                                        <div
-                                            key={rideInfo._id}
-                                            className="
-                                                    min-w-[300px] max-w-[600px]
-                                                    border-2 border-yellow-400
-                                                    rounded-md
-                                                    pt-5 px-5 mb-2 mr-5
-                                                    text-[var(--text-normal)]
-                                                "
-                                        >
-                                            <RideDetails rideInfo={rideInfo} />
-                                            <RideToggleStatus rideInfo={rideInfo} />
-                                        </div>
-                                    ))
+                                    <RideDetails sortedRides={sortedDay2Rides} />
                                 ) : (
                                     <span className="text-gray-500 italic">
                                         No rides have been booked for this day.
