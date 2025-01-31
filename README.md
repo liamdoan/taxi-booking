@@ -25,6 +25,13 @@ Backend focuses on:
 - API to handle CRUD operations.
 - (for future) managing auth methods to manage roles (users, drivers, admins), integrate with this [MERN Full Auth model](https://github.com/liamdoan/react-MERN-auth-module) project.
 
+
+Tech stacks
+
+- Frontend: NextJS, React, Tailwind, MapLibre.
+- Backend: NextJS, MongoDB.
+- Test: Jest.
+
 ---
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
