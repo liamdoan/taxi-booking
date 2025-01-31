@@ -48,7 +48,7 @@ const CodeAuthDriverPage: React.FC<DigitCodeAuthPageProps> = ({ accessCode }) =>
     };
 
     return (
-        <div className="min-h-[100vh]">
+        <div className="min-h-[100vh]" data-testid="driver-auth-page">
             <div
                 className="
                 flex items-center justify-center

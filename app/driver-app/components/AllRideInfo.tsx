@@ -61,7 +61,7 @@ const AllRideInfo = () => {
     });
 
     return (
-        <div className="bg-black min-h-[100vh] p-[3rem]">
+        <div className="bg-black min-h-[100vh] p-[3rem]" data-testid="all-ride-info">
             <div className="flex flex-wrap justify-between items-center">
                 <h1 className="text-yellow-500 mb-[1rem] text-[2rem] mr-7">List of rides</h1>
                 <LogOutButton />
