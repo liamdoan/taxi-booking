@@ -30,10 +30,10 @@ const AllRideInfo = () => {
     }, []);
 
     // filtered by pickup day
-    const dayMinus1Rides = rideInfos.filter((ride: any) => ride.pickupDay.toLowerCase() === 'day -1');
-    const day0Rides = rideInfos.filter((ride: any) => ride.pickupDay.toLowerCase() === 'day 0');
-    const day1Rides = rideInfos.filter((ride: any) => ride.pickupDay.toLowerCase() === 'day 1');
-    const day2Rides = rideInfos.filter((ride: any) => ride.pickupDay.toLowerCase() === 'day 2');
+    const dayMinus1Rides = rideInfos.filter((ride: any) => ride.pickupDay?.toLowerCase() === 'day -1');
+    const day0Rides = rideInfos.filter((ride: any) => ride.pickupDay?.toLowerCase() === 'day 0');
+    const day1Rides = rideInfos.filter((ride: any) => ride.pickupDay?.toLowerCase() === 'day 1');
+    const day2Rides = rideInfos.filter((ride: any) => ride.pickupDay?.toLowerCase() === 'day 2');
 
     //Sorted by soonest to latest time
     const sortedDayMinus1Rides = dayMinus1Rides.sort((a: any, b: any) => {
@@ -71,7 +71,7 @@ const AllRideInfo = () => {
                     <Spinner width={64} height={64} />
                 ) : (
                     <>
-                        <div className="text-[var(--text-normal)] mb-6">
+                        <div className="text-[var(--text-normal)] mb-6" data-testid="ride-info-section">
                             <h2 className="my-4 text-[clamp(0.7rem,5vw,1.6rem)] text-gray-400 italic font-bold">
                                 Day -1 (Mon, 18 Nov. 2024)
                             </h2>
@@ -85,7 +85,7 @@ const AllRideInfo = () => {
                                 )}
                             </div>
                         </div>
-                        <div className="text-[var(--text-normal)] mb-6">
+                        <div className="text-[var(--text-normal)] mb-6" data-testid="ride-info-section">
                             <h2 className="my-4 text-[clamp(0.7rem,5vw,1.6rem)] text-gray-400 italic font-bold">
                                 Day 0 (Tues, 19 Nov. 2024)
                             </h2>
@@ -99,7 +99,7 @@ const AllRideInfo = () => {
                                 )}
                             </div>
                         </div>
-                        <div className="text-[var(--text-normal)] mb-6">
+                        <div className="text-[var(--text-normal)] mb-6" data-testid="ride-info-section">
                             <h2 className="my-4 text-[clamp(0.7rem,5vw,1.6rem)] text-gray-400 italic font-bold">
                                 Day 1 (Wed, 20 Nov. 2024)
                             </h2>
@@ -113,7 +113,7 @@ const AllRideInfo = () => {
                                 )}
                             </div>
                         </div>
-                        <div className="text-[var(--text-normal)] mb-6">
+                        <div className="text-[var(--text-normal)] mb-6" data-testid="ride-info-section">
                             <h2 className="my-4 text-[clamp(0.7rem,5vw,1.6rem)] text-gray-400 italic font-bold">
                                 Day 2 (Thurs, 21 Nov. 2024)
                             </h2>
