@@ -1,6 +1,6 @@
 Demo at: https://splash-cab-booking.vercel.app/
 
-(On-going) beta version of a car booking app for a Private Event, built with NextJS, Tailwind, MapLibre for map, MongoDB for database. Traveling route, price calculation are displayed after user's selection. This project is suitable for organizations having their own cars/cabs to transport guests and attendees.
+(On-going) beta version of a car booking app for a Private Event, built with `NextJS`, `Tailwind`, `MapLibre` for map, `MongoDB` for database, tested with `Jest`. Traveling route, price calculation are displayed after user's selection. This project is suitable for organizations having their own cars/cabs to transport guests and attendees.
 
 The project has 2 separate views, each requires Access Code after a specific time:
 
