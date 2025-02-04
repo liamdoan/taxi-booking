@@ -88,9 +88,9 @@ const AutoSearchAddress = () => {
             const res = await fetch('/api/address-search?q=' + address);
             const result = await res.json();
 
-            if (type === 'pickup') {
+            if (type === 'pickup' && Array.isArray(result)) {
                 setSuggestedPickupAddressList(result);
-            } else {
+            } else if (type === 'drop' && Array.isArray(result)) {
                 setSuggestedDropAddressList(result);
             }
         } catch (err) {
