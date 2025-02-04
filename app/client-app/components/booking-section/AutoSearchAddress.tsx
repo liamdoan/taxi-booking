@@ -169,6 +169,7 @@ const AutoSearchAddress = () => {
                         Pickup location&nbsp;<span className="text-red-500">*</span>
                     </label>
                     <input
+                        data-testid="input-pickup-address"
                         disabled={tickedPickupOptionCheckbox}
                         type="text"
                         className="
@@ -199,6 +200,7 @@ const AutoSearchAddress = () => {
                         <div className="absolute z-20 bg-white w-full shadow-md rounded-md">
                             {showPickupYourLocationOption && (
                                 <p
+                                    data-testid="label-your-location-pickup"
                                     className="p-2 hover:bg-gray-200 cursor-pointer"
                                     onMouseDown={() => onYourLocationClick(userLocation, 'pickup')}
                                 >
@@ -238,6 +240,7 @@ const AutoSearchAddress = () => {
                         Dropping location&nbsp;<span className="text-red-500">*</span>
                     </label>
                     <input
+                        data-testid="input-drop-address"
                         disabled={tickedDropOptionCheckbox}
                         type="text"
                         className="
@@ -268,6 +271,7 @@ const AutoSearchAddress = () => {
                         <div className="absolute z-10 bg-white w-full shadow-md rounded-md">
                             {showDropYourLocationOption && (
                                 <p
+                                    data-testid="label-your-location-drop"
                                     className="p-2 hover:bg-gray-200 cursor-pointer"
                                     onMouseDown={() => onYourLocationClick(userLocation, 'drop')}
                                 >
