@@ -16,7 +16,7 @@ Driver view provides details about rides (pickup/dropping point, time, distance,
 Frontend focuses on:
 
 - good, clear UI.
-- using context and reusabled components, avoid repetition.
+- using context and reusabled components. This project has many related logics across components, therefore context is widely utilized to centralize states/values.
 
 Backend focuses on:
 
