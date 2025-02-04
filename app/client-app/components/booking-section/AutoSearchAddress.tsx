@@ -10,8 +10,6 @@ import { useAddressNameContext } from '@/app/shared/context/AddressNameContext';
 import { useGetAddressData } from '@/app/shared/utils/getSingleAddressData';
 import PreselectedPickup from './PreselectedPickup';
 import PreselectedDrop from './PreselectedDrop';
-import TimePicker from './TimePicker';
-import DayPicker from './DayPicker';
 import { useCheckBoxContext } from '@/app/shared/context/CheckBoxContext';
 
 const AutoSearchAddress = () => {
@@ -220,8 +218,6 @@ const AutoSearchAddress = () => {
                     ) : null}
                 </div>
                 <PreselectedPickup />
-                <DayPicker />
-                <TimePicker />
             </div>
             <div>
                 <div id="dropping-input" className="pt-2 pb-2 relative">
