@@ -1,0 +1,34 @@
+name: CI pipeline test
+
+on:
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    lint-build-test:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v2
+
+            -   name: Set up node.js
+                uses: actions/setup-node@v2
+                with:
+                    node-version: '20'
+
+            -   name: Install dependencies
+                run: npm install
+            
+            -   name: Run eslint
+                run: npm run lint
+
+            -   name: Run prettier
+                run: npm run prettier --check
+
+            -   name: Run test
+                run: npm run test
+
+            -   name: Build
+                run: npm run build
