@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+// import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useDigitCodeAuthContext } from '@/app/shared/context/DigitCodeAuthContext';
@@ -41,14 +41,14 @@ const NavBar = () => {
                     Contact
                 </h2>
             </div>
-            <div>
+            {/* <div>
                 <SignedOut>
                     <SignInButton />
                 </SignedOut>
                 <SignedIn>
                     <UserButton />
                 </SignedIn>
-            </div>
+            </div> */}
         </div>
     );
 };
