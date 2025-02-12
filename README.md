@@ -13,6 +13,10 @@ Driver view provides details about rides (pickup/dropping point, time, distance,
 - toggle if ride is received.
 - toggle if ride is finished.
 
+CI/CD
+- This project is hosted on Vercel.
+- CI is implemented, all pushed sub-branches have to go through checkpoints (Eslint, Prettier, Test, Build) before being allowed to merged to `main` branch. Vercel only deploys when detecting new changes in `main` branch.
+
 Frontend focuses on:
 
 - good, clear UI.
