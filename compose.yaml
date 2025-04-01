@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  frontend:
+    depends_on:
+      - db
+    build: 
+      context: .
+      dockerfile: Dockerfile
+
+    # do port mapping so that we can access the app from the browser  
+    ports:
+      - 3000:3000
+
+    # use docker compose to watch for changes and rebuild the container  
+    develop:
+      watch:
+        - path: ./package.json
+          action: rebuild
+        - path: ./next.config.ts
+          action: rebuild
+        - path: ./package-lock.json
+          action: rebuild   
+        - path: .
+          target: /app
+          action: sync
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - rides:/data/db
+
+volumes:
+  rides:
